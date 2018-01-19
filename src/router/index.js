@@ -2,7 +2,7 @@ export default function (VueRouter) {
   const routes = [
     {
       path: '/',
-      component: require('views/content/index.vue'),
+      component: require('views/content/index/index.vue'),
     },
     {
       path: '/search',
@@ -15,7 +15,39 @@ export default function (VueRouter) {
     {
       path: '/mine',
       component: require('views/content/mine/mine.vue'),
-    }
+    },
+    {
+      path: '/travel',
+      component: require('views/content/index/travel.vue'),
+    },    
+    {
+      path: '/international',
+      component: require('views/content/index/international.vue'),
+    },   
+    {
+      path: '/publicWelfare',
+      component: require('views/content/index/publicWelfare.vue'),
+    },
+    {
+      path: '/customized',
+      component: require('views/content/index/customized.vue'),
+    },   
+    {
+      path: '/video',
+      component: require('views/content/index/video.vue'),
+    },   
+    {
+      path: '/photo',
+      component: require('views/content/index/photos.vue'),
+    },  
+    {
+      path: '/photoDetail',
+      component: require('views/content/index/photoDetail.vue'),
+    },
+    {
+      path: '/order',
+      component: require('views/content/mine/order.vue'),
+    },
   ]
   const router = new VueRouter({
     mode: 'history',
