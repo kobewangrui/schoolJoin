@@ -47,6 +47,10 @@ export default function (VueRouter) {
     {
       path: '/order',
       component: require('views/content/mine/order.vue'),
+    },,
+    {
+      path: '/searchResult',
+      component: require('views/content/search/searchResult.vue'),
     },
   ]
   const router = new VueRouter({
