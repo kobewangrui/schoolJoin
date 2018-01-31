@@ -8,6 +8,10 @@ import Resource from 'vue-resource'
 import $ from 'jquery'
 import 'jquery-validation'
 
+// 移动端日历
+import {DateTime} from 'vue-ydui/dist/lib.rem/datetime';
+Vue.component(DateTime.name, DateTime);
+
 window.jquery = window.$ = $
 Vue.use(VueRouter)
 Vue.use(Resource)

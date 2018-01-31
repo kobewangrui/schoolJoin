@@ -38,8 +38,8 @@
         color: #2f2b27;
         margin-bottom: .05rem;
     } 
-    .userIntegral .level{
-        width: .36rem;
+    .userIntegral .level img{
+        width: .46rem;
         height: .48rem;
         margin:0 auto;
     }
@@ -119,18 +119,18 @@
                     </p>
                     <p>作品</p>
                 </li>
-                <li>
+                <router-link to="/family" tag="li">
                     <p>
                         <img :src="require('assets/image/family.png')">
                     </p>
                     <p>家庭</p>
-                </li>
-                <li>
+                </router-link>
+                <router-link to="/friend" tag="li">
                     <p>
                         <img :src="require('assets/image/friend.png')">
                     </p>
                     <p>好友</p>
-                </li>
+                </router-link>
                 <li>
                     <p>
                         <img :src="require('assets/image/service.png')">

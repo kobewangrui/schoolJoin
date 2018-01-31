@@ -59,7 +59,7 @@
             <ul>
                 <router-link tag="li" to="/">
                     <div class="imgShow">
-                        <img :src="require('assets/image/apply.png')">
+                        <img :src="require('assets/image/timg.jpeg')">
                     </div>
                     <div class="title">
                         <p>大绳定制最长10个字符</p>

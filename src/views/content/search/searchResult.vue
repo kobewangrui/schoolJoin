@@ -22,7 +22,7 @@
 </style>
 <template>
     <div>
-        <div v-if="true">
+        <div v-if="false">
             <div class="icon">
                 <img :src="require('assets/image/regret.png')">
             </div>
@@ -31,7 +31,6 @@
         </div>
         <List v-for="i in [1,2,3,4]" :key="i.id" v-else/>
     </div>
-
 </template>
 <script>
     export default{
