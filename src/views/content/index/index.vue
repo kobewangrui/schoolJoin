@@ -42,19 +42,19 @@
 		</div>
 		<div class="menu">
 			<ul>
-				<router-link tag="li" to="/travel">
+				<router-link tag="li" :to="{path:'/travel',query:{type:'StudyTravel'}}">
 					<p>
 						<img :src="require('assets/image/study.png')">
 					</p>
 					<p>研学旅行</p>
 				</router-link>
-				<router-link tag="li" to="/international">
+				<router-link tag="li" :to="{path:'/international',query:{type:'IetExchange'}}">
 					<p>
 						<img :src="require('assets/image/international-exchange.png')">
 					</p>
 					<p>国际交流</p>
 				</router-link>
-				<router-link tag="li" to="/publicWelfare">
+				<router-link tag="li" :to="{path:'/publicWelfare',query:{type:'PubWelfare'}}">
 					<p>
 						<img :src="require('assets/image/public-benefit.png')">
 					</p>
@@ -80,13 +80,28 @@
 				</router-link>
 			</ul>
 		</div>
-		<List v-for="i in [1,2,3]" :key="i.id"></List>
+		<List :listData='lists'></List>
 	</div>
 </template>
 <script>
 	export default{
 		data(){
 			return{
+				lists:[]
+			}
+		},
+		created(){
+			this.getList();
+		},
+		methods:{
+			getList(){
+				this.$http.post('/api',{name:'pc.IndexAct'},{emulateJSON:true}).then((res)=>{
+					if(res.body.code === 1000){
+						this.lists = res.body.data.activity_list;
+					}
+				}).catch((error)=>{
+					console.log(error);
+				})
 			}
 		},
 		components:{

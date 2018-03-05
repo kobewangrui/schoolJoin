@@ -41,7 +41,7 @@
     }
     .connect button{
         border-radius: .36rem;
-        background: #f9c84e;
+        background: #d8d8d8;
         height: .8rem;
         font-size: .32rem;
         color: #fff;
@@ -52,25 +52,57 @@
         font-size: .28rem;
         text-align: center;
     }
+    .active{
+        background: #F9C84E!important;
+    }
 </style>
 <template>
     <div>
         <div class="connect">
             <p class="ipt">
                 <span>姓名</span>
-                <input type="text">
+                <input type="text" v-model="dzname">
             </p>
             <p class="ipt">
                 <span>联系方式</span>
-                <input type="text">
+                <input type="text" v-model="tel">
             </p>
             <p>
-                <textarea placeholder="请简述您的自定义要求"></textarea>
+                <textarea placeholder="请简述您的自定义要求" v-model="content"></textarea>
             </p>
             <p>
-                <button>发起自定义团建申请</button>
+                <button @click="postData" :class="{'active':$vuerify.check()}">发起自定义团建申请</button>
             </p>
         </div>
         <p class="connectPerson">客服人员将主动与您联系</p>
     </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                dzname:'',
+                tel:'',
+                content:''
+            }
+        },
+        vuerify:{
+            tel: ['required','phoneCheck'],
+            dzname: ['required'],
+            content: ['required'],
+        },
+        methods:{
+            postData(){
+                if(this.$vuerify.check()){
+                    this.$http.post('/api',{name:'pc.DsCustom',dzname:this.dzname,tel:this.tel,content:this.content},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                            alert(res.body.msg);
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
+                    })
+                }
+            }
+        }
+    }
+</script>

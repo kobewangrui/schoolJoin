@@ -3,9 +3,9 @@
 		margin-bottom: 1.5rem;
 	}
 	.menu{
-        box-sizing: border-box;
 		padding: .3rem;        
 		background: #fff;
+		box-sizing: border-box;
 	}
 	.menu ul{
 		width:100%;
@@ -29,13 +29,14 @@
 		margin-bottom:.4rem;
 
 	}
-    	.list ul li{
+	.list ul li{
 		background: #fff;
 		box-sizing: border-box;
 		padding: .3rem 0;
 		border-bottom:.01rem solid #e5e5e5; 
+		box-sizing: border-box;
 	}
-	.list ul li div.imgShow video{
+	.list ul li div.imgShow img{
 		width: 7.5rem;
 		height: 4rem;
 	}
@@ -60,35 +61,37 @@
 	<div class="index">
 		<div class="menu">
 			<ul>
-				<router-link tag="li" to="/travel">
+				<li @click="filterTyoe('StudyTravel')">
 					<p>
 						<img :src="require('assets/image/study.png')">
 					</p>
 					<p>研学旅行</p>
-				</router-link>
-				<router-link tag="li" to="/international">
+				</li>
+				<li @click="filterTyoe('IetExchange')">
 					<p>
 						<img :src="require('assets/image/international-exchange.png')">
 					</p>
 					<p>国际交流</p>
-				</router-link>
-				<router-link tag="li" to="/publicWelfare">
+				</li>
+				<li @click="filterTyoe('PubWelfare')">
 					<p>
 						<img :src="require('assets/image/public-benefit.png')">
 					</p>
 					<p>大绳公益</p>
-				</router-link>
+				</li>
 			</ul>
 		</div>
         <div class="list">
             <ul>
-                <li v-for="i in [1,2,3]" :key="i.id">
+                <li v-for="i in lists" :key="i.id">
                     <div class="imgShow">
-                        <video src="http://www.w3school.com.cn/i/movie.ogg" controls="controls"></video>
-                    </div>
+						<a :href="i.url">
+							<img :src="i.path">
+						</a>
+					</div>
                     <div class="title">
-                        <p>大绳定制最长10个字符</p>
-                        <p>12月13日</p>
+                        <p>{{i.name}}</p>
+                        <p>{{i.addtime | dateTime}}</p>
                     </div>
                 </li>
             </ul>
@@ -99,9 +102,27 @@
 	export default{
 		data(){
 			return{
+				lists:'',
+				videoType:''
 			}
 		},
-		components:{
+		created(){
+			this.getVideoList();
+		},
+		methods:{
+			getVideoList(){
+				this.$http.post('/api',{name:'pc.DsVideo',up_type:this.videoType,page:'1'},{emulateJSON:true}).then((res)=>{
+					if(res.body.code === 1000){
+						this.lists = res.body.data.Videolist;
+					}
+				}).catch((error)=>{
+					console.log(error);
+				})
+			},
+			filterTyoe(type){
+				this.videoType = type;
+				this.getVideoList();
+			}
 		}
 	}
 </script>

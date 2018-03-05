@@ -57,24 +57,36 @@
 <template>
     <div class="list">
             <ul>
-                <router-link tag="li" to="/">
+                <router-link tag="li" :to="{path:'/detail',query:{id:i.activity_id}}" v-for="i in listData" :key="i.id">
                     <div class="imgShow">
-                        <img :src="require('assets/image/timg.jpeg')">
+                        <img :src="i.path">
                     </div>
                     <div class="title">
-                        <p>大绳定制最长10个字符</p>
-                        <p>￥5670</p>
+                        <p>{{i.activity_name}}</p>
+                        <p>￥{{i.price}}</p>
                     </div>
                     <div class="time">
                         <p>
                             <img :src="require('assets/image/datepicker.png')">
-                            <span>12.13</span>
+                            <span>{{i.starttime | dateTime}}</span>
                         </p>
                         <p>
-                            <span v-for="i in [1,2,3]" :key="i.id">8-12岁</span>
+                            <span v-if="i.label!==''" v-for="j in i.label.split(',')" :key="j.id">{{j}}</span>
                         </p>
                     </div>
                 </router-link>
             </ul>
         </div>
 </template>
+<script>
+	export default{
+		data(){
+			return{
+
+			}
+		},
+		props:[
+			'listData'
+		]
+	}
+</script>

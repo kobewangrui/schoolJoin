@@ -58,16 +58,61 @@
         color: #fff;
         background: #F9C84E;
     }
+    .cover{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    .pop{
+        font-size: .32rem;
+        width: 5.9rem;
+        background: #fff;
+        border-radius: .08rem;
+        position: absolute;
+        z-index: 2;
+        margin: 0 auto;
+        top: 50%;
+        left: 50%;
+        margin-left: -2.95rem;
+        margin-top: -2.85rem;
+        text-align: center;
+        padding: .4rem 0 .35rem;
+        box-sizing: border-box;
+        transition: all .2s;
+        transform: scale(0,0);
+    }
+    .pop p:first-child{
+        margin-bottom:.5rem;
+        font-size: .4rem;
+    }
+    .pop p:last-child{
+        font-size: .32rem;
+        height: .5rem;
+    }
+    .pop p:last-child span{
+        /* background: ; */
+        display: inline-block;
+        width: 40%;
+        text-align: center;
+    }
+    
+    .popShow{
+        transform: scale(1,1);
+    }
 </style>
 <template>
     <div class="outer">
         <ul class="list">
-            <li v-for="i in 10" :key="i.id">
+            <li v-for="i in lists" :key="i.id" @click="popToggle(i.id)">
                 <div class="msg">
-                    <img :src="require('assets/image/pic.jpg')">
-                    <span>王睿龙</span>
+                    <img :src="i.image">
+                    <span>{{i.nickname}}</span>
                 </div>
-                <p class="sign">
+                <p class="sign" v-if="i.invite ===1">
                     <img :src="require('assets/image/invite.png')">
                 </p>
             </li>
@@ -79,5 +124,54 @@
         <p class="getIntro">由您邀请进平台的好友，</p>
         <p class="getIntro">每当他们参加一次活动，您可获得50积分</p>
         <p class="bottomTable">添加成员</p>
+        <div class="pop" :class="{'popShow':popHandle}">
+            <p>是否删除好友？</p>
+            <p>
+                <span @click="deleteFriend()">是</span>
+                <span @click="popToggle">否</span>
+            </p>
+        </div>
+        <div class="cover" @click="popToggle" v-if="popHandle"></div>
     </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                lists:[],            
+                popHandle:false,
+                id:'',
+            }
+        },
+        created(){
+            this.getFriendList();
+        },
+        methods:{
+            getFriendList(){
+                this.$http.post('/api',{name:'pc.Family.myFriends'},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.lists = res.body.data;
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            deleteFriend(){
+                this.$http.post('/api',{name:'pc.Family.delFriend',ids:this.id},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.id='';
+                        this.popHandle = !this.popHandle;
+                        this.getFriendList();
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            popToggle(id){
+                this.id = id;
+                window.scrollTo(0, 0);
+                this.popHandle = !this.popHandle;
+            },
+        }
+    }
+</script>

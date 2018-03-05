@@ -1,4 +1,4 @@
-export default function (VueRouter) {
+export default function (VueRouter,store) {
 	const routes = [
 		{
 			path: '/',
@@ -45,6 +45,10 @@ export default function (VueRouter) {
 					component: require('views/content/index/photos.vue'),
 				},
 				{
+					path: '/detail',
+					component: require('views/content/index/detail.vue'),
+				},
+				{
 					path: '/order',
 					component: require('views/content/mine/order.vue'),
 				},
@@ -52,6 +56,15 @@ export default function (VueRouter) {
 					path: '/searchResult',
 					component: require('views/content/search/searchResult.vue'),
 				},
+				{
+					path: '/edit',
+					component: require('views/content/mine/edit.vue'),
+				},
+				{
+					path: '/changePhone',
+					component: require('views/content/mine/changePhone.vue'),
+				}
+
 			]
 		},
 		{
@@ -75,5 +88,6 @@ export default function (VueRouter) {
 		mode: 'history',
 		routes
 	})
+	store.dispatch('SYNC_ALL')
 	return router
 }

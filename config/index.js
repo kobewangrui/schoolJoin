@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: 'http://116.62.33.66/broker2/php',
+        target: 'http://www.dashengxiji.xyz/PcApi',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

@@ -71,30 +71,31 @@
 <template>
     <div>
         <div class="headImg">
-            <p class="userName">王睿龙，您好</p>
-            <div class="userMsg">
+        {{this.$store.user}}
+            <p class="userName">{{$store.state.user.name}}，您好</p>
+            <router-link to="edit" tag="div" class="userMsg">
                 <p>
-                    <img :src="require('assets/image/teenager.png')">
+                    <img :src="$store.state.user.image">
                     <p>大绳的希冀</p>
                 </p>
-            </div>
+            </router-link>
         </div>
         <div class="userIntegral">
             <ul>
                 <li>
                     <p class="level">
-                        <img :src="require('assets/image/stair.png')">
-                        <img v-if="false" :src="require('assets/image/second-level.png')">
-                        <img v-if="false" :src="require('assets/image/three-level.png')">
+                        <img v-if="$store.state.user.level==='1'" :src="require('assets/image/stair.png')">
+                        <img v-if="$store.state.user.level==='2'" :src="require('assets/image/second-level.png')">
+                        <img v-if="$store.state.user.level==='3'" :src="require('assets/image/three-level.png')">
                     </p>
                     <p class="integralTitle">荣誉等级</p>
                 </li>
                 <li>
-                    <p>3456</p>
+                    <p>{{$store.state.user.exp}}</p>
                     <p class="integralTitle">积分</p>
                 </li>
                 <li>
-                    <p>3456</p>
+                    <p>{{$store.state.user.coin}}</p>
                     <p class="integralTitle">大绳币</p>
                 </li>
             </ul>
@@ -141,3 +142,16 @@
         </div>
     </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+            }
+        },
+        created(){
+        },
+        methods:{
+
+        }
+    }
+</script>

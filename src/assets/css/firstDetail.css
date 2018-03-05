@@ -1,0 +1,105 @@
+.first .banner img{
+    width: 100%;
+    height: 1.91rem;
+}
+.first .title{
+    color:#F7705E;
+    font-size: .28rem;
+    margin-bottom: .2rem;    
+    text-align: center;
+}
+.first .content{
+    font-size: .28rem;
+    color: #888897;
+    text-indent: .6rem;
+}
+.first .priceReduce{
+    text-indent: .4rem;
+}
+.first .blockTitle{
+    font-size: .32rem;
+    color: #F7705E;
+    margin: .2rem 0;
+}
+.first .blockTitle img{
+    width: .29rem;
+    height: .27rem;
+    margin-right: .1rem;
+}
+.first .blockTitle .circle{
+    display: inline-block;
+    width: .25rem;
+    height: .25rem;
+    background: #F7705E;
+    border-radius: 50%;
+    margin: 0 .05rem;
+}
+.first .imgs,
+.first .imgsOther{
+    text-align: center;
+}
+.first  .imgs img{
+    width: 4.93rem;
+    height: 3.3rem;
+}
+.first .imgsOther img{
+    width: 5.18rem;
+    height: 2.12rem;
+}
+.first .titleColor,
+.first .dayTravel table tr.titleColor td{
+    color: #F7705E;
+    font-size: .32rem;
+}
+.first .bgTitle .haveBG{
+    display: inline-block;
+    width: 2rem;
+    height: 1.35rem;
+    background: url('../image/template1-backdrop.png');
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    line-height: 1.35rem;
+    text-align: center;
+    color: #fff;
+    font-size: .32rem;
+    margin: .2rem 0;
+}
+.first .tableTitle{
+    color: #565656;
+    font-size: .3rem;
+}
+.first table{
+    padding: 0 .4rem;
+}
+.first table td{
+    font-size: .28rem;
+    color: #888897;
+}
+.first table tr{
+    padding: .1rem 0;
+}
+.first table td:first-child{
+    width: 1.6rem;
+}
+.first .dayTravel{
+    border: .02rem dotted #F7705E;
+    border-radius: .08rem;
+    padding-bottom: .3rem;
+}
+.first .dayTravel table tr.titleColor{
+    height: 1.5rem;
+    line-height: 1.5rem;
+}
+.first .footer{
+    margin: .5rem 0 1.5rem;
+    text-align: center;
+    color: #565656;
+    font-size: .28rem;
+ }
+.first .footer span{
+    display: inline-block;
+    width: .23rem;
+    height: .23rem;
+    background: #565656;
+    margin-right: .1rem;
+}
