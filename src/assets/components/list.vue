@@ -3,10 +3,10 @@
 		background: #fff;
 		box-sizing: border-box;
 		padding: .3rem 0;
-		border-bottom:.01rem solid #e5e5e5; 
+		border-bottom:.01rem solid #e5e5e5;
 	}
 	.list ul li div.imgShow img{
-		width: 7.5rem;
+		width: 7.1rem;
 		height: 4rem;
 	}
 	.list ul li div.title,
@@ -82,7 +82,6 @@
 	export default{
 		data(){
 			return{
-
 			}
 		},
 		props:[

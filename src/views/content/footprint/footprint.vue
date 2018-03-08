@@ -30,7 +30,7 @@
 		border-bottom:.01rem solid #e5e5e5; 
 	}
 	.list ul li div.imgShow img{
-		width: 7.5rem;
+		width: 7.1rem;
 		height: 4rem;
 	}
 	.list ul li div.title,
@@ -80,27 +80,27 @@
 </style>
 <template>
     <div class="list">
-        <div class="header">
+        <router-link to="/honorList" tag="div" class="header">
            <p>
                <img :src="require('assets/image/honor.png')">
                <span>荣誉证书</span>
-               <span class="count">(23)</span>
+               <span class="count">（{{count}}）</span>
            </p>
            <p class="more">></p>
-        </div>
+        </router-link>
         <ul>
-            <router-link tag="li" to="/" v-for="i in 5" :key="i.id">
+            <router-link tag="li" to="/" v-for="i in lists" :key="i.id">
                 <div class="imgShow">
-                    <img :src="require('assets/image/timg.jpeg')">
+                    <img :src="i.cover">
                 </div>
                 <div class="title">
-                    <p>大绳定制最长10个字符</p>
-                    <p>￥5670</p>
+                    <p>{{i.activity_name}}</p>
+                    <p>￥{{i.price}}</p>
                 </div>
                 <div class="time">
                     <p>
                         <img :src="require('assets/image/datepicker.png')">
-                        <span>12.13</span>
+                        <span>{{i.start}}</span>
                     </p>
                     <p>
                         <span>荣誉证书</span>
@@ -111,3 +111,42 @@
         </ul>
     </div>
 </template>
+<script>
+    export default{
+        data(){
+            return{
+                lists:[],
+                count:''
+            }
+        },
+        vuerify:{
+            tel: ['required','phoneCheck'],
+            dzname: ['required'],
+            content: ['required'],
+        },
+        created(){
+            this.myFoot();
+            this.myHonor();
+        },
+        methods:{
+            myFoot(){
+                this.$http.post('/PcApi',{name:'pc.cert.track'},{emulateJSON:true}).then((res)=>{
+                    if(res.body.success === 1000){
+                        this.lists = res.body.data
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            myHonor(){
+                this.$http.post('/PcApi',{name:'pc.cert.myCert'},{emulateJSON:true}).then((res)=>{
+                    if(res.body.success === 1000){
+                        this.count = res.body.data.count
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            }
+        }
+    }
+</script>

@@ -19,7 +19,7 @@
 		},
 		methods:{
 			getCode(){
-				this.$http.post('/api',{name:'pc.Login.getInfo',code:'授权登陆code'},{emulateJSON:true}).then((res)=>{
+				this.$http.post('/PcApi',{name:'pc.Login.getInfo',code:'授权登陆code'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						console.log(res.body)
 					}

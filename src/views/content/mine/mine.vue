@@ -108,18 +108,18 @@
                     </p>
                     <p>待付款</p>
                 </router-link>
-                <li>
+                <router-link to="/joined" tag="li">
                     <p>
                         <img :src="require('assets/image/apply.png')">
                     </p>
                     <p>已报名</p>
-                </li>
-                <li>
+                </router-link>
+                <router-link to="/production" tag="li">
                     <p>
                         <img :src="require('assets/image/production.png')">
                     </p>
                     <p>作品</p>
-                </li>
+                </router-link>
                 <router-link to="/family" tag="li">
                     <p>
                         <img :src="require('assets/image/family.png')">
@@ -132,12 +132,12 @@
                     </p>
                     <p>好友</p>
                 </router-link>
-                <li>
+                <router-link to="/service" tag="li">
                     <p>
                         <img :src="require('assets/image/service.png')">
                     </p>
                     <p>客服</p>
-                </li>
+                </router-link>
             </ul>
         </div>
     </div>

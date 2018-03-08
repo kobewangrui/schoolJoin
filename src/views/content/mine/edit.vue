@@ -59,6 +59,7 @@
         color: #fff;
         border-radius: .42rem;
         background: #d8d8d8;
+        font-size: .34rem;
     }
     .saveBtn .active{
         background: #F9C84E;

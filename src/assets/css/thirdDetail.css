@@ -1,140 +1,124 @@
-.second .banner img{
-    width: 100%;
-    height: 1.91rem;
+.third .banner img{
+    width: 6.9rem;
+    height: 4.5rem;
 }
-.second .title{
-    color:#F7705E;
+.third .title{
+    color:#7599C6;
     font-size: .28rem;
     margin-bottom: .2rem;
     text-align: center;
 }
-.second .flexImg{
-    display: flex;
-    justify-content: space-between;
-    margin: .2rem 0;
-}
-.second .imgs{
-    width: 5.34rem;
-    height: 3.62rem;
-    border: .01rem solid #F7705E;
-    border-radius: .08rem;
-    text-align: center;
-}
-.second .imgs img{
-    width: 4.5rem;
-    height: 3.3rem;
+.third .imgs img{
+    width: 6.9rem;
+    height: 2.8rem;
     margin-top: 0.15rem;
 }
-.second .flexImg p.normal{
-    margin-left: .4rem;
-}
-.second .flexImg p.spicial{
-    margin-right: .4rem;
-}
-.second .flexImg p.normal,
-.second .flexImg p.spicial{
-    font-size: .32rem;
-    width: .5rem;
-    height: 3.45rem;
-    background: #F7705E;
-    text-align: center;
-    color: #fff;
-    padding: .05rem .1rem;
-}
-.second .flexImg .circle{
-    display: inline-block;
-    width: .25rem;
-    height: .25rem;
-    background: #fff;
-    border-radius: 50%;
-    margin: 0 .05rem;
-}
-.second .content{
+.third .content{
     font-size: .28rem;
-    color: #888897;
+    color: #7599C6;
     text-indent: .6rem;
 }
-.second .priceReduce{
-    text-indent: .4rem;
-}
-.second .blockTitle{
-    font-size: .32rem;
-    color: #565656;
+.third .header .blockTitle{
+    font-size: .42rem;
+    color: #6E94C3;
     margin: .2rem 0;
+    text-align: center;
+    padding: 0 .1rem;
 }
-.second .titleColor{
+.third .header .blockTitle:before,
+.third .header .blockTitle:after{
+    display: inline-block;
+    content: '';
+    background: #6E94C3;
+    width: .2em;
+    height: .1rem;
+    font-size: .42rem;
+    border-radius: 50%;
+    margin-bottom: .1rem;
+}
+.third .bgTitle{
+    margin: .3rem 0;
+}
+.third .haveBG{
+    font-size: .46rem;
+    color: #7599C6;
+}
+.third .bgTitle img.bgImg{
+    width: .33rem;
+    height: .46rem;
+}
+.third .bgTitle img.bgImg,
+.third .bgTitle img.span{
+    vertical-align: middle;
+}
+.third .titleColor{
     color: #F7705E;
     font-size: .32rem;
 }
-.second .bgTitle .haveBG{
-    display: inline-block;
-    width: 3.1rem;
-    height: .8rem;
-    background: url('../image/template2-backdrop.png');
-    background-size: 100% 100%;
-    background-repeat:no-repeat;
-    line-height: .8rem;
-    text-align: center;
-    color: #565656;
-    font-size: .46rem;
-    margin: .2rem 0;
-    letter-spacing: .3rem;;
-    font-family: PingFangSC-Medium;
-}
-.second .tableTitle{
-    color: #565656;
-    font-size: .3rem;
-}
-.second table{
+.third table{
     padding: 0 .4rem;
 }
-.second table td{
+.third table td{
     font-size: .28rem;
     color: #888897;
 }
-.second table tr{
-    padding: .1rem 0;
+.third table tr:nth-child(odd){
+    background: #F7F7F7;
 }
-.second table td:first-child{
+.third table tr:nth-child(even){
+    background: #EFFAFF;
+}
+.third table tr{
+    padding: .2rem 0;
+}
+.third table td:first-child{
     width: 1.6rem;
 }
-.second .dayTravel .days{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: .5rem;
+.third .dayTravel{
+    box-sizing: border-box;
+    padding: .3rem 0;
+    margin-top: .3rem;
+    box-shadow: 0 .02rem .04rem .02rem rgba(0,0,0,0.30);
 }
-.second .dayTravel .days ul li{
-    padding: .1rem .3rem;
-}
-.second .dayTravel .days ul li span{
+.third .dayTravel .title{
     display: inline-block;
-    width: .12rem;
-    height: .12rem;
-    background: #F7705E;
-    border-radius: 50%;
-    margin-right: .2rem;
+    background:#6E94C3;
+    color: #fff;
+    padding: .05rem .2rem;
+    font-size: .32rem;
 }
-.second .dayTravel .days p{
-    width: .81rem;
-    height: 1.11rem;
-    background: url('../image/template2-rocket.png');
-    background-size: 100% 100%;
-    background-repeat:no-repeat;
-    line-height: 1.11rem;
+.third .dayTravel .inner{
     text-align: center;
-    color: #F7705E;
-    font-size: .28rem;
+    padding: 0 .3rem;
+    box-sizing: border-box;
 }
-.second .footer{
+.third .dayTravel .inner img{
+    width: 5.88rem;
+    height: 3.5rem;
+}
+.third .dayTravel .travelText{
+    color: #7599C6;
+    font-size: .28rem;
+    margin: .2rem 0;
+}
+.third .service .blockTitle{
+    color: #748395;
+    font-size: .32rem;
+}
+.third .service .content{
+    font-size: .28rem;
+    color: #748395;
+}
+.third .footer{
     margin: .5rem 0 1.5rem;
     text-align: center;
-    color: #565656;
+    color: #6E94C3;
     font-size: .28rem;
  }
-.second .footer span{
+.third .footer span{
     display: inline-block;
     width: .23rem;
     height: .23rem;
-    background: #565656;
+    background: #6E94C3;
     margin-right: .1rem;
 }

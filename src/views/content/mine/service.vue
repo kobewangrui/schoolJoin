@@ -68,10 +68,10 @@
                 <input type="text" v-model="tel">
             </p>
             <p>
-                <textarea placeholder="请简述您的自定义要求" v-model="content"></textarea>
+                <textarea placeholder="请简述您的意见与建议" v-model="content"></textarea>
             </p>
             <p>
-                <button @click="postData" :class="{'active':$vuerify.check()}">发起自定义团建申请</button>
+                <button @click="postData" :class="{'active':$vuerify.check()}">发起留言</button>
             </p>
         </div>
         <p class="connectPerson">客服人员将主动与您联系</p>

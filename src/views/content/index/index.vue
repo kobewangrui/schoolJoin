@@ -95,7 +95,7 @@
 		},
 		methods:{
 			getList(){
-				this.$http.post('/api',{name:'pc.IndexAct'},{emulateJSON:true}).then((res)=>{
+				this.$http.post('/PcApi',{name:'pc.IndexAct'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						this.lists = res.body.data.activity_list;
 					}

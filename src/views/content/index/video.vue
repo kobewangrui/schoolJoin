@@ -37,7 +37,7 @@
 		box-sizing: border-box;
 	}
 	.list ul li div.imgShow img{
-		width: 7.5rem;
+		width: 7.1rem;
 		height: 4rem;
 	}
 	.list ul li div.title{

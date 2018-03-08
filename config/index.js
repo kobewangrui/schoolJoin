@@ -28,11 +28,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
+      '/PcApi': {
         target: 'http://www.dashengxiji.xyz/PcApi',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/PcApi': ''
         }
       }
     },

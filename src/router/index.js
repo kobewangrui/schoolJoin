@@ -43,11 +43,7 @@ export default function (VueRouter,store) {
 				{
 					path: '/photo',
 					component: require('views/content/index/photos.vue'),
-				},
-				{
-					path: '/detail',
-					component: require('views/content/index/detail.vue'),
-				},
+				},   
 				{
 					path: '/order',
 					component: require('views/content/mine/order.vue'),
@@ -63,9 +59,42 @@ export default function (VueRouter,store) {
 				{
 					path: '/changePhone',
 					component: require('views/content/mine/changePhone.vue'),
+				},
+				{
+					path: '/suggest',
+					component: require('views/content/mine/suggest.vue'),
+				},
+				{
+					path: '/joined',
+					component: require('views/content/mine/joined.vue'),
+				},
+				{
+					path: '/service',
+					component: require('views/content/mine/service.vue'),
+				},
+				{
+					path: '/honorList',
+					component: require('views/content/footprint/honorList.vue'),
 				}
 
 			]
+		},
+
+		{
+			path: '/createOrder',
+			component: require('views/content/index/createOrder.vue'),
+		},
+		{
+			path: '/detail',
+			component: require('views/content/index/detail.vue'),
+		},				
+		{
+			path: '/production',
+			component: require('views/content/mine/production.vue'),
+		},
+		{
+		path: '/productionDetail',
+		component: require('views/content/mine/productionDetail.vue'),
 		},
 		{
 		path: '/photoDetail',
@@ -85,7 +114,7 @@ export default function (VueRouter,store) {
 		},
 	]
   const router = new VueRouter({
-		mode: 'history',
+		// mode: 'history',
 		routes
 	})
 	store.dispatch('SYNC_ALL')

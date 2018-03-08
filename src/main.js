@@ -12,6 +12,7 @@ import Vuerify from 'vuerify'
 import myRules from './rules'
 import './filter/formatDate'
 
+
 // 移动端日历
 import {DateTime} from 'vue-ydui/dist/lib.rem/datetime';
 Vue.component(DateTime.name, DateTime);

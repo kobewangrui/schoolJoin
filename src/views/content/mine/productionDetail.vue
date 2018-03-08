@@ -63,7 +63,7 @@
         background: #f9c84e;
     }
     .bottomTable,
-    .bottomlike{
+    .bottomDelete{
         width: 100%;
         height: 1rem;
         line-height: 1rem;
@@ -73,14 +73,40 @@
         bottom: 0;
         background: #fff;
     }
-    .bottomlike li{
+    .bottomTable li{
+        float: left;
+        width: 33.3%;
+    }
+    .bottomTable li.active{
+        color: #F9C84E;
+    }
+    .bottomTable .upload{
+        background: #f9c84e;
+        color: #fff;
+    }
+    .bottomDelete li{
         background: #fff;
         float: left;
         width: 50%;
     }
-    .bottomlike li.like{
+    .bottomDelete li.delete{
         background: #f9c84e;
         color: #fff;
+    }
+    .bottomTable:after{
+        content:'';
+        clear:both;
+        display:block;
+        width:0;
+        height:0;
+    }
+    .like{
+        width: .4rem;
+        height: .4rem;
+    }
+    .like,
+    .number{
+        vertical-align: middle;
     }
 </style>
 <template>
@@ -90,6 +116,7 @@
             <span>{{$route.query.time | dateTime}}</span>
         </p>
         <div class="detail">
+            <p class="deleteAllPhoto" v-if="!edit"  @click="deletePhoto">删除该相册</p>
             <ul class="list">
                 <li v-for="(i,index) in lists">
                     <label :for="'img'+index">
@@ -101,12 +128,23 @@
             </ul>
         </div>
         <ul class="bottomTable" v-if="edit">
-            <li @click="edits">编辑收藏</li>
+            <li class="active">
+                <img class="like" @click="like(1)" v-if="msg.is_like===0" :src="require('assets/image/like.png')">
+                <img class="like" @click="like(2)" v-if="msg.is_like>0" :src="require('assets/image/unlike.png')">
+                <span class="number">({{msg.likes}})</span>
+            </li>
+            <li @click="edits">编辑</li>
+            <li class="upload">
+                <addImg @clickImg = "clickImg" :max="5" @imgChange = "imgChange"></addImg>
+            </li>
+            <li>
+
+            </li>
         </ul>
-        <ul class="bottomlike" v-else>
-            <li @click="cancel">取消</li>
-            <li class="like" @click="likepic">收藏到个人相册</li>
-        </ul>
+        <ul class="bottomDelete" v-else>
+                <li @click="cancel">取消</li>
+                <li class="delete" @click="deletePic">删除</li>
+            </ul>
     </div>
 </template>
 <script>
@@ -117,6 +155,9 @@
                 msg:'',
                 edit:true,
                 photoList:[],
+                activeImg: '',
+                uploading: false,
+                imgs:[],
             }
         },
         created(){
@@ -124,7 +165,7 @@
         },
         methods:{
             getList(){
-                this.$http.post('/api',{name:'pc.Album.actPicDetail',act_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/api',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         // this.lists = res.body.data.pictures;
                         // this.msg = res.body.data.album;
@@ -165,6 +206,24 @@
                     console.log(error);
                 })
             },
+            like(arg){
+                this.$http.post('/api',{name:'pc.Album.like',album_id:this.$route.query.id,type:arg},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.getList();
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            deletePhoto(){
+                this.$http.post('/api',{name:'pc.Album.delAlbum',album_id:this.msg.id},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.$router.push('/production');
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
             cancel(){
                 this.edit = true;
                 this.photoList = [];
@@ -173,6 +232,46 @@
                 this.edit = false;
                 this.photoList = [];
             },
+            deletePic(){
+                let idStr = this.photoList.join(',');
+                this.$http.post('/api',{name:'pc.Album.delPicture',pic_id:idStr},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.$router.push('/productionDetail');
+                        this.edit = true;
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            clickImg(img){
+				this.activeImg = img;
+			},
+			imgChange(files){
+				this.imgs = files;
+            },
+            upload(){
+				var fm = new FormData();
+				this.imgs.forEach((img) => {
+					fm.append('imageFiles', img, `${Math.ceil(Date.now()*Math.random()*10)}.jpg`);
+                })
+                fm.append('name','pc.Album.upload_img');
+                fm.append('album_id',this.$route.query.id);
+                this.$http.post('/api',fm,{emulateJSON:true}).then((res)=>{
+					if(res.body.code === 1000){
+						console.log('上传成功');
+					}
+				}).catch((error)=>{
+					console.log(error);
+				})
+			}
+        },
+        components:{
+            addImg:require('assets/components/addImg.vue')
+        },
+        watch:{
+            'imgs':function(){
+                this.upload();
+            }
         }
     }
 </script>
