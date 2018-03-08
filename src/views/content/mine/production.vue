@@ -78,7 +78,7 @@
         },
         methods:{
             getList(){
-                this.$http.post('/api',{name:'pc.Album.myPictures'},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Album.myPictures'},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data.albums;
                         this.left_volume = res.body.data.left_volume;
@@ -89,7 +89,7 @@
                 })
             },
             createPhoto(){
-                this.$http.post('/api',{name:'pc.Album.createAlbum',album_name:'新建相册',type:1},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Album.createAlbum',album_name:'新建相册',type:1},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.getList();
                     }

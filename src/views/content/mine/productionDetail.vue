@@ -165,7 +165,7 @@
         },
         methods:{
             getList(){
-                this.$http.post('/api',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         // this.lists = res.body.data.pictures;
                         // this.msg = res.body.data.album;
@@ -207,7 +207,7 @@
                 })
             },
             like(arg){
-                this.$http.post('/api',{name:'pc.Album.like',album_id:this.$route.query.id,type:arg},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Album.like',album_id:this.$route.query.id,type:arg},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.getList();
                     }
@@ -216,7 +216,7 @@
                 })
             },
             deletePhoto(){
-                this.$http.post('/api',{name:'pc.Album.delAlbum',album_id:this.msg.id},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Album.delAlbum',album_id:this.msg.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.$router.push('/production');
                     }
@@ -234,7 +234,7 @@
             },
             deletePic(){
                 let idStr = this.photoList.join(',');
-                this.$http.post('/api',{name:'pc.Album.delPicture',pic_id:idStr},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Album.delPicture',pic_id:idStr},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.$router.push('/productionDetail');
                         this.edit = true;
@@ -256,7 +256,7 @@
                 })
                 fm.append('name','pc.Album.upload_img');
                 fm.append('album_id',this.$route.query.id);
-                this.$http.post('/api',fm,{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',fm,{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						console.log('上传成功');
 					}

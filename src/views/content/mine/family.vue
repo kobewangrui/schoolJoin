@@ -88,7 +88,7 @@
         },
         methods:{
             deleteFri(id){
-                this.$http.post('/api',{name:'pc.Family.delete',id:id},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Family.delete',id:id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.getFamilyList();
                         console.log('删除成功');
@@ -98,7 +98,7 @@
                 })
             },
             getFamilyList(){
-                this.$http.post('/api',{name:'pc.Family.familyList'},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Family.familyList'},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data;
                     }

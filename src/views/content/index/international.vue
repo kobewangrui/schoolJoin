@@ -45,7 +45,7 @@
         },
         methods:{
 			getList(){
-				this.$http.post('/api',{name:'pc.TypeAct',up_type:this.types,type_id:this.smallType,page:'1'},{emulateJSON:true}).then((res)=>{
+				this.$http.post('/PcApi',{name:'pc.TypeAct',up_type:this.types,type_id:this.smallType,page:'1'},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data.Activitylist;
                     }

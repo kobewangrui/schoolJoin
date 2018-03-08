@@ -156,7 +156,7 @@
                     gender = '未知';
                 }
                 if(this.$vuerify.check()){
-                    this.$http.post('/api',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             console.log('添加成功');
                             this.$router.push('/family');

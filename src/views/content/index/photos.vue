@@ -52,7 +52,7 @@
         },
         methods:{
             getList(){
-                this.$http.post('/api',{name:'pc.cert.past'},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.cert.past'},{emulateJSON:true}).then((res)=>{
                     if(res.body.success === 1000){
                         this.lists = res.body.data;
                     }

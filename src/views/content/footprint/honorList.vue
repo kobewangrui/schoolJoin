@@ -36,7 +36,7 @@
         },
         methods:{
             myHonor(){
-                this.$http.post('/api',{name:'pc.cert.myCert'},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.cert.myCert'},{emulateJSON:true}).then((res)=>{
                     if(res.body.success === 1000){
                         this.cert = res.body.data.cert
                     }

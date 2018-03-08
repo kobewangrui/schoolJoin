@@ -95,7 +95,7 @@
         },
         methods:{
             getList(){
-                this.$http.post('/api',{name:'pc.ActOrderList',status:2,page:1},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.ActOrderList',status:2,page:1},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         // this.lists = res.body.data.list;
                         this.lists = 

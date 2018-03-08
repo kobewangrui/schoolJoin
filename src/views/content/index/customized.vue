@@ -94,7 +94,7 @@
         methods:{
             postData(){
                 if(this.$vuerify.check()){
-                    this.$http.post('/api',{name:'pc.DsCustom',dzname:this.dzname,tel:this.tel,content:this.content},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.DsCustom',dzname:this.dzname,tel:this.tel,content:this.content},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             alert(res.body.msg);
                         }

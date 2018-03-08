@@ -215,7 +215,7 @@
                 if(this.$vuerify.check()){
                     let d = new Date(this.dateTime);
                     let dt = d.getTime();
-                    this.$http.post('/api',{name:'pc.Login.editInfo',real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             this.lists = res.body.data.Activitylist;
                         }

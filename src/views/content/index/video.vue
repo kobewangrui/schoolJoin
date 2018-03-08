@@ -111,7 +111,7 @@
 		},
 		methods:{
 			getVideoList(){
-				this.$http.post('/api',{name:'pc.DsVideo',up_type:this.videoType,page:'1'},{emulateJSON:true}).then((res)=>{
+				this.$http.post('/PcApi',{name:'pc.DsVideo',up_type:this.videoType,page:'1'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						this.lists = res.body.data.Videolist;
 					}

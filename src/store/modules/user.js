@@ -11,7 +11,7 @@ export default {
 		SYNC_USER(context){
 			// $.ajax({
 			// 	type: "POST",
-			// 	url: "/api",
+			// 	url: "/PcApi",
 			// 	data: {name:'pc.Login.getInfoByOpenid',openid:this.$route.query.openid},
 			// 	async: false,
 			// 	success: (resp)=>{

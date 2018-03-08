@@ -148,7 +148,7 @@
         },
         methods:{
             getFriendList(){
-                this.$http.post('/api',{name:'pc.Family.myFriends'},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Family.myFriends'},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data;
                     }
@@ -157,7 +157,7 @@
                 })
             },
             deleteFriend(){
-                this.$http.post('/api',{name:'pc.Family.delFriend',ids:this.id},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.Family.delFriend',ids:this.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.id='';
                         this.popHandle = !this.popHandle;
