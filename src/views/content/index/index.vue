@@ -38,7 +38,13 @@
 <template>
 	<div class="index">
 		<div class="bannerImg">
-			<img :src="require('assets/image/advance.png')">
+			<yd-slider autoplay="3000">
+				<yd-slider-item v-for="i in img" :key="i.id">
+					<a :href="i.url">
+						<img :src="i.path">
+					</a>
+				</yd-slider-item>
+			</yd-slider>
 		</div>
 		<div class="menu">
 			<ul>
@@ -87,17 +93,28 @@
 	export default{
 		data(){
 			return{
-				lists:[]
+				lists:[],
+				img:[]
 			}
 		},
 		created(){
 			this.getList();
+			this.getBanner();
 		},
 		methods:{
 			getList(){
 				this.$http.post('/PcApi',{name:'pc.IndexAct'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						this.lists = res.body.data.activity_list;
+					}
+				}).catch((error)=>{
+					console.log(error);
+				})
+			},
+			getBanner(){
+				this.$http.post('/PcApi',{name:'pc.banner'},{emulateJSON:true}).then((res)=>{
+					if(res.body.code === 1000){
+						this.img = res.body.data.banner_homepage
 					}
 				}).catch((error)=>{
 					console.log(error);

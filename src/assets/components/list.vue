@@ -6,7 +6,7 @@
 		border-bottom:.01rem solid #e5e5e5;
 	}
 	.list ul li div.imgShow img{
-		width: 7.1rem;
+		width: 100%;
 		height: 4rem;
 	}
 	.list ul li div.title,

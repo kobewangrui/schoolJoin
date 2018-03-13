@@ -118,7 +118,7 @@
         <div class="list">
             <span>头像</span>
             <div class="more">
-                <img :src="require('assets/image/pic.jpg')">
+                <img :src="$store.state.user.image">
                 <span class="right"> > </span>
             </div>
         </div>
@@ -146,7 +146,7 @@
             <span class="right"> > </span>
         </div>
         <div class="list">
-            <span>手机 <span class="PhoneText">17749268844</span></span>
+            <span>手机 <span class="PhoneText">{{$store.state.user.mobile}}</span></span>
             <router-link to="/changePhone" tag="span" class="rightChange"> 修改 </router-link>
         </div>
         <div class="list">
@@ -156,7 +156,7 @@
                     <input slot="right" type="text" @click.stop="show2 = true" v-model="model2" readonly placeholder="请选择地址">
                 </yd-cell-item>
                 </yd-cell-group>
-            <yd-cityselect v-model="show2" ref="cityselectDemo" :callback="result2" provance="浙江" city="杭州市" area="滨江区" :items="district"></yd-cityselect>
+            <yd-cityselect v-model="show2" ref="cityselectDemo" :callback="result2" :provance="this.$store.state.user.city" city="杭州市" area="滨江区" :items="district"></yd-cityselect>
             <span class="right"> > </span>
         </div>
         <div class="list">
@@ -192,16 +192,21 @@
                 monthFormat: "{value}",
                 dayFormat: "{value}",
                 show2: false,
-                model2: '浙江 杭州市 滨江区',
+                model2: '',
                 district: District,
-                real_name:'',
-                gender:'',
-                school:'',
-                address:'',
+                real_name: '',
+                gender: '',
+                school: '',
+                address: '',
             }
         },
         created(){
             this.defaultDate('end');
+                this.model2 = this.$store.state.user.name;
+                this.real_name = this.$store.state.user.name
+                // this.gender = this.$store.state.user.gender;
+                this.school = this.$store.state.user.school;
+                this.address = this.$store.state.user.address;
         },
         vuerify:{
             real_name:['required'],
@@ -215,7 +220,15 @@
                 if(this.$vuerify.check()){
                     let d = new Date(this.dateTime);
                     let dt = d.getTime();
-                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
+                    let genders;
+                    if(this.gender === '1'){
+                         gender = '男'
+                    }else if(this.gender === '2'){
+                        genders = '女';
+                    }else{
+                        genders = '未知';
+                    }
+                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:genders,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             this.lists = res.body.data.Activitylist;
                         }

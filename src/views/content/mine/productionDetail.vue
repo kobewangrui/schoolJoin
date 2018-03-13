@@ -167,40 +167,8 @@
             getList(){
                 this.$http.post('/PcApi',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
-                        // this.lists = res.body.data.pictures;
-                        // this.msg = res.body.data.album;
-                        this.lists =  { 
-                                "0" : { 
-                                        "id" : "9", // 图片id
-                                        "tid" : "7", // 所属相册id
-                                        "path" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385TPR2rAMm.jpg", // 原图
-                                        "thumbnail" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385TPR2rAMm_thum.jpg" 
-                                }, // 缩略图
-                                "1" : { 
-                                        "id" : "10", 
-                                        "tid" : "7", 
-                                        "path" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385LIvVQcaL.jpg", 
-                                        "thumbnail" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385LIvVQcaL_thum.jpg" 
-                                }, 
-                                "2" : { 
-                                        "id" : "110", 
-                                        "tid" : "7", 
-                                        "path" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385LIvVQcaL.jpg", 
-                                        "thumbnail" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385LIvVQcaL_thum.jpg" 
-                                }, 
-                                "3" : { 
-                                        "id" : "1110", 
-                                        "tid" : "7", 
-                                        "path" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385LIvVQcaL.jpg", 
-                                        "thumbnail" : "http://39.104.69.153/dsdxj/uploads/2018_01_10/img1515575385LIvVQcaL_thum.jpg" 
-                                }, 
-                        }
-                        this.msg = { 
-                                "name" : "三生三世", // 相册名字
-                                "id" : 7, // 相册id
-                                "is_like":1,
-                                "likes":1111
-                            }
+                        this.lists = res.body.data.pictures;
+                        this.msg = res.body.data.album;
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -252,10 +220,11 @@
             upload(){
 				var fm = new FormData();
 				this.imgs.forEach((img) => {
-					fm.append('imageFiles', img, `${Math.ceil(Date.now()*Math.random()*10)}.jpg`);
+					fm.append('img', img, `${Math.ceil(Date.now()*Math.random()*10)}.jpg`);
                 })
                 fm.append('name','pc.Album.upload_img');
                 fm.append('album_id',this.$route.query.id);
+                console.log(fm);
                 this.$http.post('/PcApi',fm,{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						console.log('上传成功');

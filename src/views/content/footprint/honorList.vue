@@ -15,12 +15,12 @@
 <template>
     <div class="honor">
         <ul>
-            <li v-for="i in cert" :key="i.id">
+            <router-link :to="{path:'/honorDetail',query:{path:i.path,content:i.content}}" tag="li" v-for="i in cert" :key="i.id">
                 <img v-if="i.icon_type==='1'" :src="require('assets/image/badge-1.png')">
                 <img v-if="i.icon_type==='2'" :src="require('assets/image/badge-2.png')">
                 <img v-if="i.icon_type==='3'" :src="require('assets/image/badge-3.png')">
                 <span>{{i.remark}}</span>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>

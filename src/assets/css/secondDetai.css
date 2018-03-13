@@ -65,6 +65,7 @@
 .second .titleColor{
     color: #F7705E;
     font-size: .32rem;
+    margin: .15rem 0;
 }
 .second .bgTitle .haveBG{
     display: inline-block;

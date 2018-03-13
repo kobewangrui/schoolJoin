@@ -4,7 +4,7 @@
         box-sizing: border-box;
     }
     .oneContent img{
-        width: 7rem;
+        width: 7rem!important;
     }
     .header .img img{
         width: 100%;
@@ -108,11 +108,14 @@
         width: 100%;
         height: 1rem;
         line-height: 1rem;
-        background: #F9C84E;
+        background: #d8d8d8;
         color: #fff;
         position: fixed;
         bottom: 0;
         text-align: center;
+    }
+    .JoinGameActive{
+        background: #F9C84E;
     }
 </style>
 <style lang="css" src="assets/css/firstDetail.css" scoped></style>
@@ -123,7 +126,7 @@
 <template>
    <div>
        <div class="header detail">
-            <div class="">
+            <div>
                 <p class="img">
                     <img :src="views.path">
                 </p>
@@ -137,13 +140,13 @@
             </div>
             <ul class="dates">
                 <li v-for="(i,index) in views.mtschedule">
-                    <input :id="'d'+index" type="radio" name="date">
+                    <input :id="'d'+index" v-model="timeGame" :value="i.starttime" type="radio" name="date">
                     <label :for="'d'+index">{{i.starttime | dateTime}}</label>
                 </li>
             </ul>
             <div class="personCount">
                 <p>请提前{{views.Tq_Enroll_Day}}天报名</p>    
-                <p>已报名700人</p>    
+                <p>已报名700人</p>
             </div>
             <div class="reduce" v-if="views.volunteer==='1'">
                 <div>
@@ -196,75 +199,73 @@
                     <span class="haveBG">日程安排</span>
                     <span class="titleColor">【{{Object.keys(notice2).length/3}}天{{Object.keys(notice2).length/3-1}}晚】</span>
                 </p>
+                <div class="bgTitle" v-if="model_type === '5'">
+                    <p class="haveBG">日程安排</p>
+                    <p class="titleColor">【{{Object.keys(notice2).length/3}}天{{Object.keys(notice2).length/3-1}}晚】</p>
+                </div>
                 <!-- 方案一行程安排 -->
                 <div class="dayTravel" v-if="model_type==='1'">
-
                     <table>
-                        <tr class="titleColor">
-                            <td>Day1</td>
-                            <td>带上锦囊去淘金</td>
-                        </tr>
-                        <tr>
-                            <td>上午</td>
-                            <td>带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金</td>
-                        </tr>
-                        <tr>
-                            <td>下午</td>
-                            <td>带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金</td>
-                        </tr>
-                        <tr class="titleColor">
-                            <td>Day2</td>
-                            <td>步步研学步步挑战的日子</td>
-                        </tr>
-                        <tr>
-                            <td>上午</td>
-                            <td>带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金</td>
-                        </tr>
-                        <tr>
-                            <td>下午</td>
-                            <td>带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金</td>
-                        </tr>
-                        <tr>
-                            <td>晚上</td>
-                            <td>带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金带上锦囊去淘金</td>
-                        </tr>
+                        <div v-for="(i,index) in notice2" :key="i.id">
+                            <tr class="titleColor" v-if="index%3===0">
+                                <td>Day{{(index/3)+1}}</td>
+                                <td>带上锦囊去淘金</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <img :src="i['0']">
+                                    <p>{{i.content}}</p>
+                                </td>
+                            </tr>
+                        </div>
                     </table>
                 </div>
                 <!-- 方案二行程安排 -->
                 <div class="dayTravel" v-if="model_type==='2'">
-                        <div class="days" v-for="i in 2" :key="i.id">
+                        <div class="days" v-for="(i,index) in notice2" :key="i.id">
                             <ul>
-                                <li class="content"><span></span>杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</li>
-                                <li class="content"><span></span>杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</li>
-                                <li class="content"><span></span>杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</li>
-                                <li class="content"><span></span>杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</li>
-                                <li class="content"><span></span>杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</li>
-                                <li class="content"><span></span>杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</li>
+                                <li class="content"><span></span>{{i.content}}<img :src="i[0]"></li>
                             </ul>
-                            <p>{{i}}</p>
+                            <p v-if="index%3===0">{{index+1}}</p>
                         </div>
                     </div>
                 </div>
                 <!-- 方案三行程安排 -->
                 <div class="dayTravel" v-if="model_type==='3'">
-                    <div v-for="i in 3" :key="i.id">
-                        <p class="title">Day{{i}} 带上锦囊去淘金</p>
+                    <div v-for="(i,index) in notice2" :key="i.id">
+                        <p class="title" v-if="index%3===0">Day{{index+1}} 带上锦囊去淘金</p>
                         <div class="inner">
-                            <img :src="require('assets/image/pic.jpg')">
-                            <p class="travelText">杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</p>
+                            <img :src="i[0]">
+                            <p class="travelText">{{i.content}}</p>
                         </div>
                     </div>
                 </div>
                 <!-- 方案四行程安排 -->
                 <div class="dayTravel" v-if="model_type==='4'">
-                    <div v-for="i in 3" :key="i.id">
+                    <div v-for="(i,index) in notice2" :key="i.id">
                         <div class="number">
-                            <p class="title">Day{{i}}</p>
+                            <p class="title" v-if="index%3===0">Day{{index+1}}</p>
                         </div>
                         <div class="inner">
-                            <img :src="require('assets/image/pic.jpg')">
-                            <p class="travelText">杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。杭州孔庙集合，“赚取人生的第一桶金”开营。</p>
+                            <img :src="i[0]">
+                            <p class="travelText">{{i.content}}</p>
                         </div>
+                    </div>
+                </div>
+                <!-- 方案五行程安排 -->
+                <div class="dayTravel" v-if="model_type==='5'">
+                    <div v-for="(i,index) in notice2" :key="i.id">
+                        <p class="travelTitle" v-if="index%3===0">
+                            <span>Day{{index+1}}</span>
+                            <span>带上锦囊ƒ去淘金</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <span></span>
+                                <span><img :src="i[0]">{{i.content}}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             <div>
@@ -275,42 +276,31 @@
                     <img :src="require('assets/image/template3-flag.png')" class="bgImg">
                     <span class="haveBG">报名须知</span>
                 </p>
+                <div v-if="model_type === '5'" class="bgTitleFiveOuter">
+                    <p class="bgTitleFive">
+                        报名须知<span></span>
+                    </p> 
+                </div>
                 <div v-if="model_type!=='4'">
-                    <p class="titleColor">活动费用：2188/人</p>
-                    <p class="priceReduce">优惠活动2选1：</p>
-                    <table>
-                        <tr>
-                            <td>活动一：</td>
-                            <td>朋友圈集齐88个赞，即减50元。</td>
+                    <p class="titleColor">活动费用：{{views.price}}/人</p>
+                    <!-- <p class="priceReduce">优惠活动2选1：</p> -->
+                    <!-- <table>
+                        <tr v-for="i in notice3">
+                            <td>{{i[0]}}</td>
+                            <td>{{i[1]}}</td>
                         </tr>
-                        <tr>
-                            <td>活动二：</td>
-                            <td>
-                                <p>朋友圈集齐88个赞，即减50元。</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <p>朋友圈集齐88个赞，即减50元。</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <p>朋友圈集齐88个赞，即减50元。</p>
-                            </td>
-                        </tr>
-                    </table>
+                    </table> -->
                 </div>
                 <div class="join" v-if="model_type==='4'">
-                    <div class="joinIntro" v-for="i in 5">
-                        <p class="tit"><span>活动费用</span><span></span></p>
-                        <p>2188元/人</p>
+                    <p class="titleColor">活动费用：{{views.price}}/人</p>
+                    <div class="joinIntro" v-for="i in notice3">
+                        <p class="tit"><span>{{i[0]}}</span><span></span></p>
+                        <p>{{i[1]}}</p>
+                        <p>{{i.smallTitle[0]}}: {{i.smallTitle[1]}}</p>
                     </div>
                 </div>
                 <template v-if="model_type!=='4'">
-                    <table>
+                    <!-- <table>
                             <tr>
                                 <td class="tableTitle">费用包含：</td>
                                 <td>行程内景区门票、各活动项目课时费材料费、行程内的住宿费、餐费和交通费、保险费、随队老师的工作补贴、营服、公共物资、学习资料。</td>
@@ -319,22 +309,16 @@
                                 <td class="tableTitle">费用不含：</td>
                                 <td>其他个人消费</td>
                             </tr>
-                        </table>
-                        <p class="titleColor">适宜年龄：08-15周岁</p>
-                        <table>
+                        </table> -->
+                        <div v-for="i in notice3" :key="i.id">
+                            <p class="titleColor">{{i[0]}}：{{i[1]}}</p>
+                            <table>
                                 <tr>
-                                    <td>活动时长：</td>
-                                    <td>3天2晚</td>
+                                    <td>{{i.smallTitle[0]}}：</td>
+                                    <td>{{i.smallTitle[1]}}</td>
                                 </tr>
-                                <tr>
-                                    <td>营期人数：</td>
-                                    <td>第1期2018年2月01日-2月03日</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>第2期2018年2月04日-2月06日满35人，开营。</td>
-                                </tr>
-                        </table>
+                            </table>
+                        </div>
                 </template>
             </div>
             <div class="service">
@@ -345,6 +329,11 @@
                     <img :src="require('assets/image/template3-flag.png')" class="bgImg">
                     <span class="haveBG">服务保障</span>
                 </p>
+                <div v-if="model_type === '5'" class="bgTitleFiveOuter">
+                        <p class="bgTitleFive">
+                            服务保障<span></span>
+                        </p> 
+                    </div>
                 <div v-for="i in notice4" :key="i.id">
                     <p class="blockTitle">{{i[0]}}：</p>
                     <p class="content">{{i[1]}}</p>
@@ -352,21 +341,22 @@
             </div>
             <p class="footer"><span></span>主办方：{{sponsor}}</p>
         </div>
-        <router-link to="/createOrder" tag="p" class="joinGame">立即报名</router-link>
+        <p :class="{'JoinGameActive':joinActive}" class="joinGame" @click="goOrder">立即报名</p>
    </div>
-
 </template>
 <script>
     export default{
         data(){
             return{
                 notice1:'',
-                notice2:'',
+                notice2:[],
                 notice3:'',
                 notice4:'',
-                model_type:'2',
+                model_type:'5',
                 sponsor:'',
-                views:''
+                views:'',
+                timeGame:'',
+                joinActive:false
             }
         },
         created(){
@@ -376,8 +366,13 @@
             getDetail(){
 				this.$http.post('/PcApi',{name:'pc.ActivityView',activity_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
-						this.notice1 = res.body.data.ActivityView.notice1;
-						this.notice2 = JSON.parse(res.body.data.ActivityView.notice2);
+                        this.notice1 = res.body.data.ActivityView.notice1;
+                        let noticesJson = JSON.parse(res.body.data.ActivityView.notice2);
+                        let arr = Object.keys(noticesJson);
+                        for(let i=0; i<arr.length; i++){
+                            let key = arr[i];
+                            this.notice2.push(noticesJson[key]);
+                        }
 						this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
 						this.notice4 = JSON.parse(res.body.data.ActivityView.notice4);
 						// this.model_type = res.body.data.ActivityView.model_type;
@@ -387,6 +382,32 @@
 				}).catch((error)=>{
 					console.log(error);
 				})
+            },
+            goOrder(){
+                if(this.joinActive){
+                    localStorage.setItem('title',this.views.activity_name);
+                    localStorage.address = this.views.activity_address;
+                    localStorage.contacts = this.views.contacts;
+                    localStorage.tel = this.views.tel;
+                    localStorage.children_price = this.views.children_price;
+                    localStorage.parent_price = this.views.parent_price;
+                    localStorage.date = this.timeGame;
+                    localStorage.path = this.views.path;
+                    localStorage.activity_id = this.views.activity_id;
+                    localStorage.is_pre_price = this.views.is_pre_price;
+                    localStorage.pre_price = this.views.pre_price;
+                    localStorage.is_volunteer = this.views.volunteer;
+                    this.$router.push('/createOrder')
+                }
+            }
+        },
+        watch:{
+            'timeGame':function(val){
+                if(val === ''){
+                    this.joinActive = false;
+                }else{
+                    this.joinActive = true;
+                }
             }
         }
     }

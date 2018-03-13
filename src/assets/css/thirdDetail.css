@@ -54,22 +54,22 @@
 .third .titleColor{
     color: #F7705E;
     font-size: .32rem;
+    margin: .15rem 0;
 }
 .third table{
-    padding: 0 .4rem;
+    border-collapse: collapse;
 }
 .third table td{
     font-size: .28rem;
     color: #888897;
+    border: .02rem solid #CAC6C6;
+    padding: .2rem .4rem;
 }
 .third table tr:nth-child(odd){
     background: #F7F7F7;
 }
 .third table tr:nth-child(even){
     background: #EFFAFF;
-}
-.third table tr{
-    padding: .2rem 0;
 }
 .third table td:first-child{
     width: 1.6rem;

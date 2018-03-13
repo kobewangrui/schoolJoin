@@ -71,7 +71,7 @@
                         this.$http.post('/PcApi',{name:'pc.AddActCon',activity_id:this.$route.query.id,contents:this.contents},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             this.$router.push('/order');
-                            }
+                        }
                         }).catch((error)=>{
                             console.log(error);
                         })

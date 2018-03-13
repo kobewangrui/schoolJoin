@@ -75,6 +75,10 @@ export default function (VueRouter,store) {
 				{
 					path: '/honorList',
 					component: require('views/content/footprint/honorList.vue'),
+				},
+				{
+					path: '/honorDetail',
+					component: require('views/content/footprint/honorDetail.vue'),
 				}
 
 			]

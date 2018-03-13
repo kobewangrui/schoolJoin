@@ -99,6 +99,15 @@
                         }
                     },1000);
                 }
+            },
+            sendCode(){
+                this.$http.post('/PcApi',{name:'pc.Login.editInfo',name:'pc.Sms.RegSendMsg',mobile:this.phoneNumber},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.lists = res.body.data.Activitylist;
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
             }
         }
     }

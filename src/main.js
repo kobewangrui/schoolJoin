@@ -28,6 +28,12 @@ Vue.component(ButtonGroup.name, ButtonGroup);
 import {CitySelect} from 'vue-ydui/dist/lib.rem/cityselect';
 Vue.component(CitySelect.name, CitySelect);
 
+// 轮播图
+import {Slider, SliderItem} from 'vue-ydui/dist/lib.rem/slider';
+
+Vue.component(Slider.name, Slider);
+Vue.component(SliderItem.name, SliderItem);
+
 // 表单
 import {CellGroup, CellItem} from 'vue-ydui/dist/lib.rem/cell';
 Vue.component(CellGroup.name, CellGroup);

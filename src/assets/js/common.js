@@ -12,14 +12,13 @@ let myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
 function getCode() {
-    location.replace(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8387437705240b54&redirect_uri=http://www.dashengxiji.xyz/WxMsg/getCode&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect`);
+    location.replace(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8387437705240b54&redirect_uri=http://www.dashengxiji.xyz/WxMsg/getCode&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`);
 }
 
 function wxLogin() {
-    // if (dev) return;
+    if (dev) return;
     if (!getParameterByName('code') && !openId) getCode();
 }
-
 function getOpenId() {
     if (dev) return Promise.resolve();
     if (openId && openId !== 'null') return Promise.resolve(openId);

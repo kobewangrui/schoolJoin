@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://www.huceo.com/post/414.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" charset="utf-8" async="" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/pa_lu_nobtn_inviewshow.app.js"></script><script type="text/javascript" charset="utf-8" async="" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/multimedia_image_scroll.app.js"></script>
+	
+	<meta http-equiv="Content-Language" content="zh-CN">
+	<meta name="renderer" content="webkit">
+	<meta name="force-rendering" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5">
+	<meta name="author" content="宇天行">
+	<title>怎么使用微信JSSDK的自定义分享功能-小宇博客</title>
+	<link rel="stylesheet" rev="stylesheet" href="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/huceo.css" type="text/css" media="screen">
+    <script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/push.js"></script><script type="text/javascript" async="" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/dcem"></script><script type="text/javascript" async="" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/dcem(1)"></script><script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/hm.js"></script><script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/zblogphp.js" type="text/javascript"></script>
+    <script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/c_html_js_add.php" type="text/javascript"></script><script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/prism.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/prism.css">
+
+	<script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/blogwhole.js" type="text/javascript"></script>
+    <script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/custom.js" type="text/javascript"></script>
+	<link rel="canonical" href="https://www.huceo.com/post/414.html">
+	<style></style><script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/share.js"></script><link rel="stylesheet" href="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/share_style0_16.css"><link rel="stylesheet" href="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/share_style0_32.css"></head>
+<body class="single"><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+<div id="divser">
+<div id="pageer">
+<div id="center">
+<div id="header">
+<div id="Logo">
+<h1><a href="https://www.huceo.com/" title="小宇博客">小宇博客</a></h1>
+</div>
+<div id="BlogTitle">关注互联网和网站运营的原创IT博客</div>
+<div id="Blogad"><script type="text/javascript">wechat();</script><a id="href" target="_blank" href="http://dh.tianapi.com/"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/wxdh.png" id="blogad" alt="点击进入自媒体导航或扫描关注微信公众号" title="点击进入自媒体导航或扫描关注微信公众号" data-bd-imgshare-binded="1"></a>
+</div>
+<div id="Menu">
+<ul>
+<li><a href="https://www.huceo.com/" title="小宇博客首页">博客首页</a></li><li><a href="https://www.huceo.com/?archive" target="_blank" title="文章归档列表">文章列表</a></li><li><a href="https://www.huceo.com/operation/" title="关于网站和互联网产品运营及推广的文章">网络运营</a></li><li><a href="https://www.huceo.com/web/" title="WEB开发与设计">开发技术</a></li><li><a href="https://www.huceo.com/Internet/" title="互联网评论与应用">互联应用</a></li><li><a href="https://www.huceo.com/journal/" title="网站维护记录，网络应用日志等">日志记录</a></li><li><a href="https://www.huceo.com/suibi/" title="短文随笔，一些小想法或小感悟">生活随笔</a></li><li><span><a href="https://www.huceo.com/guestbook.html" title="欢迎留言,有问必答">网友留言</a></span></li></ul>
+</div>
+</div>
+<div id="bodyer">
+<div id="middle">
+<div id="mainer">
+<div class="post cate11 auth414">
+<div class="post-head"><h2><a href="https://www.huceo.com/post/414.html" rel="bookmark">怎么使用微信JSSDK的自定义分享功能</a></h2><h4>时间:2015-07-08 21:29:19</h4></div>
+<div class="post-body">
+
+<script type="text/javascript">
+    /*博文顶部640*60 创建于 2017/11/10*/
+    var cpro_id = "u3133385";
+</script>
+<script type="text/javascript" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/c.js"></script><div id="BAIDU_SSP__wrapper_u3133385_0"><iframe id="iframeu3133385_0" name="iframeu3133385_0" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/dcem.html" width="640" height="60" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:640px;height:60px" allowtransparency="true"></iframe></div>
+
+<p>微信在去年发布JSSDK后，把包括自定义分享在内的众多网页服务接口进行了统一。现在，如果要想自定义分享自己的网页信息给好友或朋友圈，就最好使用这个统一的网页服务接口。没有认证微信号的，可参考文章末尾的办法。</p><p>一，首先在公众号管理后台“公众号设置”的“功能设置”里填写JS接口安全域名，域名需要通过ICP备案，没有备案域名可以用SAE、BAE等平台。此外，自定义分享功能需要通过微信认证才能使用，没有认证的可以跟关系好的朋友借用权限，在他的JS接口安全域名设置这里填上你的域名和共享同一个开发者ID。</p><p><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/201507081436362274387372.jpg" title="怎么使用微信JSSDK的自定义分享功能" alt="怎么使用微信JSSDK的自定义分享功能" width="560" height="302" border="0" vspace="0" style="width: 560px; height: 302px;" data-bd-imgshare-binded="1"></p><p>二，在需要调用JS接口的页面引入微信JSSDK的JS文件：http://res.wx.qq.com/open/js/jweixin-1.0.0.js，这个文件在需要分享的页面是必须要引用的，单独特别重申一下，其他方面请阅读官方文档http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html&nbsp;</p><p>引用方法：在网页title标题下面加上：&lt;script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"&gt;&lt;/script&gt;</p><p>三，下载官方示例代码：</p><p style="line-height: 16px;"><img style="vertical-align: middle; margin-right: 2px;" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/rar.png" data-bd-imgshare-binded="1"><a style="font-size:12px; color:#0066cc;" href="https://www.huceo.com/zb_users/upload/2015/07/201507081436362390123294.zip" title="jssdk-php.zip">jssdk-php.zip</a></p><p>解压之后在例如PHP文件夹中看到以下文件：<br></p><p><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/201507081436362426500631.jpg" title="怎么使用微信JSSDK的自定义分享功能" alt="怎么使用微信JSSDK的自定义分享功能" width="549" height="162" border="0" vspace="0" style="width: 549px; height: 162px;" data-bd-imgshare-binded="1"></p><p>四，复制以上文件到你的游戏目录，为了方便所有游戏调用同一个文件，建议在主机根目录（即一级目录）建立一个JSSDK文件夹。</p><p>五，在你需要自定义分享的网页源文件上（主机需支持PHP环境，网页文件名.html改成.php）引用JSSDK：</p><p><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/201507081436362474138618.jpg" title="怎么使用微信JSSDK的自定义分享功能" alt="怎么使用微信JSSDK的自定义分享功能" width="560" height="364" border="0" vspace="0" style="width: 560px; height: 364px;" data-bd-imgshare-binded="1"></p><p>在网页头部加上如下代码：</p><div class="prism-show-language"><div class="prism-show-language-label" data-language="PHP">PHP</div></div><pre class="prism-highlight prism- prism-line-numbers language-php" data-language="PHP"><code class="prism-  language-php"><span class="prism-token prism-php"><span class="prism-token prism-delimiter">&lt;?php</span>
+<span class="prism-token prism-keyword">require_once</span> <span class="prism-token prism-string">"../jssdk/jssdk.php"</span><span class="prism-token prism-punctuation">;</span> <span class="prism-token prism-comment" spellcheck="true">//表示主机根目录下jssdk文件夹内jssdk.php文件</span>
+<span class="prism-token prism-variable">$jssdk</span> <span class="prism-token prism-operator">=</span> <span class="prism-token prism-keyword">new</span> <span class="prism-token prism-class-name">JSSDK</span><span class="prism-token prism-punctuation">(</span><span class="prism-token prism-string">"AppID(应用ID)"</span><span class="prism-token prism-punctuation">,</span> <span class="prism-token prism-string">"AppSecret(应用密钥)"</span><span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span><span class="prism-token prism-comment" spellcheck="true">//填写开发者中心你的开发者ID</span>
+<span class="prism-token prism-variable">$signPackage</span> <span class="prism-token prism-operator">=</span> <span class="prism-token prism-variable">$jssdk</span><span class="prism-token prism-operator">-</span><span class="prism-token prism-operator">&gt;</span><span class="prism-token prism-function">GetSignPackage</span><span class="prism-token prism-punctuation">(</span><span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span>
+<span class="prism-token prism-delimiter">?&gt;</span></span>
+<span class="prism-token prism-markup"><span class="prism-token prism-tag"><span class="prism-token prism-tag"><span class="prism-token prism-punctuation">&lt;</span>script</span> <span class="prism-token prism-attr-name">src</span><span class="prism-token prism-attr-value"><span class="prism-token prism-punctuation">=</span><span class="prism-token prism-punctuation">"</span>http://res.wx.qq.com/open/js/jweixin-1.0.0.js<span class="prism-token prism-punctuation">"</span></span><span class="prism-token prism-punctuation">&gt;</span></span></span><span class="prism-token prism-markup"><span class="prism-token prism-tag"><span class="prism-token prism-tag"><span class="prism-token prism-punctuation">&lt;/</span>script</span><span class="prism-token prism-punctuation">&gt;</span></span></span>  <span class="prism-token prism-comment" spellcheck="true">//必须引用该文件  </span>
+   <span class="prism-token prism-markup"><span class="prism-token prism-tag"><span class="prism-token prism-tag"><span class="prism-token prism-punctuation">&lt;</span>script</span><span class="prism-token prism-punctuation">&gt;</span></span></span>
+ wx<span class="prism-token prism-punctuation">.</span><span class="prism-token prism-function">config</span><span class="prism-token prism-punctuation">(</span><span class="prism-token prism-punctuation">{</span>
+   debug<span class="prism-token prism-punctuation">:</span>  <span class="prism-token prism-boolean">false</span><span class="prism-token prism-punctuation">,</span>  <span class="prism-token prism-comment" spellcheck="true">//调式模式，设置为ture后会直接在网页上弹出调试信息，用于排查问题</span>
+   appId<span class="prism-token prism-punctuation">:</span> '<span class="prism-token prism-php"><span class="prism-token prism-delimiter">&lt;?php</span> <span class="prism-token prism-keyword">echo</span> <span class="prism-token prism-variable">$signPackage</span><span class="prism-token prism-punctuation">[</span><span class="prism-token prism-string">"appId"</span><span class="prism-token prism-punctuation">]</span><span class="prism-token prism-punctuation">;</span><span class="prism-token prism-delimiter">?&gt;</span></span>'<span class="prism-token prism-punctuation">,</span>
+   timestamp<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-php"><span class="prism-token prism-delimiter">&lt;?php</span> <span class="prism-token prism-keyword">echo</span> <span class="prism-token prism-variable">$signPackage</span><span class="prism-token prism-punctuation">[</span><span class="prism-token prism-string">"timestamp"</span><span class="prism-token prism-punctuation">]</span><span class="prism-token prism-punctuation">;</span><span class="prism-token prism-delimiter">?&gt;</span></span><span class="prism-token prism-punctuation">,</span>
+   nonceStr<span class="prism-token prism-punctuation">:</span> '<span class="prism-token prism-php"><span class="prism-token prism-delimiter">&lt;?php</span> <span class="prism-token prism-keyword">echo</span> <span class="prism-token prism-variable">$signPackage</span><span class="prism-token prism-punctuation">[</span><span class="prism-token prism-string">"nonceStr"</span><span class="prism-token prism-punctuation">]</span><span class="prism-token prism-punctuation">;</span><span class="prism-token prism-delimiter">?&gt;</span></span>'<span class="prism-token prism-punctuation">,</span>
+   signature<span class="prism-token prism-punctuation">:</span> '<span class="prism-token prism-php"><span class="prism-token prism-delimiter">&lt;?php</span> <span class="prism-token prism-keyword">echo</span> <span class="prism-token prism-variable">$signPackage</span><span class="prism-token prism-punctuation">[</span><span class="prism-token prism-string">"signature"</span><span class="prism-token prism-punctuation">]</span><span class="prism-token prism-punctuation">;</span><span class="prism-token prism-delimiter">?&gt;</span></span>'<span class="prism-token prism-punctuation">,</span>
+   jsApiList<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-punctuation">[</span>  <span class="prism-token prism-comment" spellcheck="true">//需要使用的网页服务接口</span>
+       <span class="prism-token prism-string">'checkJsApi'</span><span class="prism-token prism-punctuation">,</span>  <span class="prism-token prism-comment" spellcheck="true">//判断当前客户端版本是否支持指定JS接口</span>
+       <span class="prism-token prism-string">'onMenuShareTimeline'</span><span class="prism-token prism-punctuation">,</span> <span class="prism-token prism-comment" spellcheck="true">//分享给好友</span>
+       <span class="prism-token prism-string">'onMenuShareAppMessage'</span><span class="prism-token prism-punctuation">,</span> <span class="prism-token prism-comment" spellcheck="true">//分享到朋友圈</span>
+       <span class="prism-token prism-string">'onMenuShareQQ'</span><span class="prism-token prism-punctuation">,</span>  <span class="prism-token prism-comment" spellcheck="true">//分享到QQ</span>
+       <span class="prism-token prism-string">'onMenuShareWeibo'</span> <span class="prism-token prism-comment" spellcheck="true">//分享到微博</span>
+   <span class="prism-token prism-punctuation">]</span>
+ <span class="prism-token prism-punctuation">}</span><span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span>
+ wx<span class="prism-token prism-punctuation">.</span><span class="prism-token prism-function">ready</span><span class="prism-token prism-punctuation">(</span><span class="prism-token prism-keyword">function</span> <span class="prism-token prism-punctuation">(</span><span class="prism-token prism-punctuation">)</span> <span class="prism-token prism-punctuation">{</span>   <span class="prism-token prism-comment" spellcheck="true">//ready函数用于调用API，如果你的网页在加载后就需要自定义分享和回调功能，需要在此调用分享函数。//如果是微信游戏结束后，需要点击按钮触发得到分值后分享，这里就不需要调用API了，可以在按钮上绑定事件直接调用。因此，微信游戏由于大多需要用户先触发获取分值，此处请不要填写如下所示的分享API</span>
+wx<span class="prism-token prism-punctuation">.</span><span class="prism-token prism-function">onMenuShareTimeline</span><span class="prism-token prism-punctuation">(</span><span class="prism-token prism-punctuation">{</span>  <span class="prism-token prism-comment" spellcheck="true">//例如分享到朋友圈的API  </span>
+   title<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-string">''</span><span class="prism-token prism-punctuation">,</span> <span class="prism-token prism-comment" spellcheck="true">// 分享标题</span>
+   link<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-string">''</span><span class="prism-token prism-punctuation">,</span> <span class="prism-token prism-comment" spellcheck="true">// 分享链接</span>
+   imgUrl<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-string">''</span><span class="prism-token prism-punctuation">,</span> <span class="prism-token prism-comment" spellcheck="true">// 分享图标</span>
+   success<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-keyword">function</span> <span class="prism-token prism-punctuation">(</span><span class="prism-token prism-punctuation">)</span> <span class="prism-token prism-punctuation">{</span>
+       <span class="prism-token prism-comment" spellcheck="true">// 用户确认分享后执行的回调函数</span>
+   <span class="prism-token prism-punctuation">}</span><span class="prism-token prism-punctuation">,</span>
+   cancel<span class="prism-token prism-punctuation">:</span> <span class="prism-token prism-keyword">function</span> <span class="prism-token prism-punctuation">(</span><span class="prism-token prism-punctuation">)</span> <span class="prism-token prism-punctuation">{</span>
+       <span class="prism-token prism-comment" spellcheck="true">// 用户取消分享后执行的回调函数</span>
+   <span class="prism-token prism-punctuation">}</span>
+<span class="prism-token prism-punctuation">}</span><span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span>
+<span class="prism-token prism-punctuation">}</span><span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span>	
+wx<span class="prism-token prism-punctuation">.</span><span class="prism-token prism-function">error</span><span class="prism-token prism-punctuation">(</span><span class="prism-token prism-keyword">function</span> <span class="prism-token prism-punctuation">(</span>res<span class="prism-token prism-punctuation">)</span> <span class="prism-token prism-punctuation">{</span>
+ <span class="prism-token prism-function">alert</span><span class="prism-token prism-punctuation">(</span>res<span class="prism-token prism-punctuation">.</span>errMsg<span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span>  <span class="prism-token prism-comment" spellcheck="true">//打印错误消息。及把 debug:false,设置为debug:ture就可以直接在网页上看到弹出的错误提示</span>
+<span class="prism-token prism-punctuation">}</span><span class="prism-token prism-punctuation">)</span><span class="prism-token prism-punctuation">;</span>
+<span class="prism-token prism-markup"><span class="prism-token prism-tag"><span class="prism-token prism-tag"><span class="prism-token prism-punctuation">&lt;/</span>script</span><span class="prism-token prism-punctuation">&gt;</span></span></span><span class="prism-line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><br></p><p>以上是常规的在动态页面的调用方法，为了更方便的多页面调用，建议通过AJAX跨域请求来实现调用权限，<a href="https://www.huceo.com/post/415.html" target="_blank">前端部分大概的步骤</a>。</p><p><br></p><p>那么，没有认证微信号，又没法借用权限的朋友，如何分享呢？这就必须让用户点击分享按钮或游戏结束时触发来改变title标题了，至于分享的小图片，在网页源文件&lt;body&gt;标签后，加上&lt;div style="display: none"&gt; &lt;img src="图片文件的绝对URL地址" /&gt; &lt;/div&gt;即可。</p><p>OK，大概分享办法就是这样，下载步骤三中的官方示例代码后，在PHP文件夹下sample.php是调用API接口的示例文件。</p><p><br></p><p>服务器平台建议使用新浪云SAE，邀请注册地址：<a href="http://t.cn/R40C6aD" target="_blank">http://t.cn/R40C6aD</a> （可直接通过新浪微博授权登录，通过此链接注册可获得200免费云豆奖励，首次充值可获得600云豆奖励）</p><div class="prism-show-language"><div class="prism-show-language-label" data-language="Markup">Markup</div></div><pre class="prism-highlight prism- prism-line-numbers language-markup" data-language="Markup"><code class="prism-  language-markup">另外注意一下，2017.03.01起微信iOS客户端将升级为WKWebview内核，在WKWebview中将暂不支持cache jsapi。 
+详情请参考https://mp.weixin.qq.com/advanced/wiki?t=t=resource/res_main&amp;id=mp1483682025_enmey<span class="prism-line-numbers-rows"><span></span><span></span></span></code></pre><p>其他可拉到底部看下文章评论，其他网友的反馈和建议。<br></p>
+<div class="reward">
+<div class="pay"></div>
+<p>本站所有文章均为小宇博客原创，转载请注明来源及出处！</p>
+<p>作者：宇天行 （<a href="https://www.huceo.com/About.html" target="_blank">关于我</a>）</p>
+<p>本文首发地址：<a href="https://www.huceo.com/post/414.html">https://www.huceo.com/post/414.html</a></p>
+</div>
+
+<!-- <div class="post-navs"> « 上一篇 <a href="https://www.huceo.com/post/413.html" title="各种姿势接入天行微信API的办法">各种姿势接入天行微信API的办法</a><div style="float:right">  <a href="https://www.huceo.com/post/415.html" title="解决微信未认证用户关于JSSDK分享问题">解决微信未认证用户关于JSSDK分享问题</a> 下一篇 »</div>
+</div> -->
+
+<!-- 百度推荐同步代码 -->
+<script>document.write(unescape('%3Cdiv id="hm_t_6663"%3E%3C/div%3E%3Cscript charset="utf-8" src="https://crs.baidu.com/t.js?siteId=9cd3ccb8703c70e5c24d85000584039c&planId=6663&async=0&referer=') + encodeURIComponent(document.referrer) + '&title=' + encodeURIComponent(document.title) + '&rnd=' + (+new Date) + unescape('"%3E%3C/script%3E'));</script><div id="hm_t_6663"><div style="display: block; margin: 0px; padding: 0px; float: none; clear: none; overflow: hidden; position: relative; border: 0px; background: none; max-width: none; max-height: none; border-radius: 0px; box-shadow: none; transition: none; text-align: left; box-sizing: content-box; width: 634px; height: 396px;"><div style="display: block; margin: 0px; padding: 0px; float: none; clear: none; overflow: hidden; position: relative; border: 0px; background: none; max-width: none; max-height: none; border-radius: 0px; box-shadow: none; transition: none; text-align: left; box-sizing: content-box; width: 100%; height: 100%;"></div></div></div><script charset="utf-8" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/t.js"></script>
+<!-- 百度推荐异步代码 <div id="hm_t_6663"></div>  -->
+</div>
+<div class="post-url"><span><div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1520681866198"><a href="https://www.huceo.com/post/414.html#" class="bds_more" data-cmd="more">分享到：</a>
+        <a href="https://www.huceo.com/post/414.html#" class="bds_copy" data-cmd="copy" title="分享到复制网址">复制网址</a>
+        <a href="https://www.huceo.com/post/414.html#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+        <a href="https://www.huceo.com/post/414.html#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+        <a href="https://www.huceo.com/post/414.html#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+		<a href="https://www.huceo.com/post/414.html#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+        </div></span>
+</div>
+
+<div class="post-rt">
+<h4>或许您还会喜欢这些文章：</h4>
+<ul>
+    <li><span>2018-01-29 21:51:37</span><a href="https://www.huceo.com/post/470.html" title="《美女图集》微信小程序开发分享">《美女图集》微信小程序开发分享</a></li>
+    <li><span>2017-05-05 20:57:50</span><a href="https://www.huceo.com/post/462.html" title="近期的天行数据和微信工具升级">近期的天行数据和微信工具升级</a></li>
+    <li><span>2017-04-28 19:18:11</span><a href="https://www.huceo.com/post/461.html" title="天行数据的示例小程序开发步骤">天行数据的示例小程序开发步骤</a></li>
+    <li><span>2017-02-06 11:42:08</span><a href="https://www.huceo.com/post/460.html" title="过山车般的微信小程序">过山车般的微信小程序</a></li>
+    <li><span>2016-12-26 23:19:44</span><a href="https://www.huceo.com/post/457.html" title="PHP7下微信开发遇到的一些问题">PHP7下微信开发遇到的一些问题</a></li>
+    <li><span>2016-11-29 19:52:42</span><a href="https://www.huceo.com/post/444.html" title="有关微信小程序的网站和论坛">有关微信小程序的网站和论坛</a></li>
+    <li><span>2016-11-25 18:48:41</span><a href="https://www.huceo.com/post/443.html" title="谈谈大家关心的微信小程序">谈谈大家关心的微信小程序</a></li>
+    <li><span>2016-08-23 16:47:43</span><a href="https://www.huceo.com/post/442.html" title="微信公众号的这些功能怎么实现的？">微信公众号的这些功能怎么实现的？</a></li>
+    <li><span>2016-08-13 00:30:53</span><a href="https://www.huceo.com/post/441.html" title="微信模糊图片的另类玩法">微信模糊图片的另类玩法</a></li>
+    <li><span>2016-07-18 20:52:05</span><a href="https://www.huceo.com/post/440.html" title="关于性格标签/SAE和其他资源的各种问题">关于性格标签/SAE和其他资源的各种问题</a></li>
+</ul>
+</div>
+
+<div class="post-foot"><span class="tags">Tags: <a href="https://www.huceo.com/tags/weixin.html" rel="tag" title="其他与微信相关的文章">微信</a><a href="https://www.huceo.com/tags/php.html" rel="tag" title="其他与PHP相关的文章">PHP</a></span>作者:宇天行 | 分类:<a href="https://www.huceo.com/web/" rel="category tag" title="查看开发技术的所有文章">开发技术</a> | 评论:81 | 浏览:88675</div>
+</div>
+
+<div id="CommentBox">
+<h3>您对本文《怎么使用微信JSSDK的自定义分享功能》有哪些看法？&nbsp;&nbsp;---&nbsp;&nbsp;【期待您的评论】</h3>
+
+
+<!--评论框-->
+<div class="commentpost" id="divCommentPost">
+	<p class="posttop"><a name="comment">您正在以游客身份发表评论：</a><a rel="nofollow" id="cancel-reply" href="https://www.huceo.com/post/414.html#divCommentPost" style="display:none;"><small>取消回复</small></a></p>
+	<form id="frmSumbit" target="_self" method="post" action="https://www.huceo.com/zb_system/cmd.php?act=cmt&amp;postid=414&amp;key=6f67b346f4d285bf3f7ce83a8d769ada">
+	<input type="hidden" name="inpId" id="inpId" value="414">
+	<input type="hidden" name="inpRevID" id="inpRevID" value="0">
+	<p><label for="inpName">名称</label><input type="text" name="inpName" id="inpName" class="text" value="访客" tabindex="1"><font color="#ff0000">必填</font></p>
+	<p><label for="inpEmail">邮箱</label><input type="text" name="inpEmail" id="inpEmail" class="text" value="" tabindex="2">选填</p>
+	<p><label for="inpHomePage">网址</label><input type="text" name="inpHomePage" id="inpHomePage" class="text" value="" tabindex="3">选填</p>
+
+
+	<p><div id="UbbLabel" style="display: block;position:absolute;margin-top: 146px;padding: 4px;"><span style="float: right;margin: 0 0 0 10px;"> [支持表情输入哦]</span><div onclick="$(&#39;#UbbFrame&#39;).hide().addClass(&#39;ubb-frame-hide&#39;);" id="UbbFrame" class="ubb-frame-hide" style="display:none;position:absolute;z-index:540;width:620px;margin-top:46px;background: #F9F6F6;border: 2px solid #1a4d0b;border-radius: 6px;"></div><span><a onmouseover="if($(&#39;#UbbFrame&#39;).attr(&#39;class&#39;)==&#39;ubb-frame-hide&#39;){UBB4ZBPinsertUbbFace();$(&#39;#UbbFrame&#39;).fadeIn(&#39;normal&#39;).removeClass(&#39;ubb-frame-hide&#39;);}else{$(&#39;#UbbFrame&#39;).fadeOut(&#39;normal&#39;).addClass(&#39;ubb-frame-hide&#39;);}" style="cursor:pointer;"><img style="margin-top:-6px" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/auto.gif" data-bd-imgshare-binded="1"></a>  </span></div><textarea name="txaArticle" id="txaArticle" class="text" cols="50" rows="4" tabindex="5" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById(&#39;submit&#39;).click();};"></textarea></p>
+        <p><input name="sumbit" type="submit" tabindex="6" value="提交评论" onclick="return zbp.comment.post()" class="button"></p>
+	</form>
+	<p class="postbottom">◎欢迎参与讨论，请在这里发表您的看法、交流您的观点。</p>
+</div>
+<div class="post" id="divCommentPost">
+<label id="AjaxCommentBegin"></label>
+
+<!--评论输出-->
+<div class="msg" id="cmt107215">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">xio</a></span>2017-12-11 22:26:31<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107215&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">支持一下<label id="AjaxComment107215"></label>	</div>
+</div><div class="msg" id="cmt107214">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">123</a></span>2017-12-11 14:25:21<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107214&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我想问一下，设置好后文章分享自定义样式是用户自定义的还是我们公众号自定义的？怎么设置的？有没有例子？<label id="AjaxComment107214"></label><div class="msg" id="cmt107216">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-12-11 22:37:53<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107216&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">你在JSSDK代码里定义的	</div>
+</div>	</div>
+</div><div class="msg" id="cmt107213">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-12-11 01:19:07<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107213&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">微信第三方接口和微信小程序消息推送可参考天行数据www.tianapi.com<label id="AjaxComment107213"></label>	</div>
+</div><div class="msg" id="cmt107146">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/bbc5706ff0b229e8f420617e376f3f11.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">cathy</a></span>2017-09-12 16:07:52<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107146&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">博主 我想问一下在公众号所发布的文章下面添加自定义的分享按钮，不会很明显的写上分享，这能否可行，会有封号的危险吗<label id="AjaxComment107146"></label><div class="msg" id="cmt107147">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-09-12 20:14:52<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107147&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">公众号文章里面？图片按钮？还是自己做的网页里面分享按钮。没有明显的诱导行为，一般不会封的。<div class="msg" id="cmt107156">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">啦啦啦</a></span>2017-09-21 22:49:08<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107156&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">博主我想问下 为什么安卓机分享的时候没有图片，ios可以吧图片加载出来<div class="msg" id="cmt107212">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-12-11 01:17:59<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107212&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">这个就属于兼容问题了	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div><div class="msg" id="cmt107040">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/6c9da592b6de266b5d14c3168e3ca7ad.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">明</a></span>2017-07-19 16:03:15<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107040&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">至于分享的小图片，在网页源文件标签后，加上  即可。    这个试了多次都无效。<label id="AjaxComment107040"></label>	</div>
+</div><div class="msg" id="cmt106987">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">多米爱</a></span>2017-06-26 11:46:06<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106987&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">启用https后签名就会错误，不启用https就没有问题<label id="AjaxComment106987"></label>	</div>
+</div><div class="msg" id="cmt106951">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/926def8d1e507eb2c0b9578861e4bb31.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">小五</a></span>2017-06-12 17:30:03<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106951&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我用的你的这个 jweixin-1.2.0.js用的是这个js     一直提示errmsg config invalid signature<label id="AjaxComment106951"></label><div class="msg" id="cmt106954">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-06-13 15:26:46<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106954&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">weixin-1.2.0.js这是微信的，errmsg config invalid signature的意思是签名错误，检查你的参数是否正确传入<div class="msg" id="cmt106962">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/926def8d1e507eb2c0b9578861e4bb31.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">小五</a></span>2017-06-15 17:32:28<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106962&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">启用https后签名就会错误，不启用https就没有问题<div class="msg" id="cmt107204">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">滚滚滚</a></span>2017-11-27 15:00:44<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;107204&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">https验证出现问题的是https不能调用http的微信的js，把引用微信js的那个路径改为https就可以了	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div><div class="msg" id="cmt106940">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://yuhaidong.com/" rel="nofollow" target="_blank">点滴故事</a></span>2017-06-08 14:01:03<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106940&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">您的公众服务号，是认证过的，怎么得到的呢？现在个人无法认证啊！岂不是我们个人无法走这条路了？把个人使用JSSDK都堵死了？<label id="AjaxComment106940"></label><div class="msg" id="cmt106941">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-06-08 16:00:52<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106941&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">对，个人号无法认证也就无法使用JSSDK的自定义分享功能	</div>
+</div>	</div>
+</div><div class="msg" id="cmt106890">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-05-25 14:17:55<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106890&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">另外注意一下，2017.03.01起微信iOS客户端将升级为WKWebview内核，在WKWebview中将暂不支持cache jsapi。 详情请参考https://mp.weixin.qq.com/advanced/wiki?t=t=resource/res_main&amp;id=mp1483682025_enmey<label id="AjaxComment106890"></label><div class="msg" id="cmt106891">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-05-25 14:28:29<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106891&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">目前JSSDk线上版本是 1.0.0 和 1.1.0，建立使用更新版本1.2.0 ，https://res.wx.qq.com/open/js/jweixin-1.2.0.js	</div>
+</div>	</div>
+</div><div class="msg" id="cmt106883">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">李雅洁</a></span>2017-05-22 11:42:02<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106883&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我上周也发现分享自定义不好使，只有苹果5好使，其他一律不好使，各位大神有知道原因的吗？有什么解决方法<label id="AjaxComment106883"></label>	</div>
+</div><div class="msg" id="cmt106848">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-05-09 00:39:43<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106848&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">关于最近很多朋友JSSDK突然失效的问题，暂时我也不知道原因，经过测试我所使用的jssdk自定义分享功能完全正常（危险公众号是已认证、未过期的服务号），为了方便调用权限我是通过AJAX跨域请求来实现的，前端部分大概的步骤https://www.huceo.com/post/415.html，有空我把后端的代码分享出来。<label id="AjaxComment106848"></label>	</div>
+</div><div class="msg" id="cmt106816">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/68871c760a345db7d1a79042324bcf2a.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">xxxx</a></span>2017-04-28 16:58:03<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106816&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">分享不能自定义 标题 连接  和 图片 ，在手机上用都不行，在电脑端使用分享  就可以自定义<label id="AjaxComment106816"></label><div class="msg" id="cmt106817">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-04-28 19:49:31<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106817&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">确定接入了JSSDK并认证了微信吗？<div class="msg" id="cmt106834">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">xxxx</a></span>2017-05-05 14:52:56<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106834&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">确定，之前一直好好的，突然间手机端就不能自定义了<div class="msg" id="cmt106847">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-05-09 00:31:12<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106847&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我测试了一下我的jssdk，一切正常	</div>
+</div><div class="msg" id="cmt106846">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2017-05-09 00:29:17<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106846&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">貌似最近很多朋友的jssdk分享功能都失效了，可能是微信更新了相关规则	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div><div class="msg" id="cmt106815">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/68871c760a345db7d1a79042324bcf2a.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">xxxx</a></span>2017-04-28 16:57:00<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106815&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">麻烦问下  分享不能自定义 怎么办<label id="AjaxComment106815"></label>	</div>
+</div><div class="msg" id="cmt106811">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.nanheke.com/" rel="nofollow" target="_blank">男和可博客</a></span>2017-04-27 09:55:36<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106811&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">感谢楼主大大的分享<label id="AjaxComment106811"></label>	</div>
+</div><div class="msg" id="cmt106810">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.021yly.com/" rel="nofollow" target="_blank">上海养老院</a></span>2017-04-27 09:53:14<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106810&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">学习了，谢谢分享！<label id="AjaxComment106810"></label>	</div>
+</div><div class="msg" id="cmt106745">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.iisth.com/" rel="nofollow" target="_blank">上海唐汉网络科技有限公司</a></span>2017-04-06 11:12:33<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;106745&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">感谢楼主的分享<label id="AjaxComment106745"></label>	</div>
+</div><div class="msg" id="cmt52505">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/2b4d02e0b9ed064a73b6038ea378d8a9.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.qhdown.cn/" rel="nofollow" target="_blank">奇虎分享网</a></span>2016-08-23 06:57:57<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52505&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">不错学习了，谢谢分享！<label id="AjaxComment52505"></label>	</div>
+</div><div class="msg" id="cmt52224">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">评论者</a></span>2016-04-20 11:20:05<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52224&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">感谢楼主大大的分享，但是这个无法直接写入SAE，它会报警显示无权限，各位小伙伴也可以参考下这个http://blog.csdn.net/songshimvp1/article/details/49589621<label id="AjaxComment52224"></label><div class="msg" id="cmt52226">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2016-04-20 19:41:32<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52226&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">$mmc = memcache_init(); ////开启SAE缓存服务，memcache_get函数读缓存，memcache_set写缓存。<div class="msg" id="cmt52230">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">评论者</a></span>2016-04-22 11:13:30<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52230&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">多谢楼主提点，我先去参考参考，嘿嘿。	</div>
+</div>	</div>
+</div><div class="msg" id="cmt52225">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2016-04-20 19:39:17<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52225&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">这个应该用SAE的memcache服务	</div>
+</div>	</div>
+</div><div class="msg" id="cmt52223">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">评论者</a></span>2016-04-20 10:30:25<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52223&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">楼主大大真是业界良心啊<label id="AjaxComment52223"></label>	</div>
+</div><div class="msg" id="cmt52133">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">你于</a></span>2016-03-10 16:59:29<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52133&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">没有公众号的方法根本不起作用！<label id="AjaxComment52133"></label><div class="msg" id="cmt52175">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2016-03-31 11:58:24<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52175&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">注意看步骤哦	</div>
+</div>	</div>
+</div><div class="msg" id="cmt52025">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/LoveBirds_xu" rel="nofollow" target="_blank">俆书博</a></span>2015-12-15 14:50:23<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52025&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">没有认证微信号，又没法借用权限的朋友，如何分享呢？这就必须让用户点击分享按钮或游戏结束时触发来改变title标题了，至于分享的小图片，在网页源文件标签后，加上  即可。<br>这个方法不行呀<label id="AjaxComment52025"></label><div class="msg" id="cmt52031">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-16 11:41:52<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52031&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">标签后的第一张图片默认是分享icon<div class="msg" id="cmt52036">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/LoveBirds_xu" rel="nofollow" target="_blank">俆书博</a></span>2015-12-23 14:22:01<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52036&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">什么意思<div class="msg" id="cmt52038">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-23 18:23:13<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52038&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">多说把《body》屏蔽了，微信会默认把《body》标签后的第一张照片作为分享是的小插图。	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51998">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/G935849987" rel="nofollow" target="_blank">小白</a></span>2015-12-07 16:22:41<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51998&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我用的就是站长提供的文件,我开了debug true; 但是,微信打开的时候报{"errMsg":config:invalid signature} 这个签名为什么会不一样啊!<label id="AjaxComment51998"></label><div class="msg" id="cmt51999">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:41<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51999&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">去这里校验下http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign<div class="msg" id="cmt52003">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/G935849987" rel="nofollow" target="_blank">小白</a></span>2015-12-07 16:22:41<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52003&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">后台生成的签名和网页生成的不一致，appid和appSecret用的是测试号<div class="msg" id="cmt52004">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:41<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52004&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">你扫描下网页右上角的二维码，再加下我的微信吧。	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51981">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">phper007</a></span>2015-12-07 16:22:41<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51981&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">这个我会，上海PHP装逼群 217173052<label id="AjaxComment51981"></label>	</div>
+</div><div class="msg" id="cmt51961">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">知道91博客</a></span>2015-12-07 16:22:40<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51961&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">写的很长也写的很好！我看完了<label id="AjaxComment51961"></label>	</div>
+</div><div class="msg" id="cmt51901">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/163f390c42ff0d3eb540710a3f128a50.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.iqiqu.net/?ds" rel="nofollow" target="_blank">爱奇趣分享网</a></span>2015-12-07 16:22:39<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51901&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">秒赞不是偶然,是一种态度!<label id="AjaxComment51901"></label>	</div>
+</div><div class="msg" id="cmt51885">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">评论者</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51885&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">请问，.net分享的例子有么<label id="AjaxComment51885"></label>	</div>
+</div><div class="msg" id="cmt51868">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">Kevin</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51868&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">请问博主，这个只适用于微信游戏分享么？对于移动端的微信分享可以么？<label id="AjaxComment51868"></label><div class="msg" id="cmt51878">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51878&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">都一样的。。	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51867">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">Kevin</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51867&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">不太理解<label id="AjaxComment51867"></label>	</div>
+</div><div class="msg" id="cmt51854">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">ai</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51854&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">请问可以用html页面调用jssdk吗？<label id="AjaxComment51854"></label><div class="msg" id="cmt51858">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51858&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">可以，用ajax<div class="msg" id="cmt52047">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">汉歌</a></span>2016-01-03 00:32:43<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52047&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">你好，能不能帮忙写出html用ajax调用jssdk的代码？非常感谢！<div class="msg" id="cmt52048">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2016-01-03 12:55:10<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52048&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">网页右上角，关注微信，自定义菜单微信营销有。<div class="msg" id="cmt52049">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">汉歌</a></span>2016-01-03 18:28:09<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52049&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">不好意思！这个我早就关注了，但是没找到，能不能麻烦你发出来，非常感谢！<div class="msg" id="cmt52054">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2016-01-04 22:25:50<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;52054&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">看看这个https://www.huceo.com/post/415.html	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51850">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">cheng</a></span>2015-12-07 16:22:37<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51850&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">timestamp: &lt;?php echo $signPackage["timestamp"];?&gt;,这一句不需要单引号吗？没有单引号，js编译不了。加了单引号就提示errMsg":"config:fail"<label id="AjaxComment51850"></label><div class="msg" id="cmt51857">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51857&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">必须的	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51841">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">评论者</a></span>2015-12-07 16:22:37<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51841&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">怎么调用之后会有   GetSignPackage(); ?&gt;这个在页面头部显示<label id="AjaxComment51841"></label>	</div>
+</div><div class="msg" id="cmt51781">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">杰宣言</a></span>2015-12-07 16:22:36<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51781&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">小弟不胜感激<label id="AjaxComment51781"></label><div class="msg" id="cmt51859">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51859&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">有帮助就好	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51780">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/438b265f64eb30ae99dfd0b0cf8c4474.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.dudutaoke.com/index.php?rec=2323" rel="nofollow" target="_blank">注册送一元</a></span>2015-12-07 16:22:36<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51780&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">不错的文章，对我太有帮助了<label id="AjaxComment51780"></label><div class="msg" id="cmt51860">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51860&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">ok	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51769">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/06dee53ff7ff9e0ac1e26e687d8083d0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">暴博客</a></span>2015-12-07 16:22:36<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51769&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">支付宝和微信干上了 支持博主勒，文章很赞，欢迎回访<label id="AjaxComment51769"></label><div class="msg" id="cmt51861">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51861&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">神仙打架，凡人围观	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51768">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/086a9d221e57176f9ecfe8b723449779.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.qmwzk.com/" rel="nofollow" target="_blank">全民网赚客</a></span>2015-12-07 16:22:36<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51768&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">学习了<label id="AjaxComment51768"></label>	</div>
+</div><div class="msg" id="cmt51765">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/d0d25968d4b781bbae1a900ed0e1dd05.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.vprol.com/" rel="nofollow" target="_blank">微部落博客</a></span>2015-12-07 16:22:35<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51765&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">尊敬的站长朋友您好，【微部落博客大全114.vprol.com】“建站技术”分类网站巡视，目前微部落博客大全为您贡献总去路55，贵站总来路0。保持网站内容更新和服务器的稳定是提高用户体验的关键，感谢站长的无私分享，微部落博客大全为您的网站流量添砖加瓦。<label id="AjaxComment51765"></label>	</div>
+</div><div class="msg" id="cmt51756">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/2da8e0cfd7d4ac8c7bd0d6957e7d27ee.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.360zimeiti.com/" rel="nofollow" target="_blank">久闻网佳莉</a></span>2015-12-07 16:19:34<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51756&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">暂时还没有用微信做过推广<label id="AjaxComment51756"></label>	</div>
+</div><div class="msg" id="cmt51750">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/d0d25968d4b781bbae1a900ed0e1dd05.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://114.vprol.com/" rel="nofollow" target="_blank">微部落博客</a></span>2015-12-07 16:19:34<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51750&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">尊敬的站长朋友您好，贵站已经被微部落博客大全收录在分类“建站技术”，博客大全最新域名114.vprol.com有空去看看哦。来访IP即首页首栏展示，您贡献来的IP越多，微部落返还的去路IP回报也会越多哦！！！<label id="AjaxComment51750"></label>	</div>
+</div><div class="msg" id="cmt51747">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/a2042838a2cb41930d45bec8f79f8921.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://www.myheng.com/" rel="nofollow" target="_blank">IT疯狂女</a></span>2015-12-07 16:19:34<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51747&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">使用微信JSSDK的自定义分享，虽然知道怎么用但是还是要支持下博主<label id="AjaxComment51747"></label><div class="msg" id="cmt51872">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/post/414.html" rel="nofollow" target="_blank">阿克苏</a></span>2015-12-07 16:22:38<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51872&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">求指教，QQ19880794	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51692">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/G935849987" rel="nofollow" target="_blank">小白</a></span>2015-12-07 14:40:54<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51692&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我用的就是站长提供的文件,我开了debug true; 但是,微信打开的时候报{"errMsg":config:invalid signature} 这个签名为什么会不一样啊!<label id="AjaxComment51692"></label>	</div>
+</div><div class="msg" id="cmt51676">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/G935849987" rel="nofollow" target="_blank">小白</a></span>2015-12-07 14:40:47<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51676&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">我用的就是站长提供的文件,我开了debug true; 但是,微信打开的时候报{"errMsg":config:invalid signature} 这个签名为什么会不一样啊!<label id="AjaxComment51676"></label><div class="msg" id="cmt51691">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 14:40:54<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51691&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">去这里校验下http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51675">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 14:40:47<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51675&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">去这里校验下http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign<label id="AjaxComment51675"></label><div class="msg" id="cmt51687">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/G935849987" rel="nofollow" target="_blank">小白</a></span>2015-12-07 14:40:54<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51687&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">后台生成的签名和网页生成的不一致，appid和appSecret用的是测试号	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51671">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="http://t.qq.com/G935849987" rel="nofollow" target="_blank">小白</a></span>2015-12-07 14:40:47<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51671&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">后台生成的签名和网页生成的不一致，appid和appSecret用的是测试号<label id="AjaxComment51671"></label><div class="msg" id="cmt51686">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 14:40:54<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51686&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">你扫描下网页右上角的二维码，再加下我的微信吧。	</div>
+</div>	</div>
+</div><div class="msg" id="cmt51670">
+	<div class="msgname"><img class="avatar" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/0471f6b7e51eafd21631c57aabd4c84d.png" alt="" width="32" data-bd-imgshare-binded="1"><span class="commentname"><a href="https://www.huceo.com/" rel="nofollow" target="_blank">宇天行</a></span>2015-12-07 14:40:47<span class="revertcomment"><a href="https://www.huceo.com/post/414.html#comment" onclick="zbp.comment.reply(&#39;51670&#39;)">回复评论</a></span><br></div>
+	<div class="msgarticle">你扫描下网页右上角的二维码，再加下我的微信吧。<label id="AjaxComment51670"></label>	</div>
+</div>
+<!--评论翻页条输出-->
+<div class="pagebar_comment commentpagebar">
+</div>
+<label id="AjaxCommentEnd"></label>
+</div>
+
+
+</div></div>
+<div id="sideer">
+<div class="function" id="SearchPanel">
+<h3>站内文章搜索</h3>
+<ul>
+<div id="so360">
+    <form action="https://www.so.com/s" target="_blank" id="so360form">
+   <input type="text" autocomplete="off" name="q" id="so360_keyword">
+        <input type="submit" id="so360_submit" value="搜 索">
+        <input type="hidden" name="ie" value="utf8">
+        <input type="hidden" name="src" value="zz_www.huceo.com">
+        <input type="hidden" name="site" value="www.huceo.com">
+        <input type="hidden" name="rg" value="1">
+    </form>
+</div></ul>
+</div>
+<div class="function huceo view">
+<h3>近期发表文章</h3>
+ <ul>
+<li><a href="https://www.huceo.com/post/470.html">《美女图集》微信小程序开发分享</a></li>
+<li><a href="https://www.huceo.com/post/469.html">比特币和区块链</a></li>
+<li><a href="https://www.huceo.com/post/468.html">原生家庭对人生有着深远的影响</a></li>
+<li><a href="https://www.huceo.com/post/467.html">天行数据小程序V1.5.0重要升级</a></li>
+<li><a href="https://www.huceo.com/post/465.html">小程序接入天行数据消息推送</a></li>
+<li><a href="https://www.huceo.com/post/464.html">天行数据life微信小程序上线</a></li>
+<li><a href="https://www.huceo.com/post/463.html">小宇博客开启全站HTTPS</a></li>
+<li><a href="https://www.huceo.com/post/462.html">近期的天行数据和微信工具升级</a></li>
+<li><a href="https://www.huceo.com/post/461.html">天行数据的示例小程序开发步骤</a></li>
+<li><a href="https://www.huceo.com/post/460.html">过山车般的微信小程序</a></li>
+<li><a href="https://www.huceo.com/post/459.html">今天看到几篇闹心想怼的文章</a></li>
+<li><a href="https://www.huceo.com/post/458.html">天行数据近期的几次重要更新</a></li>
+<li><a href="https://www.huceo.com/post/457.html">PHP7下微信开发遇到的一些问题</a></li>
+<li><a href="https://www.huceo.com/post/455.html">Zblog微信JSSDK自定义分享插件</a></li>
+<li><a href="https://www.huceo.com/post/454.html">Zblog百度分享HTTPS化插件</a></li>
+ </ul>
+</div>
+<div class="function huceo view">
+<h3>年度热评文章</h3>
+ <ul>
+                  <li> <a href="https://www.huceo.com/post/252.html" title="重视域名和网站所有人的重要性">重视域名和网站所有人的重要性</a> </li>
+            <li> <a href="https://www.huceo.com/post/414.html" title="怎么使用微信JSSDK的自定义分享功能">怎么使用微信JSSDK的自定义分享功能</a> </li>
+            <li> <a href="https://www.huceo.com/post/460.html" title="过山车般的微信小程序">过山车般的微信小程序</a> </li>
+            <li> <a href="https://www.huceo.com/post/253.html" title="博客贴图或资源链接是本地好还是外链好？">博客贴图或资源链接是本地好还是外链好？</a> </li>
+            <li> <a href="https://www.huceo.com/post/442.html" title="微信公众号的这些功能怎么实现的？">微信公众号的这些功能怎么实现的？</a> </li>
+            <li> <a href="https://www.huceo.com/post/75.html" title="娱友社区部分功能和页面更新">娱友社区部分功能和页面更新</a> </li>
+            <li> <a href="https://www.huceo.com/post/367.html" title="驱动力与爱好">驱动力与爱好</a> </li>
+            <li> <a href="https://www.huceo.com/post/239.html" title="几个复制网页标题和链接的代码">几个复制网页标题和链接的代码</a> </li>
+            <li> <a href="https://www.huceo.com/post/153.html" title="春天，油菜花，老家">春天，油菜花，老家</a> </li>
+            <li> <a href="https://www.huceo.com/post/290.html" title="本地通过IIS测试ASP程序完整步骤">本地通过IIS测试ASP程序完整步骤</a> </li>
+            <li> <a href="https://www.huceo.com/post/120.html" title="做人要学会微笑">做人要学会微笑</a> </li>
+            <li> <a href="https://www.huceo.com/post/406.html" title="一键免费接入天行微信API查询系统">一键免费接入天行微信API查询系统</a> </li>
+            <li> <a href="https://www.huceo.com/post/379.html" title="推荐几个较小众但很实用的IOS软件">推荐几个较小众但很实用的IOS软件</a> </li>
+            <li> <a href="https://www.huceo.com/post/443.html" title="谈谈大家关心的微信小程序">谈谈大家关心的微信小程序</a> </li>
+            <li> <a href="https://www.huceo.com/post/261.html" title="zblog的Tags列表中文URL地址优化问题">zblog的Tags列表中文URL地址优化问题</a> </li>
+            <li> <a href="https://www.huceo.com/post/242.html" title="循环渐进式的ASP程序设计之路">循环渐进式的ASP程序设计之路</a> </li>
+          </ul>
+</div>
+<div class="function huceo tags">
+<h3>博客专题标签</h3>
+<ul>
+<li><a href="https://www.huceo.com/tags/SEO.html">SEO优化<span class="tag-count"> (13)</span></a></li>
+<li><a href="https://www.huceo.com/tags/zblog.html">zblog<span class="tag-count"> (22)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Internet.html">互联网<span class="tag-count"> (14)</span></a></li>
+<li><a href="https://www.huceo.com/tags/F2E.html">前端开发<span class="tag-count"> (26)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Webdesign.html">后台技术<span class="tag-count"> (13)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Domain.html">域名<span class="tag-count"> (15)</span></a></li>
+<li><a href="https://www.huceo.com/tags/yuyou.html">娱友社区<span class="tag-count"> (37)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Security.html">安全<span class="tag-count"> (13)</span></a></li>
+<li><a href="https://www.huceo.com/tags/blog.html">博客<span class="tag-count"> (33)</span></a></li>
+<li><a href="https://www.huceo.com/tags/weixin.html">微信<span class="tag-count"> (52)</span></a></li>
+<li><a href="https://www.huceo.com/tags/sentiment.html">感悟<span class="tag-count"> (21)</span></a></li>
+<li><a href="https://www.huceo.com/tags/shenghuo.html">生活<span class="tag-count"> (36)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Mobile.html">移动互联网<span class="tag-count"> (17)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Webmaster.html">站长<span class="tag-count"> (29)</span></a></li>
+<li><a href="https://www.huceo.com/tags/Operation.html">运营<span class="tag-count"> (25)</span></a></li>
+<li><a href="https://www.huceo.com/tags/TxAPI.html">天行数据<span class="tag-count"> (14)</span></a></li>
+<li><a style="color:#CC6600;" href="https://www.huceo.com/Tags.html" title="文章标签(tags)" rel="nofollow">更多标签&gt;&gt;</a></li>
+</ul>
+</div>
+<div id="cltx">
+<div id="float" class="clgs">
+<div class="function huceo view">
+<h3>转发分享好友</h3>
+<ul>
+<div class="bdfxcl">
+<div class="bdsharebuttonbox bdshare-button-style0-32" data-tag="share_1" data-bd-bind="1520681866203">
+<a href="https://www.huceo.com/post/414.html#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+<a href="https://www.huceo.com/post/414.html#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+<a href="https://www.huceo.com/post/414.html#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+<a href="https://www.huceo.com/post/414.html#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+<a href="https://www.huceo.com/post/414.html#" class="bds_more" data-cmd="more"></a>
+</div>
+</div>
+</ul>
+</div>
+<!-- 博客侧栏250*250 -->
+<div class="function huceo view">
+<h3>网盟广告赞助</h3>
+<ul>
+<script type="text/javascript">
+    /*博文侧栏250*250 创建于 2017/11/10*/
+    var cpro_id = "u3133488";
+</script>
+<script type="text/javascript" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/c.js"></script><div id="BAIDU_SSP__wrapper_u3133488_0"><iframe id="iframeu3133488_0" name="iframeu3133488_0" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/dcem(2).html" width="250" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:250px;height:250px" allowtransparency="true"></iframe></div>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="PowerBy">Powered By <a href="https://www.zblogcn.com/" target="_blank" rel="external nofollow">Z-Blog</a> | Design By <a href="https://www.huceo.com/" title="小宇博客">Huceo.com</a></div>
+<div id="Copyright"><b>本站作品采用创作共用版权&nbsp;CC BY-NC-ND/2.5/CN&nbsp;许可协议 © 2011-2018 (HUCEO.COM)&nbsp;&nbsp;鄂<a href="http://ecainfo.miitbeian.gov.cn/" rel="external nofollow" target="_blank">ICP</a>备09026741号&nbsp;&nbsp;<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42112302000017" style="display:inline-block;text-decoration:none;line-height:20px;"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/beian.png" style="float:left;margin: 0 2px;" data-bd-imgshare-binded="1">鄂公网安备 42112302000017号</a>&nbsp;&nbsp;<a href="https://www.huceo.com/year.html" rel="nofollow" title="博客成长历程" target="_blank">成长历程</a>&nbsp;&nbsp;<a href="https://www.huceo.com/About.html" rel="nofollow" title="关于小宇博客和博主" target="_blank">关于博主</a>&nbsp;&nbsp;<a href="javascript:scroll(0,0)">返回顶部</a></b></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+    /*图+自适应 创建于 2017/11/10*/
+    var cpro_id = "u3133490";
+</script>
+<script type="text/javascript" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/i.js"></script>
+<script type="text/javascript" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/view.js"></script><div id="full" style="display:none; width:15px; height:57px; POSITION:absolute; left:50%; top:360px; margin-left:200px;  z-index:100; text-align:center;"><a href="https://www.huceo.com/post/414.html#"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/btn_top.gif" border="0" data-bd-imgshare-binded="1"></a><br><br><a href="https://www.huceo.com/post/414.html#comment"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/btn_comment.gif" border="0" data-bd-imgshare-binded="1"></a></div><script>window._bd_share_config={'common':{'bdSnsKey':{'tsina':'3747179402','tqq':'801071901','t163':'Qw52WzvcQ8qCTM2N','tsohu':'laTUF2hu2GQcUsiT'},'bdText':'','bdMini':'2','bdMiniList':false,'bdPic':'http://www.huceo.com/idxlogo.png','bdStyle':'0','bdSize':'32'},'share':[{'bdSize':16},{'tag':'share_1','bdSize':32,}],'image':{'viewList':['tsina','tqq','qzone','renren','weixin'],'viewText':'分享到：','viewSize':'24'}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='https://www.huceo.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<script src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/11.0.1.js" id="sozz"></script><script charset="utf-8" src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/ab77b6ea7f3fbf79.js"></script>
+
+
+<!--830.10 ms , 59 query , 2568kb memory , 81 error--><div id="bdimgshare_1520681866205" class="sr-bdimgshare sr-bdimgshare-list sr-bdimgshare-24 sr-bdimgshare-black" style="height:42px;line-height:32px;font-size:14px;width:autopx;display:none;" data-bd-bind="1520681866205"><div class="bdimgshare-bg"></div><div class="bdimgshare-content bdsharebuttonbox bdshare-button-style0-24"><label class="bdimgshare-lbl">分享到：</label><a href="https://www.huceo.com/post/414.html#" onclick="return false;" class="bds_tsina" data-cmd="tsina" hidefocus=""></a><a href="https://www.huceo.com/post/414.html#" onclick="return false;" class="bds_tqq" data-cmd="tqq" hidefocus=""></a><a href="https://www.huceo.com/post/414.html#" onclick="return false;" class="bds_qzone" data-cmd="qzone" hidefocus=""></a><a href="https://www.huceo.com/post/414.html#" onclick="return false;" class="bds_renren" data-cmd="renren" hidefocus=""></a><a href="https://www.huceo.com/post/414.html#" onclick="return false;" class="bds_weixin" data-cmd="weixin" hidefocus=""></a><a href="https://www.huceo.com/post/414.html#" onclick="return false;" class="bds_more" data-cmd="more" hidefocus=""></a></div></div><div style="position: absolute; border: 0px; margin: 0px; padding: 0px; height: 0px; overflow: visible; text-align: left; top: 523px; left: 349px; width: 568px;"><div id="f21ac82b21eeb7322631b6aa94e17f45kf8qej"><style type="text/css" media="screen">#f21ac82b21eeb7322631b6aa94e17f45kf8qej {position:absolute;top:0;left:0;right:auto;bottom:auto;margin:0;padding:0;border:0;width:200px;background:transparent;-webkit-box-sizing:content-box;box-sizing:content-box;}#f21ac82b21eeb7322631b6aa94e17f45kf8qej div{float:left;width:144px;height:17px;line-height:17px;margin:3px 0 0 -2px;background:url(//ecma.bdimg.com/public03/imageplus/tip-back.png) 0 0 no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='//ecma.bdimg.com/public03/imageplus/tip-back.png');font-family:sans-serif;text-align:center;font-size:12px;color:#666;padding:8px 10px;display:none;-webkit-box-sizing:content-box;box-sizing:content-box;}#f21ac82b21eeb7322631b6aa94e17f45kf8qej-icon {float:left;height:38px;width:38px;cursor:default;background:url(//ecma.bdimg.com/public03/imageplus/tip.png) 0 0 no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='//ecma.bdimg.com/public03/imageplus/tip.png');-webkit-box-sizing:content-box;box-sizing:content-box;}#f21ac82b21eeb7322631b6aa94e17f45kf8qej-icon:hover {float:left;height:38px;width:38px;}#f21ac82b21eeb7322631b6aa94e17f45kf8qej #f21ac82b21eeb7322631b6aa94e17f45kf8qej-icon:hover {background:url(//ecma.bdimg.com/public03/imageplus/tip-hover.png) 0 0 no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='//ecma.bdimg.com/public03/imageplus/tip-hover.png');}</style><a href="javascript:void(0);" id="f21ac82b21eeb7322631b6aa94e17f45kf8qej-icon"></a><div id="f21ac82b21eeb7322631b6aa94e17f45kf8qej-msg">查看标识获取更多信息</div></div><style type="text/css" media="screen" id="s-f21ac82b21eeb7322631b6aa94e17f4513da8jc">.baiduimageplus-s-multimedia{position:relative}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-hd{height:26px;line-height:26px;text-indent:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-hd a{color:#fff;text-decoration:none;font-size:14px}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-bd{position:relative;margin:8px 20px;height:100%;overflow:hidden;_zoom:1}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-bd-scroll-style{margin:5px 20px!important}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-img-ctn{position:relative;overflow:hidden;height:60px;z-index:1}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-img-ctn img{border:0}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-bd-no-vbar_arrow .baiduimageplus-s-multimedia-img-ctn{margin:0 auto}
+.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-flash-link{position:absolute;top:0;left:0;background:#fff;opacity:0;filter:alpha(opacity=0);height:60px;z-index:2}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-img-ctn-expanded{overflow:visible}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-bd-arrow .baiduimageplus-s-multimedia-img-ctn{float:left}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-arrow-ctn{float:right;height:60px;text-align:center}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-arrow-ctn .baiduimageplus-s-multimedia-arrow-link{cursor:pointer;display:inline-block;*display:inline;*zoom:1;width:100px;height:60px;background:url(//ecma.bdimg.com/adtest/2c07e2c7fcdf28d4d7372d324e7e4364.png) no-repeat;_background:none;_filter:progid:dximagetransform.microsoft.alphaimageloader(enabled=true,src="https://ecma.bdimg.com/adtest/2c07e2c7fcdf28d4d7372d324e7e4364.png",sizingMethod="crop")}
+.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-vbar{position:absolute;top:0;right:0;width:10px;height:60px;background:url(//ecma.bdimg.com/adtest/002c3095a57ec978b16540217fe5cccc.png) repeat-y;z-index:1}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-hbar{position:absolute;top:50px;left:0;height:10px;width:100%;background:url(//ecma.bdimg.com/adtest/9507def6acde0ba0a71a6cd3f9376c6f.png) repeat-x;z-index:1}.baiduimageplus-s-multimedia .baiduimageplus-s-multimedia-logo-scrollstyle{bottom:5px}.baiduimageplus-s-pa-adslogo{position:absolute;bottom:0;right:31.2px;z-index:3;height:16.8px;width:16.8px;background:url(//ecma.bdimg.com/public03/imageplus/logo/pc_ads_logo_20161223.png) no-repeat;background-size:100% 100%;display:none}.baiduimageplus-s-pa-adstext{position:absolute;right:0;bottom:0;width:31.2px;height:16.8px;overflow:hidden;z-index:12;background:url(//ecma.bdimg.com/public03/imageplus/logo/pc_ads_20161223.png) no-repeat;background-size:100% 100%}
+.baiduimageplus-s,.baiduimageplus-s-wrap,.baiduimageplus-s-bg,.baiduimageplus-s-close,.baiduimageplus-s-bd-inner{float:none;margin:0;padding:0;border:0;overflow:hidden;position:static;display:block;visibility:visible;text-align:left;background:transparent;-webkit-box-sizing:content-box;box-sizing:content-box;position:absolute;top:0;left:0;bottom:auto;right:auto;width:100%;height:0;overflow:visible!important}.baiduimageplus-s-wrap{-webkit-transition:top .5s,height .5s;-moz-transition:top .5s,height .5s;-ms-transition:top .5s,height .5s;-o-transition:top .5s,height .5s;transition:top .5s,height .5s}.baiduimageplus-s-bg{height:100%;z-index:1;background:#000}.baiduimageplus-s-bd{position:relative;z-index:2;height:100%;overflow:hidden!important}.baiduimageplus-s-bd-inner{height:auto}.baiduimageplus-s-close{display:none;top:-25px;left:auto;right:0;z-index:3;width:25px;height:25px;overflow:hidden!important;text-indent:-9999px;background:url(//ecma.bdimg.com/public03/imageplus/v2/dock/close.png) no-repeat 0 0 transparent}
+#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-multimedia-title-wrapper{display:none;position:absolute;top:-24px;left:0;z-index:4;line-height:24px;height:24px;font-size:14px;text-indent:10px}#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-multimedia-title-wrapper a{color:#fff;text-decoration:none}#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-multimedia-title-ctn{position:relative;float:left;overflow:hidden}#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-multimedia-title-bg{position:absolute;top:0;left:0;background:#000;opacity:.75;filter:alpha(opacity=75);height:24px;width:100%;z-index:-1}#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-multimedia-title-triangle{float:left;width:14px;height:24px;background:url("http://ecma.bdimg.com/adtest/a8cc90e9e668754d6cf3bd5ae90b9945.png") no-repeat 0 0;background:none \9;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='http://ecma.bdimg.com/adtest/a8cc90e9e668754d6cf3bd5ae90b9945.png')\9}
+#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-visible .baiduimageplus-s-multimedia-title-wrapper{display:block}#f21ac82b21eeb7322631b6aa94e17f4513da8jc .baiduimageplus-s-visible .baiduimageplus-s-bd-inner{top:-26px}</style><div id="f21ac82b21eeb7322631b6aa94e17f4513da8jc" data-rendered="true" style="margin: 0px; padding: 0px; border: none; overflow: visible; text-align: left;"><div class="baiduimageplus-s" id="w-5j5osw" style="top: 310px;">
+<div class="baiduimageplus-s-wrap" id="w-5j5osw-wrapper" style="height: 26px; top: -26px;">
+<div class="baiduimageplus-s-bg" id="w-5j5osw-bg" style="opacity: 0.75;"></div>
+<div class="baiduimageplus-s-bd">
+<div class="baiduimageplus-s-bd-inner">
+<div id="w-5j5osw-widget-isolated-host" style="width:100%;height:auto;overflow:hidden;box-sizing:content-box;position:static;display:block;padding:0;margin:0;border:none;"></div>
+</div>
+</div>
+<a href="https://www.huceo.com/post/414.html###" id="w-5j5osw-close" class="baiduimageplus-s-close" data-ignore="" style="display: none;">X</a>
+<div class="baiduimageplus-s-multimedia-title-wrapper">
+</div>
+</div>
+</div></div></div><div style="position: absolute; border: 0px; margin: 0px; padding: 0px; height: 0px; overflow: visible; text-align: left; top: 1453px; left: 349px; width: 568px;"><div id="f21ac82b21eeb7322631b6aa94e17f45awynq4"><style type="text/css" media="screen">#f21ac82b21eeb7322631b6aa94e17f45awynq4 {position:absolute;top:0;left:0;right:auto;bottom:auto;margin:0;padding:0;border:0;width:200px;background:transparent;-webkit-box-sizing:content-box;box-sizing:content-box;}#f21ac82b21eeb7322631b6aa94e17f45awynq4 div{float:left;width:144px;height:17px;line-height:17px;margin:3px 0 0 -2px;background:url(//ecma.bdimg.com/public03/imageplus/tip-back.png) 0 0 no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='//ecma.bdimg.com/public03/imageplus/tip-back.png');font-family:sans-serif;text-align:center;font-size:12px;color:#666;padding:8px 10px;display:none;-webkit-box-sizing:content-box;box-sizing:content-box;}#f21ac82b21eeb7322631b6aa94e17f45awynq4-icon {float:left;height:38px;width:38px;cursor:default;background:url(//ecma.bdimg.com/public03/imageplus/tip.png) 0 0 no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='//ecma.bdimg.com/public03/imageplus/tip.png');-webkit-box-sizing:content-box;box-sizing:content-box;}#f21ac82b21eeb7322631b6aa94e17f45awynq4-icon:hover {float:left;height:38px;width:38px;}#f21ac82b21eeb7322631b6aa94e17f45awynq4 #f21ac82b21eeb7322631b6aa94e17f45awynq4-icon:hover {background:url(//ecma.bdimg.com/public03/imageplus/tip-hover.png) 0 0 no-repeat;_background:0;_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='//ecma.bdimg.com/public03/imageplus/tip-hover.png');}</style><a href="javascript:void(0);" id="f21ac82b21eeb7322631b6aa94e17f45awynq4-icon"></a><div id="f21ac82b21eeb7322631b6aa94e17f45awynq4-msg">查看标识获取更多信息</div></div><style type="text/css" media="screen" id="s-f21ac82b21eeb7322631b6aa94e17f452muo4os">.baiduimageplus-s-pa{position:relative;width:100%;height:110px;overflow:hidden;cursor:default;-webkit-transition:top .5s;-moz-transition:top .5s;-ms-transition:top .5s;-o-transition:top .5s;transition:top .5s}.baiduimageplus-s-pa p{background:none}.baiduimageplus-s-pa a{outline:0;text-decoration:none}.baiduimageplus-s-pa a:hover{text-decoration:underline}.baiduimageplus-s-pa .baiduimageplus-s-pa-bg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}.baiduimageplus-s-pa .baiduimageplus-s-pa-ct{position:relative;z-index:2}.baiduimageplus-s-pa .baiduimageplus-s-pa-hd{height:26px;overflow:hidden;line-height:26px}.baiduimageplus-s-pa .baiduimageplus-s-pa-hd .baiduimageplus-s-pa-hd-title-cell{font-size:14px;color:#FFF;height:100%;text-align:center!important;float:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-right:1px solid #FFF}
+.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu{position:relative;overflow:hidden;zoom:1;padding:0;margin:0}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper{width:90%;height:84px;float:left;overflow:hidden;position:relative;left:5px}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter{height:84px;overflow:hidden;position:absolute;left:0;-webkit-transition:all .5s;-moz-transition:all .5s;-ms-transition:all .5s;-o-transition:all .5s;transition:all .5s}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell{width:100px;height:72px;overflow:hidden;background-color:#FFF;margin:4px 5px;padding:0;float:left;border:2px solid #000;position:relative}
+.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell:hover{border-color:#d1111c}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell:hover .baiduimageplus-s-pa-bd-lu-title{background-color:#d1111c}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell:hover img{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);-ms-transform:scale(1.2);-o-transform:scale(1.2);transform:scale(1.2)}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell img{width:100px;height:50px;display:block;border:0;-webkit-transition:transform .5s;-moz-transition:transform .5s;-ms-transition:transform .5s;-o-transition:transform .5s;transition:transform .5s}
+.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell .baiduimageplus-s-pa-bd-lu-title{position:absolute;font:14px/1.5 arial,sans-serif;bottom:0;left:0;width:100%;height:22px;display:block;line-height:22px;background-color:#000;text-align:center;color:#FFF}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell:first-child{margin-left:0}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .baiduimageplus-s-pa-bd-lu-wrapper .baiduimageplus-s-pa-bd-lu-outter .cell:last-child{margin-right:0}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .ad-widget-imgps-sticker-html-btn{margin-top:5px;height:75px;width:20px;cursor:pointer;-webkit-transition:background .4s;-moz-transition:background .4s;-ms-transition:background .4s;-o-transition:background .4s;transition:background .4s}
+.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .adwishbtn_left{width:20px;float:left;background:url(http://ecmb.bdimg.com/public03/imageplus/sticker/leftbtn.jpg) no-repeat center center}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .adwishbtn_left:hover{background:#20439d url(http://ecmb.bdimg.com/public03/sticker/leftbtn_hover.jpg) no-repeat center center}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .adwishbtn_right{width:20px;float:right;background:url(http://ecmb.bdimg.com/public03/imageplus/sticker/rightbtn.jpg) no-repeat center center}.baiduimageplus-s-pa .baiduimageplus-s-pa-bd-lu .adwishbtn_right:hover{background:#20439d url(http://ecmb.bdimg.com/public03/sticker/rightbtn_hover.jpg) no-repeat center center}.baiduimageplus-s-pa .baiduimageplus-s-pa-logo{position:absolute;bottom:0;right:0;z-index:3;height:18px;width:18px;text-indent:-9999px;background:url(http://cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position:0 0;_filter:progid:dximagetransform.microsoft.alphaimageloader(enabled=true,src="http://cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png",sizingMethod="crop");_background:none}
+.ad-widget-imageplus-sticker{font:12px/1.5 arial,sans-serif;position:absolute;left:0;width:100%;display:none;overflow:hidden;color:#FFF;background:transparent;-webkit-transition:height .5s,top .5s;transition:height .5s,top .5s}.ad-widget-imageplus-sticker div{background:transparent}.ad-widget-imageplus-sticker-cut{display:block}.ad-widget-imageplus-sticker-bg{position:absolute;z-index:1;left:0;top:0;width:100%;height:100%;background:#000!important;box-shadow:2px 2px 4px #000}.ad-widget-imageplus-sticker-bd{position:relative;z-index:2;left:0;top:0;width:100%;overflow:hidden}.ad-widget-imageplus-sticker-close{position:absolute;z-index:3;right:0;top:5px;width:25px;height:25px;line-height:25px;text-decoration:none;text-align:center;font-size:18px;color:#FFF!important}.ad-widget-imageplus-sticker-close:hover{background-color:#000}
+.ad-widget-imageplus-sticker-theme-white{color:#333}.ad-widget-imageplus-sticker-theme-white .ad-widget-imageplus-sticker-bg{background:#FFF!important;box-shadow:2px 2px 4px #FFF}.ad-widget-imageplus-sticker-theme-white .ad-widget-imageplus-sticker-close{color:#666!important}.ad-widget-imageplus-sticker-theme-white .ad-widget-imageplus-sticker-close:hover{background-color:#FFF!important}.ad-widget-imageplus-sticker-theme-none{color:#333}.ad-widget-imageplus-sticker-theme-none .ad-widget-imageplus-sticker-bg{background:transparent!important;box-shadow:none}.ad-widget-imageplus-sticker-theme-none .ad-widget-imageplus-sticker-close{color:#666!important}.ad-widget-imageplus-sticker-theme-none .ad-widget-imageplus-sticker-close:hover{background-color:#FFF!important}.ad-widget-imageplus-sticker-theme-none-white{color:#333}
+.ad-widget-imageplus-sticker-theme-none-white .ad-widget-imageplus-sticker-bg{background:transparent!important;box-shadow:none}.ad-widget-imageplus-sticker-theme-none-white-2 .ad-widget-imageplus-sticker-bg{background:transparent!important;box-shadow:none}.ad-widget-imageplus-sticker-theme-none-white-2 .ad-widget-imageplus-sticker-close{top:0;text-indent:-9999px;background:url(http://ecma.bdimg.com/public03/imageplus/v2/dock/close.png) no-repeat 0 0 transparent}.ad-widget-imageplus-sticker-theme-v2 .ad-big-title{position:relative;top:0;opacity:1;filter:alpha(opacity=100);-webkit-transition:top .5s,opacity .6s;transition:top .5s,opacity .6s}.ad-widget-imageplus-sticker-theme-v2 .ad-widget-imageplus-sticker-showing .ad-big-title{position:relative;top:-36px;opacity:0;filter:alpha(opacity=0)}.ad-widget-imageplus-sticker-theme-v2 .ad-widget-imageplus-sticker-showing .ad-widget-imageplus-sticker-bg{top:26px}
+.ad-widget-imageplus-sticker-theme-v2 .ad-widget-imageplus-sticker-close{top:0;text-indent:-9999px;background:url(http://ecma.bdimg.com/public03/imageplus/v2/dock/close.png) no-repeat 0 0 transparent}.ad-widget-imageplus-sticker-thumbnail{font:12px/1.5 arial,sans-serif;position:absolute;right:0;top:0;height:20px;width:100px;overflow:hidden;background:transparent;-webkit-transition:height .5s;-moz-transition:height .5s;-ms-transition:height .5s;-o-transition:height .5s;transition:height .5s;background-color:rgba(0,0,0,0.5);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#80000000,endColorstr=#80000000);-ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#80000000,endColorstr=#80000000)}.ad-widget-imageplus-sticker-thumbnail a{float:right;width:100px;height:20px;line-height:20px;text-align:center;color:white;background:transparent;text-decoration:none}
+.ad-widget-imageplus-sticker-thumbnail i{width:12px;height:8px;margin-top:6px;margin-left:5px;display:block;float:left;background:url('http://ecma.bdimg.com/adtest/8e547549c94ab88c81b644d5ff63b0d3.png') no-repeat 0 0;background:none \9;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true',sizingMethod='corp',src='http://ecma.bdimg.com/adtest/8e547549c94ab88c81b644d5ff63b0d3.png')\9}.ad-widget-imageplus-sticker-close-newstyle{top:0;text-indent:-9999px;background:url(http://ecmb.bdimg.com/public03/v2/dock/iconfont-close.png) no-repeat 0 0 transparent!important}.ad-widget-imageplus-sticker-showing .baiduimageplus-s-pa-hd{opacity:0;filter:alpha(opacity=0)}</style><div id="f21ac82b21eeb7322631b6aa94e17f452muo4os" data-rendered="true" style="margin: 0px; padding: 0px; border: none; overflow: visible; text-align: left;"><div class="ad-widget-imageplus-sticker ad-widget-imageplus-sticker-theme-v2 ad-widget-imageplus-sticker-cut" id="w-9z3rc7" style="display: block; top: 263px; height: 109px;">
+<div class="ad-widget-imageplus-sticker ad-widget-imageplus-sticker-wrapper ad-widget-imageplus-sticker-box-showing" id="w-9z3rc7-wrapper" style="display: block; top: 83px; height: 26px;">
+<div class="ad-widget-imageplus-sticker-bg" id="w-9z3rc7-background" style="opacity: 0.75;"></div>
+<div class="ad-widget-imageplus-sticker-bd" id="w-9z3rc7-body">
+<div class="baiduimageplus-s-pa" id="w-7jdm2t">
+<div class="baiduimageplus-s-pa-bg" id="w-7jdm2t-background"></div>
+<div class="baiduimageplus-s-pa-ct">
+<div class="baiduimageplus-s-pa-hd">
+<div class="baiduimageplus-s-pa-hd-title-cell" style="width: 112px !important;">早 泄怎么治</div>
+<div class="baiduimageplus-s-pa-hd-title-cell" style="width: 112px !important;">女性部位</div>
+<div class="baiduimageplus-s-pa-hd-title-cell" style="width: 112px !important;">h5前端</div>
+<div class="baiduimageplus-s-pa-hd-title-cell" style="width: 112px !important;">日语三级</div>
+<div class="baiduimageplus-s-pa-hd-title-cell" style="width: 112px !important; border: none !important;">即将暴涨牛股</div>
+</div>
+<div class="baiduimageplus-s-pa-bd-lu">
+<div id="w-7jdm2t-left_btn" class="ad-widget-imgps-sticker-html-btn adwishbtn_left" style="display:none;"></div>
+<div id="w-7jdm2t-wrapper" class="baiduimageplus-s-pa-bd-lu-wrapper" style="width: 558px !important;">
+<div id="w-7jdm2t-outter" class="baiduimageplus-s-pa-bd-lu-outter" style="width: 565px !important;">
+<div class="cell">
+<a data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRfYFRRL2zNDnaNariNDPaNAPiNjnzNaPaNDPBNjwiuonjY-wjf-wHToFRfsFRc4FRfYFRmdFRn1FRcYFRfvFRP7Fh_k5y6dFRnLFRcsFRcvFRPaFh_z5iNjraNDPiNDnzN7wBNjraNAwaNafzNaPBuon1Y-fbn-fWf-fbf-fRc-fWD-fHb-wjR-f1T-f1R-fHn-fWb-f1bhp1fqFRfdFRnLFRPDFRD1FRfkFRDkFRc4FRn4FRc4FR7aFRPKFRFDFh_d5iNaPiNDraNjPiNKwBNafzNDfBNaraNAniu_IyVG5HDhUyPsUHY3njD4nauk5HDznj6snj63gvPsTBuzmWYkFMF15HDhTvN_UANzgv-b5HRhTv-b5HcvnH03mHF9n1nsrjmvmHmhTLwGujYznBuY5gwsmvkGmvV-ujPxpAnhIAd15HDdnW0vrjD3PWThIZRqIHnkn1nYrH0hIHdCIZwsTzR1fiRzwBRzwMILIzRzwy9dmvNEFHF7mvqVFMmqniuG5yf4nhcLPAm4&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/u=3118428872,3071454351&amp;fm=76"></a>
+<a class="baiduimageplus-s-pa-bd-lu-title" data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRfYFRRL2zNDnaNariNDPaNAPiNjnzNaPaNDPBNjwiuonjY-wjf-wHToFRfsFRc4FRfYFRmdFRn1FRcYFRfvFRP7Fh_k5y6dFRnLFRcsFRcvFRPaFh_z5iNjraNDPiNDnzN7wBNjraNAwaNafzNaPBuon1Y-fbn-fWf-fbf-fRc-fWD-fHb-wjR-f1T-f1R-fHn-fWb-f1bhp1fqFRfdFRnLFRPDFRD1FRfkFRDkFRc4FRn4FRc4FR7aFRPKFRFDFh_d5iNaPiNDraNjPiNKwBNafzNDfBNaraNAniu_IyVG5HDhUyPsUHY3njD4nauk5HDznj6snj63gvPsTBuzmWYkFMF15HDhTvN_UANzgv-b5HRhTv-b5HcvnH03mHF9n1nsrjmvmHmhTLwGujYznBuY5gwsmvkGmvV-ujPxpAnhIAd15HDdnW0vrjD3PWThIZRqIHnkn1nYrH0hIHdCIZwsTzR1fiRzwBRzwMILIzRzwy9dmvNEFHF7mvqVFMmqniuG5yf4nhcLPAm4&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0">早 泄怎么治</a>
+</div>
+<div class="cell">
+<a data-log="2" data-mid="" target="_blank" href="http://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqniuGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRndFR77FRfsFRfYFRczFRFAFRP7FRFaFh_s5iNjPiNKwiNDnaNDPaNanBNawBNjwiNafBuonHdCPiNjPzNanaNaPBNjfBuonWY-f16-wjR-wjn-wRm-f16-wbf-fbn-fWmhp1nqFRFjFRcYFRFDFR7aFRckFRD4FRfdFRnLFRndFRD1FRc4FRn4Fh_Y5iNDPiNjPzNjwaNKnzNDniNKniNariNjriNariNKfBNjfiNawauoPHY-fWR-wj6-f1R-fRm-fbn-wDc-fW6-wWDhUZNopHYzFhdWTAYqP1cznauk5HDznj6snj63gvPsTBuzmWYkFMF15HDhTvN_UANzgv-b5HRhTv-b5HcvnH03mHF9n1nsrjmvmHmhTLwGujYznBuY5gwsmvkGmvV-ujPxpAnhIAd15HDdnW0vrjD3PWThIZRqIHnkn1nYrH0hIHdCIZwsTzR1fiRzwBRzwMILIzRzwy9dmvNEFHF7mvqVFMmqniuG5HwhrHcYuhnk&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=1&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/u=3804546667,868349934&amp;fm=76"></a>
+<a class="baiduimageplus-s-pa-bd-lu-title" data-log="2" data-mid="" target="_blank" href="http://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqniuGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRndFR77FRfsFRfYFRczFRFAFRP7FRFaFh_s5iNjPiNKwiNDnaNDPaNanBNawBNjwiNafBuonHdCPiNjPzNanaNaPBNjfBuonWY-f16-wjR-wjn-wRm-f16-wbf-fbn-fWmhp1nqFRFjFRcYFRFDFR7aFRckFRD4FRfdFRnLFRndFRD1FRc4FRn4Fh_Y5iNDPiNjPzNjwaNKnzNDniNKniNariNjriNariNKfBNjfiNawauoPHY-fWR-wj6-f1R-fRm-fbn-wDc-fW6-wWDhUZNopHYzFhdWTAYqP1cznauk5HDznj6snj63gvPsTBuzmWYkFMF15HDhTvN_UANzgv-b5HRhTv-b5HcvnH03mHF9n1nsrjmvmHmhTLwGujYznBuY5gwsmvkGmvV-ujPxpAnhIAd15HDdnW0vrjD3PWThIZRqIHnkn1nYrH0hIHdCIZwsTzR1fiRzwBRzwMILIzRzwy9dmvNEFHF7mvqVFMmqniuG5HwhrHcYuhnk&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=1&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0">女性部位</a>
+</div>
+<div class="cell">
+<a data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qpjR-f1T-fW0-fWm-fYchp10qpjR-f1T-fW0-fWm-fYchp1DqFRn3FRfdFRf1FRNAFRn3FRuDFRFjFRcvFh_z5iNafzNaPaNawaNKfBNaniNKriNDPiNjPzNjPiNKnzNariNjriuon1Y-wjR-f1T-fYf-fHn-wjD-fHD-fWb-f1b-fWb-fRc-fYD-fbfhp1fqFRcdFRf3FRndFR7AFRFjFRwaFRc3FRmkFh_d5iNDPaN7Pz_-wj0-fWb-wjf-wWR-f1n-fWf-wjm-fYRhUZNopHY1FhdWTAYqnWmdnWchTHYknW03nj03r7qWTZchThcqniuzT1YkFMP-UAk-T-qGujYdFMPGujYzPWDsrADzmHn1nj6vPhDvFMPYpyfqnWchIjdYTAP_pyPouyf1gv9WFMwVT1YkPHcsPW6krjmLFMwd5gR1nHn1PjbsFMRqpZwYTZn-nYD-nbm-nbuLILT-nbNCIyP-UzRzwyPEUiuv5HDhpHY1uAPWuymzmf&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/u=3250483810,1605664115&amp;fm=76"></a>
+<a class="baiduimageplus-s-pa-bd-lu-title" data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qpjR-f1T-fW0-fWm-fYchp10qpjR-f1T-fW0-fWm-fYchp1DqFRn3FRfdFRf1FRNAFRn3FRuDFRFjFRcvFh_z5iNafzNaPaNawaNKfBNaniNKriNDPiNjPzNjPiNKnzNariNjriuon1Y-wjR-f1T-fYf-fHn-wjD-fHD-fWb-f1b-fWb-fRc-fYD-fbfhp1fqFRcdFRf3FRndFR7AFRFjFRwaFRc3FRmkFh_d5iNDPaN7Pz_-wj0-fWb-wjf-wWR-f1n-fWf-wjm-fYRhUZNopHY1FhdWTAYqnWmdnWchTHYknW03nj03r7qWTZchThcqniuzT1YkFMP-UAk-T-qGujYdFMPGujYzPWDsrADzmHn1nj6vPhDvFMPYpyfqnWchIjdYTAP_pyPouyf1gv9WFMwVT1YkPHcsPW6krjmLFMwd5gR1nHn1PjbsFMRqpZwYTZn-nYD-nbm-nbuLILT-nbNCIyP-UzRzwyPEUiuv5HDhpHY1uAPWuymzmf&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0">h5前端</a>
+</div>
+<div class="cell">
+<a data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRn3FRfdFRf1FRNAFRn3FRuDFRFjFRcvFh_s5iNjraNDPiNDnzN7wBNjraNAwaNafzNaPBuonHY-fbn-fWf-fbf-fRc-fWD-fHb-wjR-f1T-f1R-fHn-fWb-f1bhp1cqFRfdFRnLFRPDFRD1FRfkFRDkFRc4FRn4FRc4FR7aFRPKFRFDFh_15iNaPiNDraNjPiNKwBNafzNDfBNaraNAniuoPjY-wjf-wHToFRfsFRc4FRfYFRmdFRn1FRcYFRfvFRP7Fh_d5y6dFRnLFRcsFRcvFRPaFhkdpvbqPauVmLKV5HfdrjDdFMDqnHcsrj0srj9xmLKzFMFB5HDhTMnqniu1uyk_ugFxpyfqPiu1pyfqnWmknj99nhD1n103PWu9PBu1IA-b5HczFMfqIZKWUA-WpvNbndqCmzuYUgnqnHRznjm3nH6vPzuYIHddn1D1n1f4naud5y9YIZK1FHPKFHFAFHFAILILFHF7pZNWuyt-nbNWUvYhIWYkFhbqrAf3mHmznHR&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/u=352269766,820571075&amp;fm=76"></a>
+<a class="baiduimageplus-s-pa-bd-lu-title" data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRn3FRfdFRf1FRNAFRn3FRuDFRFjFRcvFh_s5iNjraNDPiNDnzN7wBNjraNAwaNafzNaPBuonHY-fbn-fWf-fbf-fRc-fWD-fHb-wjR-f1T-f1R-fHn-fWb-f1bhp1cqFRfdFRnLFRPDFRD1FRfkFRDkFRc4FRn4FRc4FR7aFRPKFRFDFh_15iNaPiNDraNjPiNKwBNafzNDfBNaraNAniuoPjY-wjf-wHToFRfsFRc4FRfYFRmdFRn1FRcYFRfvFRP7Fh_d5y6dFRnLFRcsFRcvFRPaFhkdpvbqPauVmLKV5HfdrjDdFMDqnHcsrj0srj9xmLKzFMFB5HDhTMnqniu1uyk_ugFxpyfqPiu1pyfqnWmknj99nhD1n103PWu9PBu1IA-b5HczFMfqIZKWUA-WpvNbndqCmzuYUgnqnHRznjm3nH6vPzuYIHddn1D1n1f4naud5y9YIZK1FHPKFHFAFHFAILILFHF7pZNWuyt-nbNWUvYhIWYkFhbqrAf3mHmznHR&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0">日语三级</a>
+</div>
+<div class="cell">
+<a data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRFjFRcYFRFDFR7aFRckFRD4FRfdFRnLFRndFRD1FRc4FRn4Fh_s5iNafzNaPaNawaNKfBNaniNKriNDPiNjPzNjPiNKnzNariNjriuonHY-wjR-f1T-fYf-fHn-wjD-fHD-fWb-f1b-fWb-fRc-fYD-fbfhp1cqFRcdFRf3FRndFR7AFRFjFRwaFRc3FRmkFh_15iNDPaN7Pz_-wj0-fWb-wjf-wWR-f1n-fWf-wjm-fYRhp1fqpjR-f1T-fW0-fWm-fYchp1RqFRn3FRfdFRf1FRNAFRn3FRuDFRFjFRcvFhkdpvbqPiuVmLKV5HDzP1RLnauk5HDznj6snj63gvPsTBuzmWYkFMF15HDhTvN_UANzgv-b5HRhTv-b5HcvnH03mHF9n1nsrjmvmHmhTLwGujYznBuY5gwsmvkGmvV-ujPxpAnhIAd15HDdnW0vrjD3PWThIZRqIHnkn1nYrH0hIHdCIZwsTzR1fiRzwBRzwMILIzRzwy9dmvNEFHF7mvqVFMmqniuG5HTLPvPbnvDd&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0"><img src="./怎么使用微信JSSDK的自定义分享功能-小宇博客_files/u=58735701,1266744708&amp;fm=76"></a>
+<a class="baiduimageplus-s-pa-bd-lu-title" data-log="2" data-mid="" target="_blank" href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1d9PWmvnj61n1F9rADknjcvFh_qFRFjFRcYFRFDFR7aFRckFRD4FRfdFRnLFRndFRD1FRc4FRn4Fh_s5iNafzNaPaNawaNKfBNaniNKriNDPiNjPzNjPiNKnzNariNjriuonHY-wjR-f1T-fYf-fHn-wjD-fHD-fWb-f1b-fWb-fRc-fYD-fbfhp1cqFRcdFRf3FRndFR7AFRFjFRwaFRc3FRmkFh_15iNDPaN7Pz_-wj0-fWb-wjf-wWR-f1n-fWf-wjm-fYRhp1fqpjR-f1T-fW0-fWm-fYchp1RqFRn3FRfdFRf1FRNAFRn3FRuDFRFjFRcvFhkdpvbqPiuVmLKV5HDzP1RLnauk5HDznj6snj63gvPsTBuzmWYkFMF15HDhTvN_UANzgv-b5HRhTv-b5HcvnH03mHF9n1nsrjmvmHmhTLwGujYznBuY5gwsmvkGmvV-ujPxpAnhIAd15HDdnW0vrjD3PWThIZRqIHnkn1nYrH0hIHdCIZwsTzR1fiRzwBRzwMILIzRzwy9dmvNEFHF7mvqVFMmqniuG5HTLPvPbnvDd&amp;c=news&amp;cf=33&amp;expid=9176_9514_9522_9536_9573_9576_9577_9579_9581_9597_9599&amp;fv=9&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;mscf=600&amp;n=10&amp;ncf=0&amp;nmv=0&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2Fpost%2F414%2Ehtml&amp;urlid=0">即将暴涨牛股</a>
+</div>
+</div>
+</div>
+<div id="w-7jdm2t-right_btn" class="ad-widget-imgps-sticker-html-btn adwishbtn_right" style="display:none;"></div>
+</div>
+</div>
+<a class="baiduimageplus-s-pa-logo" title="百度网盟推广" href="http://wangmeng.baidu.com/" target="_blank" data-ignore=""></a>
+<!-- 新增的推广提示 -->
+<div style="position:absolute;left:0px;bottom:0px;width:29px;height:16px;overflow:hidden;z-index:12;background: url(http://ecmb.bdimg.com/public03/imageplus/leftbottom.png) no-repeat;"></div>
+</div>
+</div>
+</div>
+<a class="ad-widget-imageplus-sticker-close " href="https://www.huceo.com/post/414.html#" id="w-9z3rc7-close" style="display: none;">X</a>
+</div>
+<div class="ad-widget-imageplus-sticker-thumbnail" id="w-9z3rc7-thumbnail" style="display: none; top: 352px;">
+<a href="https://www.huceo.com/post/414.html#" title="点击展开"><i>&nbsp;</i>图片相关信息</a>
+</div></div></div></body></html>

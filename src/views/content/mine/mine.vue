@@ -71,12 +71,11 @@
 <template>
     <div>
         <div class="headImg">
-        {{this.$store.user}}
             <p class="userName">{{$store.state.user.name}}，您好</p>
             <router-link to="edit" tag="div" class="userMsg">
                 <p>
                     <img :src="$store.state.user.image">
-                    <p>大绳的希冀</p>
+                    <p>{{$store.state.user.nickname}}</p>
                 </p>
             </router-link>
         </div>

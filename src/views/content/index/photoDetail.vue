@@ -82,6 +82,45 @@
         background: #f9c84e;
         color: #fff;
     }
+    .cltList{
+        width: 5rem;
+        height: 4rem;
+        max-height: 4rem;
+        padding: .4rem .5rem;
+        background: #fff;
+        position: fixed;
+        left: 0.75rem;
+        top: 25%;
+        z-index: 6;
+        overflow: scroll;
+    }
+    .cltList .titleList{
+        text-align: center;
+    }
+    .cltList label{
+        display: inline-block;
+        width: 80%;
+    }
+    .cover{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.2);
+        position: fixed;
+        top: 0;
+        z-index: 5;
+    }
+    .confirm{
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+    .confirm button{
+        width: 2.3rem;
+        height: .6rem;
+        border-radius: .08rem;
+        color: #fff;
+        background: #F9C84E;
+        font-size: .34rem;
+    }
 </style>
 <template>
     <div class="outer">
@@ -107,20 +146,37 @@
             <li @click="cancel">取消</li>
             <li class="like" @click="likepic">收藏到个人相册</li>
         </ul>
+        <div class="cltList" v-if="cltListShow">
+            <p class="titleList">相册列表</p>
+            <ul>
+                <li v-for="(i,index) in cltList" :key="i.id">
+                    <input :id="'p'+index" type="radio" v-model="cltId" :checked="index==='0'" :value="i.id">
+                    <label :for="'p'+index">{{i.name}}</label>   
+                </li>
+            </ul>
+            <p class="confirm">
+                <button @click="likeSuccess">确认收藏</button>
+            </p>
+        </div>
+        <div class="cover" v-if="cltListShow" @click="toggle"></div>
     </div>
 </template>
 <script>
     export default {
-        data() {
+        data(){
             return {
                 lists:'',
                 msg:'',
                 edit:true,
                 photoList:[],
+                cltList:[],
+                cltId:'',
+                cltListShow:false
             }
         },
         created(){
             this.getList();
+            this.getCltList();
         },
         methods:{
             getList(){
@@ -173,6 +229,39 @@
                 this.edit = false;
                 this.photoList = [];
             },
+            likepic(){
+                if(this.photoList.length>0){
+                    this.cltListShow = true;
+                }else{
+                    alert('至少选择一张需要收藏的图片');
+                }
+
+            },
+            getCltList(){
+                this.$http.post('/PcApi',{name:'pc.Album.cltList'},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.cltList = res.body.data;
+                        this.cltId = res.body.data[0].id;
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            toggle(){
+                this.cltListShow = false;
+                this.photoList = [];
+                this.cltId = '';
+            },
+            likeSuccess(){
+                this.$http.post('/PcApi',{name:'pc.Album.collect',pic_id:this.photoList,album:this.cltId},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                            this.$router.push('/photo');
+                            this.cltListShow = false;
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
+                    })
+            }
         }
     }
 </script>

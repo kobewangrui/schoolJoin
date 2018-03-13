@@ -128,33 +128,7 @@
             getList(){
                 this.$http.post('/PcApi',{name:'pc.ActOrderList',status:this.$route.query.type,page:1},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
-                        // this.lists = res.body.data.list;
-                        this.lists = 
-                                    [{
-                                        "activity_name":"活动名称",
-                                        "path":"活动图片",
-                                        "addtime":155555555555,
-                                        "status":2,
-                                        "balance":3000,
-                                        "ds_coin":10000,
-                                        "activity_id":2
-                                    },{
-                                        "activity_name":"活动名称",
-                                        "path":"活动图片",
-                                        "addtime":155555555555,
-                                        "status":1,
-                                        "balance":44,
-                                        "ds_coin":100,
-                                    },{
-                                        "activity_name":"活动名称",
-                                        "path":"活动图片",
-                                        "addtime":155555555555,
-                                        "status":4,
-                                        "balance":4444,
-                                        "ds_coin":100,
-                                        "activity_id":3
-                                    }
-                                    ]
+                        this.lists = res.body.data.list;
                     }
                 }).catch((error)=>{
                     console.log(error);
