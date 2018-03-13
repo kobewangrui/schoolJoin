@@ -130,13 +130,13 @@
             <div>
                 <yd-actionsheet :items="myItems2" v-model="show1"></yd-actionsheet>
             </div>
-            <span>{{this.gender}}</span>
+            <span>{{gender | sexFilter}}</span>
             <span class="right"> > </span>
         </yd-button>
         <yd-cell-group class="spicialList">
             <yd-cell-item arrow>
                 <span slot="left">生日</span>
-                <yd-datetime v-model="dateTime" :yearFormat="yearFormat" :month-format="monthFormat" :day-format="dayFormat" type="date" slot="right">
+                <yd-datetime start-date="1900-01-01" end-date="2099-01-01" v-model="dateTime" type="date" slot="right">
                 </yd-datetime>
             </yd-cell-item>
         </yd-cell-group>
@@ -160,7 +160,7 @@
             <span class="right"> > </span>
         </div>
         <div class="list">
-            <textarea placeholder="详细地址"></textarea>
+            <textarea placeholder="详细地址" v-model="address"></textarea>
         </div>
         <div class="saveBtn">
             <button class="save" @click="editMsg" :class="{'active':$vuerify.check()}">保存</button>
@@ -177,20 +177,17 @@
                     {
                         label: '男',
                         callback: () => {
-                            this.gender = '男'
+                            this.gender = '1'
                         }
                     },
                     {
                         label: '女',
                         callback: () => {
-                            this.gender = '女'
+                            this.gender = '2'
                         }
                     }
                 ],
-                dateTime: this.defaultDate('end'),
-                yearFormat: "{value}",
-                monthFormat: "{value}",
-                dayFormat: "{value}",
+                dateTime: '',
                 show2: false,
                 model2: '',
                 district: District,
@@ -201,12 +198,12 @@
             }
         },
         created(){
-            this.defaultDate('end');
                 this.model2 = this.$store.state.user.name;
                 this.real_name = this.$store.state.user.name
-                // this.gender = this.$store.state.user.gender;
                 this.school = this.$store.state.user.school;
                 this.address = this.$store.state.user.address;
+                this.gender = this.$store.state.user.gender;
+                this.dateTime= this.fomartDate(this.$store.state.user.birthday);
         },
         vuerify:{
             real_name:['required'],
@@ -215,43 +212,42 @@
             model2:['required'],
             dateTime:['required'],
         },
+        filters:{
+            sexFilter:function(value){
+                if (value === '1'){
+                    return '男';
+                }else if(value === '2'){
+                    return '女';
+                }else if(value === '男'){
+                    return '男';
+                }else if(value === '女'){
+                    return '女';
+                }else{
+                    return '未知';
+                }
+            }
+        },
         methods:{
+            fomartDate(timestamp){
+
+                let date = new Date(parseInt(timestamp));
+                let Y = date.getFullYear() + '-';
+                let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                let D = date.getDate()+1 < 10 ? '0'+ date.getDate() : date.getDate();
+                return Y+M+D;
+            },
             editMsg(){
                 if(this.$vuerify.check()){
                     let d = new Date(this.dateTime);
                     let dt = d.getTime();
-                    let genders;
-                    if(this.gender === '1'){
-                         gender = '男'
-                    }else if(this.gender === '2'){
-                        genders = '女';
-                    }else{
-                        genders = '未知';
-                    }
-                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:genders,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
-                            this.lists = res.body.data.Activitylist;
+                            this.$router.push("/mine");
                         }
                     }).catch((error)=>{
                         console.log(error);
                     })
                 }
-            },
-            defaultDate(i){
-                let d = new Date(),
-                    Y = d.getFullYear(),
-                    M = d.getMonth()+1,
-                    D = d.getDate(),
-                    HH = d.getHours(),
-                    MM = d.getMinutes();
-                    if(i==='end'){
-                        HH+=1;
-                    };
-                    M = M<10 ? '0'+M : M
-                    D = D<10 ? '0'+D : D
-                    HH = HH<10 ? '0'+HH : HH
-                    MM = MM<10 ? '0'+MM : MM
-                return `${Y}-${M}-${D} ${HH}:${MM}`;
             },
             result2(ret){
                 this.model2 = ret.itemName1 + ' ' + ret.itemName2 + ' ' + ret.itemName3; 
