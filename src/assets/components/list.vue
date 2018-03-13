@@ -6,7 +6,7 @@
 		border-bottom:.01rem solid #e5e5e5;
 	}
 	.list ul li div.imgShow img{
-		width: 100%;
+		width: 7.5rem;
 		height: 4rem;
 	}
 	.list ul li div.title,
@@ -18,8 +18,12 @@
 		margin-top: .2rem;
 	}
 	.list ul li div.title > p:first-child{
+		width: 4rem;
 		font-size: .34rem;
 		color: #574c46;
+		overflow: hidden;
+		text-overflow:ellipsis;
+		white-space: nowrap;
 	}
 
 	.list ul li div.title > p:last-child{

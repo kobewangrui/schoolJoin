@@ -165,7 +165,7 @@
                 this.$http.post('/PcApi',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data.pictures;
-                        this.msg = res.body.data.msg;
+                        this.msg = res.body.data.album;
                     }
                 }).catch((error)=>{
                     console.log(error);

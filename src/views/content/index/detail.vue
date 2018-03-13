@@ -7,7 +7,7 @@
         width: 7rem!important;
     }
     .header .img img{
-        width: 100%;
+        width: 7.5rem;
         height: 4rem;
     }
     .header .titleT{
@@ -130,7 +130,6 @@
                 <p class="img">
                     <img :src="views.path">
                 </p>
-                -------<pre>{{all}}</pre>-----
                 <p class="titleT">{{views.activity_name}}</p>
                 <div class="price">
                     <p class="sign">
@@ -153,18 +152,18 @@
                 <div>
                     <p>我要当义工</p>
                     <p>
-                        <input id="work" type="checkbox" name="work">
+                        <input id="work" type="checkbox" name="work" v-model="is_volunteer" value="1">
                         <label for="work"></label>
                     </p>
                 </div>
                 <p class="filters">1.级别要求</p>
+                <!-- {{views.basicYQ}}  {{views.basicBC_YQ}}  -->
                 <p class="filters">2.志愿者要求</p>
             </div>
        </div>
-       <p class="detailBegin">活动详情</p>
+       <!-- <p class="detailBegin">活动详情</p> -->
         <div class="detail" :class="{'first':model_type==='1','second':model_type==='2','third':model_type==='3','four':model_type==='4','five':model_type==='5'}">
-            <div v-html="notice1" class="oneContent">
-            </div>
+            <div v-html="notice1" class="oneContent"></div>
             <!-- <div class="banner">
                 <img :src="require('assets/image/pic.jpg')">
             </div>
@@ -193,16 +192,16 @@
             <div>
                 <p class="bgTitle" v-if="model_type === '1' || model_type === '2'|| model_type === '4'">
                     <span class="haveBG">日程安排</span>
-                    <span class="titleColor">【{{Object.keys(notice2).length/3}}天{{Object.keys(notice2).length/3-1}}晚】</span>
+                    <span class="titleColor">【{{Math.ceil(Object.keys(notice2).length/3)}}天{{Math.ceil(Object.keys(notice2).length/3-1)}}晚】</span>
                 </p>
                 <p class="bgTitle" v-if="model_type === '3'">
                     <img :src="require('assets/image/template3-flag.png')" class="bgImg">
                     <span class="haveBG">日程安排</span>
-                    <span class="titleColor">【{{Object.keys(notice2).length/3}}天{{Object.keys(notice2).length/3-1}}晚】</span>
+                    <span class="titleColor">【{{Math.ceil(Object.keys(notice2).length/3)}}天{{Math.ceil(Object.keys(notice2).length/3-1)}}晚】</span>
                 </p>
                 <div class="bgTitle" v-if="model_type === '5'">
                     <p class="haveBG">日程安排</p>
-                    <p class="titleColor">【{{Object.keys(notice2).length/3}}天{{Object.keys(notice2).length/3-1}}晚】</p>
+                    <p class="titleColor">【{{Math.ceil(Object.keys(notice2).length/3)}}天{{Math.ceil(Object.keys(notice2).length/3-1)}}晚】</p>
                 </div>
                 <!-- 方案一行程安排 -->
                 <div class="dayTravel" v-if="model_type==='1'">
@@ -224,13 +223,13 @@
                 </div>
                 <!-- 方案二行程安排 -->
                 <div class="dayTravel" v-if="model_type==='2'">
-                        <div class="days" v-for="(i,index) in notice2" :key="i.id">
-                            <ul v-if="i.length>0">
-                                <li class="content"><span></span>{{i.content}}<img :src="i[0]"></li>
-                            </ul>
-                            <p v-if="index%3===0">{{index+1}}</p>
-                        </div>
+                    <div class="days" v-for="(i,index) in notice2" :key="i.id">
+                        <ul v-if="i.length>0">
+                            <li class="content"><span></span>{{i.content}}<img :src="i[0]"></li>
+                        </ul>
+                        <p v-if="index%3===0">{{index+1}}</p>
                     </div>
+                </div>
                 </div>
                 <!-- 方案三行程安排 -->
                 <div class="dayTravel" v-if="model_type==='3'">
@@ -284,7 +283,6 @@
                 </div>
                 <div v-if="model_type!=='4'">
                     <p class="titleColor">活动费用：{{views.price}}/人</p>
-                    <!-- <p class="priceReduce">优惠活动2选1：</p> -->
                     <table>
                         <tr v-for="i in notice3">
                             <td>{{i[0]}}</td>
@@ -296,8 +294,10 @@
                     <p class="titleColor">活动费用：{{views.price}}/人</p>
                     <div class="joinIntro" v-for="i in notice3">
                         <p class="tit"><span>{{i[0]}}</span><span></span></p>
-                        <p>{{i[1]}}</p>
-                        <p>{{i.smallTitle[0]}}: {{i.smallTitle[1]}}</p>
+                        <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
+                            <p>{{i[1]}}</p>
+                            <p>{{i.smallTitle[0]}}: {{i.smallTitle[1]}}</p>
+                        </template>
                     </div>
                 </div>
                 <template v-if="model_type!=='4'">
@@ -314,10 +314,12 @@
                         <div v-for="i in notice3" :key="i.id">
                             <p class="titleColor">{{i[0]}}：{{i[1]}}</p>
                             <table>
-                                <tr>
-                                    <td>{{i.smallTitle[0]}}：</td>
-                                    <td>{{i.smallTitle[1]}}</td>
-                                </tr>
+                                <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
+                                    <tr>
+                                        <td>{{i.smallTitle[0]}}：</td>
+                                        <td>{{i.smallTitle[1]}}</td>
+                                    </tr>
+                                </template>
                             </table>
                         </div>
                 </template>
@@ -358,7 +360,7 @@
                 views:'',
                 timeGame:'',
                 joinActive:false,
-                all:''
+                is_volunteer:0,
             }
         },
         created(){
@@ -380,7 +382,6 @@
 						this.model_type = res.body.data.ActivityView.model_type;
                         this.sponsor = res.body.data.ActivityView.Sponsor;
                         this.views = res.body.data.ActivityView;
-                        this.all = res.body.data;
 					}
 				}).catch((error)=>{
 					console.log(error);
@@ -399,7 +400,7 @@
                     localStorage.activity_id = this.views.activity_id;
                     localStorage.is_pre_price = this.views.is_pre_price;
                     localStorage.pre_price = this.views.pre_price;
-                    localStorage.is_volunteer = this.views.volunteer;
+                    localStorage.is_volunteer = this.is_volunteer;
                     this.$router.push('/createOrder')
                 }
             }

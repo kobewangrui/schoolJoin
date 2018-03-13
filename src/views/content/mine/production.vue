@@ -60,7 +60,7 @@
             </router-link>
         </ul>
         <p class="size">相册容量：剩余{{left_volume}}M，共{{total_volume}}M</p>
-        <p class="more">了解更多</p>
+        <router-link to="/moreIntro" tag="p" class="more">了解更多</router-link>
         <p class="tableBottom" @click="createPhoto">新建相册</p>
     </div>
 </template>

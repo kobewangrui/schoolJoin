@@ -118,6 +118,10 @@ export default function (VueRouter,store) {
 		{
 			path: '/friend',
 			component: require('views/content/mine/friend.vue'),
+		},,
+		{
+			path: '/moreIntro',
+			component: require('views/content/mine/moreIntro.vue'),
 		},
 	]
   const router = new VueRouter({
