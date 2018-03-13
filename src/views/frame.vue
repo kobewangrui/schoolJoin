@@ -15,7 +15,7 @@
 		},
 		created(){
 			this.code = this.getParameterByName('code');
-			this.codeGetMsg();
+			// this.codeGetMsg();
 		},
 		methods:{
 			getParameterByName(name, url){

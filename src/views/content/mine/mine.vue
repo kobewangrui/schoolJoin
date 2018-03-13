@@ -37,6 +37,7 @@
         font-size: .36rem;
         color: #2f2b27;
         margin-bottom: .05rem;
+        height: .5rem;
     } 
     .userIntegral .level img{
         width: .46rem;
@@ -63,9 +64,9 @@
     .featuresList ul li:last-child{
         margin-bottom: .5rem;
     }
-    .featuresList ul li>img{
-        width: .42rem;
-        height: .42rem;
+    .featuresList ul li img{
+        width: .5rem;
+        height: .5rem;
     }    
 </style>
 <template>
@@ -83,6 +84,7 @@
             <ul>
                 <li>
                     <p class="level">
+                        <img :src="require('assets/image/stair.png')">
                         <img v-if="$store.state.user.level==='1'" :src="require('assets/image/stair.png')">
                         <img v-if="$store.state.user.level==='2'" :src="require('assets/image/second-level.png')">
                         <img v-if="$store.state.user.level==='3'" :src="require('assets/image/three-level.png')">

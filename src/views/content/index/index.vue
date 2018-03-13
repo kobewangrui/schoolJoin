@@ -24,6 +24,10 @@
 		font-size: .3rem;
 		color:#312d2a;
 	}
+	.menu ul li img{
+		width: .55rem;
+		height: .55rem;
+	}
 	.menu ul li p:first-child{
 		margin-bottom: .015rem;
 	}

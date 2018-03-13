@@ -36,6 +36,10 @@
 		border-bottom:.01rem solid #e5e5e5; 
 		box-sizing: border-box;
 	}
+	.menu ul li img{
+		width: .55rem;
+		height: .55rem;
+	}
 	.list ul li div.imgShow img{
 		width: 7.1rem;
 		height: 4rem;

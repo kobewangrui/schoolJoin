@@ -1,5 +1,17 @@
 <style lang="css" src="assets/css/menu.css" scoped>
 </style>
+<style lang="css" scoped>
+    .menu{
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        box-sizing: border-box;
+        padding: .4rem .5rem;
+        background: #fff;
+        border: .01rem solid #ebebeb;
+        margin-bottom: .2rem;
+    }
+</style>
 <template>
     <div class="outer">
         <ul class="menu">

@@ -1,4 +1,30 @@
-<style lang="css" src="assets/css/menu.css" scoped></style>
+<style lang="css" scoped>
+    .menu{
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        box-sizing: border-box;
+        padding: .4rem .5rem;
+        background: #fff;
+        border: .01rem solid #ebebeb;
+        margin-bottom: .2rem;
+    }
+    .menu li .icon img{
+        width: .6rem;
+        height: .7rem;
+    }
+    .menu li p:last-child{
+        font-size: .24rem;
+        color: #312d2a;
+    }
+    .menu li .icons img{
+        width: .64rem;
+        height: .64rem;
+    }
+    .outer{
+        margin-bottom: 1.5rem;
+    }
+</style>
 <template>
     <div class="outer">
         <ul class="menu">
