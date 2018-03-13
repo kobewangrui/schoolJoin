@@ -74,11 +74,11 @@
                 <input type="text" placeholder="大绳活动的主题名字" v-model="theme">
             </p>
             <p class="underLine">
-                <yd-datetime v-model="start_time" :yearFormat="yearFormat" :month-format="monthFormat" :day-format="dayFormat" type="date" slot="right"></yd-datetime>
+                <yd-datetime v-model="start_time" type="date" slot="right"></yd-datetime>
                 <img :src="require('assets/image/datepicker.png')">
             </p>
             <p class="underLine">
-                <yd-datetime v-model="end_time" :yearFormat="yearFormat" :month-format="monthFormat" :day-format="dayFormat" type="date" slot="right"></yd-datetime>
+                <yd-datetime v-model="end_time"  type="date" slot="right"></yd-datetime>
                 <img :src="require('assets/image/datepicker.png')">
             </p>
             <p class="underLine">
@@ -88,7 +88,7 @@
                 <span class="sign">杭州</span>
             </p> -->
             <p class="button">
-                <router-link tag="button" :to="{path:'searchResult',query:{theme:theme,start:'',end:'',address:address}}">搜索</router-link>
+                <router-link tag="button" :to="{path:'searchResult',query:{theme:theme,start:this.start_time,end:this.end_time,address:address}}">搜索</router-link>
             </p>
         </div>
     </template>
@@ -98,30 +98,9 @@
                 return {
                     start_time: '',
                     end_time: '',
-                    yearFormat: "{value}",
-                    monthFormat: "{value}",
-                    dayFormat: "{value}",
                     lists:'',
                     theme:'',
                     address:'',
-                }
-            },
-            methods:{
-                defaultDate(i){
-                    let d = new Date(),
-                        Y = d.getFullYear(),
-                        M = d.getMonth()+1,
-                        D = d.getDate(),
-                        HH = d.getHours(),
-                        MM = d.getMinutes();
-                        if(i==='end'){
-                            HH+=1;
-                        };
-                        M = M<10 ? '0'+M : M
-                        D = D<10 ? '0'+D : D
-                        HH = HH<10 ? '0'+HH : HH
-                        MM = MM<10 ? '0'+MM : MM
-                    return `${Y}-${M}-${D} ${HH}:${MM}`;
                 }
             }
         }
