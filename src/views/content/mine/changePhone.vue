@@ -61,10 +61,10 @@
             <p class="number">
                 <label for="checkCode">验证码</label>
                 <input type="text" v-model="checkCode" class="codeIpt">
-                <span class="validateCode" :class="{'active':isActive}" @click="getCode">{{codeText}}</span>
+                <span class="validateCode" :class="{'active':isActive && $vuerify.check(['phoneNumber'])}" @click="getCode">{{codeText}}</span>
             </p>
             <p class="btn">
-                <button class="next" :class="{'active':$vuerify.check()}">下一步</button>
+                <button class="next" :class="{'active':$vuerify.check()}" @click="checkCodes">下一步</button>
             </p>
     </div>
     </div>
@@ -88,26 +88,37 @@
                 if(this.codeText === '获取验证码'){
                     this.isActive = false;
                     this.codeText = 60;
+                    this.sendCode();
                     let cleartime = setInterval(()=>{
                         this.codeText-=1;
                         if(this.codeText<1){
                             this.codeText = '获取验证码'
                             window.clearInterval(cleartime);
                             this.isActive = true;
-                        }else{
-
                         }
                     },1000);
                 }
             },
             sendCode(){
-                this.$http.post('/PcApi',{name:'pc.Login.editInfo',name:'pc.Sms.RegSendMsg',mobile:this.phoneNumber},{emulateJSON:true}).then((res)=>{
-                    if(res.body.code === 1000){
-                        this.lists = res.body.data.Activitylist;
-                    }
-                }).catch((error)=>{
-                    console.log(error);
-                })
+                if(this.$vuerify.check(['phoneNumber'])){
+                    this.$http.post('/PcApi',{name:'pc.Sms.RegSendMsg',type:'1',mobile:this.phoneNumber},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
+                    })
+                }
+            },
+            checkCodes(){
+                if(this.$vuerify.check()){
+                    this.$http.post('/PcApi',{name:'pc.Sms.RegConfirm',type:'1',mobile:this.phoneNumber,code:this.checkCode},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                            this.$router.push('/edit');
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
+                    }) 
+                }
             }
         }
     }

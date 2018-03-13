@@ -5,7 +5,6 @@
   	</div>
 </template>
 <script>
-	// import { wxLogin } from '../assets/js/common.js'
 	export default{
 		data(){
 			return{
@@ -15,7 +14,7 @@
 			}
 		},
 		created(){
-			this.login = this.getParameterByName("login");
+			this.code = this.getParameterByName('code');
 			this.codeGetMsg();
 		},
 		methods:{
@@ -31,15 +30,14 @@
 				return decodeURIComponent(results[2].replace(/\+/g, " "));
 			},
 			codeGetMsg(){
-				// this.login ==='1';//已经授权过
-				if(this.code === null){
-					this.wxLogin(); //授权登录
+				if(this.code == null || this.code === ''){
+					this.wxLogin();
 					this.code = this.getParameterByName("code");
 				}else{
 					this.$http.post('/PcApi',{name:'pc.Login.getInfo',code:this.code},{emulateJSON:true}).then((res)=>{
 						if(res.body.code === 1000){
 							if(res.body.data.first_login === '1'){
-								this.$router.push('edit');
+								this.$router.push('/edit');
 							}else{
 								this.getUserMsg(res.body.data.user_id);
 							}
@@ -61,12 +59,7 @@
 				})
 			},
 			wxLogin(){
-				const dev = process.env.NODE_ENV === 'development' ? true : false;
-    			if(!dev){
-					return
-				}else{
-					location.replace(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8387437705240b54&redirect_uri=http://www.dashengxiji.xyz/WxMsg/getCode&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`);
-				}	
+				location.replace(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8387437705240b54&redirect_uri=http://www.dashengxiji.xyz/WxMsg/getCode&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`);
 			}
 		}
 	}

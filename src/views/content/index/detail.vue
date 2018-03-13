@@ -130,6 +130,7 @@
                 <p class="img">
                     <img :src="views.path">
                 </p>
+                -------<pre>{{all}}</pre>-----
                 <p class="titleT">{{views.activity_name}}</p>
                 <div class="price">
                     <p class="sign">
@@ -213,7 +214,7 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>
+                                <td v-if="i.length>0">
                                     <img :src="i['0']">
                                     <p>{{i.content}}</p>
                                 </td>
@@ -224,7 +225,7 @@
                 <!-- 方案二行程安排 -->
                 <div class="dayTravel" v-if="model_type==='2'">
                         <div class="days" v-for="(i,index) in notice2" :key="i.id">
-                            <ul>
+                            <ul v-if="i.length>0">
                                 <li class="content"><span></span>{{i.content}}<img :src="i[0]"></li>
                             </ul>
                             <p v-if="index%3===0">{{index+1}}</p>
@@ -235,7 +236,7 @@
                 <div class="dayTravel" v-if="model_type==='3'">
                     <div v-for="(i,index) in notice2" :key="i.id">
                         <p class="title" v-if="index%3===0">Day{{index+1}} 带上锦囊去淘金</p>
-                        <div class="inner">
+                        <div class="inner" v-if="i.length>0">
                             <img :src="i[0]">
                             <p class="travelText">{{i.content}}</p>
                         </div>
@@ -247,7 +248,7 @@
                         <div class="number">
                             <p class="title" v-if="index%3===0">Day{{index+1}}</p>
                         </div>
-                        <div class="inner">
+                        <div class="inner" v-if="i.length>0">
                             <img :src="i[0]">
                             <p class="travelText">{{i.content}}</p>
                         </div>
@@ -261,7 +262,7 @@
                             <span>带上锦囊ƒ去淘金</span>
                         </p>
                         <ul>
-                            <li>
+                            <li v-if="i.length>0">
                                 <span></span>
                                 <span><img :src="i[0]">{{i.content}}</span>
                             </li>
@@ -284,12 +285,12 @@
                 <div v-if="model_type!=='4'">
                     <p class="titleColor">活动费用：{{views.price}}/人</p>
                     <!-- <p class="priceReduce">优惠活动2选1：</p> -->
-                    <!-- <table>
+                    <table>
                         <tr v-for="i in notice3">
                             <td>{{i[0]}}</td>
                             <td>{{i[1]}}</td>
                         </tr>
-                    </table> -->
+                    </table>
                 </div>
                 <div class="join" v-if="model_type==='4'">
                     <p class="titleColor">活动费用：{{views.price}}/人</p>
@@ -300,7 +301,7 @@
                     </div>
                 </div>
                 <template v-if="model_type!=='4'">
-                    <!-- <table>
+                    <table>
                             <tr>
                                 <td class="tableTitle">费用包含：</td>
                                 <td>行程内景区门票、各活动项目课时费材料费、行程内的住宿费、餐费和交通费、保险费、随队老师的工作补贴、营服、公共物资、学习资料。</td>
@@ -309,7 +310,7 @@
                                 <td class="tableTitle">费用不含：</td>
                                 <td>其他个人消费</td>
                             </tr>
-                        </table> -->
+                        </table>
                         <div v-for="i in notice3" :key="i.id">
                             <p class="titleColor">{{i[0]}}：{{i[1]}}</p>
                             <table>
@@ -352,11 +353,12 @@
                 notice2:[],
                 notice3:'',
                 notice4:'',
-                model_type:'5',
+                model_type:'',
                 sponsor:'',
                 views:'',
                 timeGame:'',
-                joinActive:false
+                joinActive:false,
+                all:''
             }
         },
         created(){
@@ -375,9 +377,10 @@
                         }
 						this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
 						this.notice4 = JSON.parse(res.body.data.ActivityView.notice4);
-						// this.model_type = res.body.data.ActivityView.model_type;
+						this.model_type = res.body.data.ActivityView.model_type;
                         this.sponsor = res.body.data.ActivityView.Sponsor;
                         this.views = res.body.data.ActivityView;
+                        this.all = res.body.data;
 					}
 				}).catch((error)=>{
 					console.log(error);

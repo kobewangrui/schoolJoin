@@ -71,7 +71,7 @@
                             <span>{{i.starttime | dateTime}}</span>
                         </p>
                         <p>
-                            <span v-if="i.label!==''" v-for="j in i.label.split(',')" :key="j.id">{{j}}</span>
+                            <span v-for="j in i.label.split(',')" :key="j.id">{{j}}</span>
                         </p>
                     </div>
                 </router-link>

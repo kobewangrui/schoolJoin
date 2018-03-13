@@ -83,7 +83,10 @@ export default function (VueRouter,store) {
 
 			]
 		},
-
+		{
+			path: '/qcode',
+			component: require('views/content/mine/qcode.vue'),
+		},
 		{
 			path: '/createOrder',
 			component: require('views/content/index/createOrder.vue'),

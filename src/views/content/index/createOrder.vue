@@ -383,6 +383,10 @@
                 this.lists.splice(index,1);;
             },
             order(){
+                let balances;
+                if(this.is_pre_price==='1'){
+                    balances = this.money - this.pre_price
+                }
                 let data = {
                     name: 'pc.ActOrder',
                     activity_id: localStorage.getItem('activity_id'),
@@ -394,7 +398,7 @@
                     family_id: this.arr.join(','),
                     is_volunteer: this.is_volunteer,
                     ds_coin: this.dscoin,
-                    balance:this.money,
+                    balance: balances,
                     ds_coin:this.dscoin,
                     money:this.money
                 }
@@ -417,7 +421,6 @@
             },
             pay(){
                 this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:location.href},{emulateJSON:true}).then((res)=>{
-                    console.log(res)
                     wx.config({
                         debug:true,
                         appId:'wx8387437705240b54',
@@ -448,7 +451,6 @@
                 this.$http.post('/PcApi',{name:'pc.WXpay.unifiedOrder',order_number:order},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         let datas = res.body.data;
-                        console.log(datas)
                         this.wxpay({timestamp:datas.timestamp_pay,nonceStr:datas.nonceStr_pay,package:datas.package,paySign:datas.sing_pay});
                     }
                 }).catch((error)=>{
@@ -477,10 +479,18 @@
                 }
             },
             'childNumber':function(){
-                this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+                if(this.is_pre_price==='1'){
+                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+                }else{
+                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+                }
             },
             'adultNumber':function(){
-                this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+                if(this.is_pre_price==='1'){
+                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin-this.pre_price;
+                }else{
+                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin-this.pre_price;
+                }            
             }
         }
     }

@@ -94,12 +94,10 @@
         height: .5rem;
     }
     .pop p:last-child span{
-        /* background: ; */
         display: inline-block;
         width: 40%;
         text-align: center;
     }
-    
     .popShow{
         transform: scale(1,1);
     }
@@ -123,7 +121,7 @@
         </p>
         <p class="getIntro">由您邀请进平台的好友，</p>
         <p class="getIntro">每当他们参加一次活动，您可获得50积分</p>
-        <p class="bottomTable">添加成员</p>
+        <router-link tag="p" to="/qcode" class="bottomTable">添加成员</router-link>
         <div class="pop" :class="{'popShow':popHandle}">
             <p>是否删除好友？</p>
             <p>

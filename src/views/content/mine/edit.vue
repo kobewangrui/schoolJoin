@@ -242,6 +242,7 @@
                     let dt = d.getTime();
                     this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
+                            this.$router.push("/");
                             this.$router.push("/mine");
                         }
                     }).catch((error)=>{

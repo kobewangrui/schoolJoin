@@ -129,16 +129,13 @@
         </div>
         <ul class="bottomTable" v-if="edit">
             <li class="active">
-                <img class="like" @click="like(1)" v-if="msg.is_like===0" :src="require('assets/image/like.png')">
-                <img class="like" @click="like(2)" v-if="msg.is_like>0" :src="require('assets/image/unlike.png')">
+                <img class="like" @click="like(1)" v-if="msg.is_like==='0'" :src="require('assets/image/like.png')">
+                <img class="like" @click="like(2)" v-if="msg.is_like!=='0'" :src="require('assets/image/unlike.png')">
                 <span class="number">({{msg.likes}})</span>
             </li>
             <li @click="edits">编辑</li>
             <li class="upload">
                 <addImg @clickImg = "clickImg" :max="5" @imgChange = "imgChange"></addImg>
-            </li>
-            <li>
-
             </li>
         </ul>
         <ul class="bottomDelete" v-else>
@@ -168,7 +165,7 @@
                 this.$http.post('/PcApi',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data.pictures;
-                        this.msg = res.body.data.album;
+                        this.msg = res.body.data.msg;
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -204,6 +201,7 @@
                 let idStr = this.photoList.join(',');
                 this.$http.post('/PcApi',{name:'pc.Album.delPicture',pic_id:idStr},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
+                        this.getList();
                         this.$router.push('/productionDetail');
                         this.edit = true;
                     }
@@ -228,6 +226,7 @@
                 this.$http.post('/PcApi',fm,{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						console.log('上传成功');
+                        this.getList();
 					}
 				}).catch((error)=>{
 					console.log(error);
