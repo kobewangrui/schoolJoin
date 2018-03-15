@@ -11,7 +11,7 @@ body{
     height: 100%;
     font-size: .34rem;
     word-break:break-all;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 ul li{
     list-style: none;

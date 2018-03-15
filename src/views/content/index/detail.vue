@@ -301,27 +301,17 @@
                     </div>
                 </div>
                 <template v-if="model_type!=='4'">
-                    <table>
-                            <tr>
-                                <td class="tableTitle">费用包含：</td>
-                                <td>行程内景区门票、各活动项目课时费材料费、行程内的住宿费、餐费和交通费、保险费、随队老师的工作补贴、营服、公共物资、学习资料。</td>
-                            </tr>
-                            <tr>
-                                <td class="tableTitle">费用不含：</td>
-                                <td>其他个人消费</td>
-                            </tr>
+                    <div v-for="i in notice3" :key="i.id">
+                        <p class="titleColor">{{i[0]}}：{{i[1]}}</p>
+                        <table>
+                            <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
+                                <tr>
+                                    <td>{{i.smallTitle[0]}}：</td>
+                                    <td>{{i.smallTitle[1]}}</td>
+                                </tr>
+                            </template>
                         </table>
-                        <div v-for="i in notice3" :key="i.id">
-                            <p class="titleColor">{{i[0]}}：{{i[1]}}</p>
-                            <table>
-                                <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
-                                    <tr>
-                                        <td>{{i.smallTitle[0]}}：</td>
-                                        <td>{{i.smallTitle[1]}}</td>
-                                    </tr>
-                                </template>
-                            </table>
-                        </div>
+                    </div>
                 </template>
             </div>
             <div class="service">
