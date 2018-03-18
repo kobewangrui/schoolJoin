@@ -108,11 +108,19 @@
     .number{
         vertical-align: middle;
     }
+    .names input{
+        padding: .2rem;
+        font-size: .34rem;
+        width: 3rem;
+    }
+    .names input.edits{
+        border-bottom: .01rem solid #d8d8d8;
+    }
 </style>
 <template>
     <div class="outer">
         <p class="title">
-            <span>{{msg.name}}</span>
+            <span class="names"><span @click="editName">修改：</span><input type="text" v-model="names" :readonly="!changeName" :class="{'edits':changeName}"></span>
             <span>{{$route.query.time | dateTime}}</span>
         </p>
         <div class="detail">
@@ -120,7 +128,7 @@
             <ul class="list">
                 <li v-for="(i,index) in lists">
                     <label :for="'img'+index">
-                            <img :src="i.path">
+                        <img :src="i.thumbnail"> 
                     </label>
                     <input :id="'img'+index" type="checkbox" v-model="photoList" :value="i.id">
                     <label v-if="!edit" :for="'img'+index" class="choose">✓</label>
@@ -129,8 +137,8 @@
         </div>
         <ul class="bottomTable" v-if="edit">
             <li class="active">
-                <img class="like" @click="like(1)" v-if="msg.is_like==='0'" :src="require('assets/image/like.png')">
-                <img class="like" @click="like(2)" v-if="msg.is_like!=='0'" :src="require('assets/image/unlike.png')">
+                <img class="like" @click="like(2)" v-if="msg.is_like!=='0'" :src="require('assets/image/like.png')">
+                <img class="like" @click="like(1)" v-if="msg.is_like==='0'" :src="require('assets/image/unlike.png')">
                 <span class="number">({{msg.likes}})</span>
             </li>
             <li @click="edits">编辑</li>
@@ -155,17 +163,36 @@
                 activeImg: '',
                 uploading: false,
                 imgs:[],
+                names:'',
+                changeName:false,
+                lookImg:false
             }
         },
         created(){
             this.getList();
         },
         methods:{
+
+            editName(){
+                if(this.changeName){
+                        this.$http.post('/PcApi',{name:'pc.Album.editAlbum',album_id:this.$route.query.id,title:this.names},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                            this.getList();
+                            this.changeName = false;
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
+                    })
+                }else{
+                    this.changeName = true;
+                }
+            },
             getList(){
                 this.$http.post('/PcApi',{name:'pc.Album.albumDetail',album_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data.pictures;
                         this.msg = res.body.data.album;
+                        this.names = res.body.data.album.name;
                     }
                 }).catch((error)=>{
                     console.log(error);

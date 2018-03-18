@@ -7,4 +7,8 @@ export default {
         test: /^[0-9]*$/,
         message: '仅支持输入纯数字'
     },
+    cardNumber:{
+        test: /^\d{17}(\d|X)$/,
+        message: '正确身份证号'
+    },
 }

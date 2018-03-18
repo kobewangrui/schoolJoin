@@ -112,7 +112,7 @@
             <div class="card">
                 <label for="card">身份证</label>
                 <input id="card" v-model="card" type="text">
-                <span>(选填)</span>
+                <span>选填</span>
             </div>
         </div>
         <ul class="bottomTable">
@@ -144,14 +144,15 @@
             grade:['required'],
             card:['onlyNumber'],
             age:['required','onlyNumber'],
+            // card:['cardNumber']
         },
         methods:{
             addFamily(){
                 let gender;
-                if(this.sex ==='1'){
-                    gender = '男';
-                }else if(this.sex === '2'){
-                    gender = '女';
+                if(this.sex ==='男'){
+                    gender = 1;
+                }else if(this.sex === '女'){
+                    gender = 2;
                 }else{
                     gender = '未知';
                 }

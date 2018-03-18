@@ -125,6 +125,12 @@
 <style lang="css" src="assets/css/fiveDetail.css" scoped></style>
 <template>
    <div>
+    <pre>{{views}}</pre>
+    <pre>{{notice1}}</pre>
+    <pre>{{notice2}}</pre>
+    <pre>{{notice3}}</pre>
+    <pre>{{notice4}}</pre>
+    
        <div class="header detail">
             <div>
                 <p class="img">
@@ -145,7 +151,7 @@
                 </li>
             </ul>
             <div class="personCount">
-                <p>请提前{{views.Tq_Enroll_Day}}天报名</p>    
+                <p>请提前{{views.Tq_Enroll_Day}}天报名</p>
                 <p>已报名700人</p>
             </div>
             <div class="reduce" v-if="views.volunteer==='1'">
@@ -189,6 +195,7 @@
                 </div>
                 <p class="content">爸爸妈妈总想将我们最好的呵护起来，开营仪式上，妈妈给的小锦囊，用在“江湖危难”之时。小小学童可知“锦囊妙计”的典故源自何处？</p>
             </div> -->
+            <pre>{{notcie2}}</pre>
             <div>
                 <p class="bgTitle" v-if="model_type === '1' || model_type === '2'|| model_type === '4'">
                     <span class="haveBG">日程安排</span>
@@ -209,7 +216,7 @@
                         <div v-for="(i,index) in notice2" :key="i.id">
                             <tr class="titleColor" v-if="index%3===0">
                                 <td>Day{{(index/3)+1}}</td>
-                                <td>带上锦囊去淘金</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -349,7 +356,7 @@
                 sponsor:'',
                 views:'',
                 timeGame:'',
-                joinActive:false,
+                joinActive:true,
                 is_volunteer:0,
             }
         },
@@ -372,6 +379,7 @@
 						this.model_type = res.body.data.ActivityView.model_type;
                         this.sponsor = res.body.data.ActivityView.Sponsor;
                         this.views = res.body.data.ActivityView;
+
 					}
 				}).catch((error)=>{
 					console.log(error);
@@ -381,8 +389,8 @@
                 if(this.joinActive){
                     localStorage.setItem('title',this.views.activity_name);
                     localStorage.address = this.views.activity_address;
-                    localStorage.contacts = this.views.contacts;
-                    localStorage.tel = this.views.tel;
+                    localStorage.contacts = this.views.contacts===undefined?'':this.views.contacts;
+                    localStorage.tel = this.views.tel===undefined?'':this.views.contacts;
                     localStorage.children_price = this.views.children_price;
                     localStorage.parent_price = this.views.parent_price;
                     localStorage.date = this.timeGame;
@@ -395,14 +403,14 @@
                 }
             }
         },
-        watch:{
-            'timeGame':function(val){
-                if(val === ''){
-                    this.joinActive = false;
-                }else{
-                    this.joinActive = true;
-                }
-            }
-        }
+        // watch:{
+        //     'timeGame':function(val){
+        //         if(val === ''){
+        //             this.joinActive = false;
+        //         }else{
+        //             this.joinActive = true;
+        //         }
+        //     }
+        // }
     }
 </script>

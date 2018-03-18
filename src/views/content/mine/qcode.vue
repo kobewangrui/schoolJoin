@@ -38,8 +38,8 @@
     .share p:first-child{
         padding-right: 1rem;
     }    
-    #canvas{
-    width:200rem;
+    .qrcode img{
+    width:2rem;
     height:2rem;
     }
 </style>
@@ -59,8 +59,8 @@
             <p>研学公益社会实践活动</p>
         </div>
         <div class="share">
-            <div>
-                <canvas id="canvas"></canvas>
+            <div class="qrcode">
+                <img :src="qrcode">
             </div>
             <p>扫描二维码</p>
             <p>成为我的大绳好友</p>
@@ -68,7 +68,6 @@
     </div>
 </template>
 <script>
-    import QRCode from 'qrcode'
     export default{
         data(){
             return{
@@ -78,25 +77,15 @@
         created(){
             this.getCode();
         },
-        mounted(){
-            this.useqrcode();
-        },
         methods:{
             getCode(){
                 this.$http.post('/PcApi',{name:'pc.Login.getTicket'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
-                        this.qrcode = res.data.qrcode;
+                        this.qrcode = res.body.data.qrcode;
 					}
 				}).catch((error)=>{
 					console.log(error);
 				})
-            },
-            useqrcode(){
-                var canvas = document.getElementById('canvas')
-                QRCode.toCanvas(canvas, this.qrcode, function(error){
-                if (error) console.error(error)
-                console.log('success!');
-                })
             }
         }
     }

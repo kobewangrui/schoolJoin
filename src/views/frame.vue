@@ -52,7 +52,6 @@
 					if(res.body.code === 1000){
 						let infos = res.body.data;
 						this.$store.commit('UPDATE_USER',infos);
-						this.$router.push('/');
 					}
 				}).catch((error)=>{
 					console.log(error);

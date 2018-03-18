@@ -6,6 +6,7 @@ export default function (VueRouter,store) {
 			children:[
 				{
 					path: '/',
+					name:'homepage',
 					component: require('views/content/index/index.vue'),
 				},
 				{
@@ -18,6 +19,7 @@ export default function (VueRouter,store) {
 				},
 				{
 					path: '/mine',
+					name:'mine',
 					component: require('views/content/mine/mine.vue'),
 				},
 				{
@@ -51,10 +53,6 @@ export default function (VueRouter,store) {
 				{
 					path: '/searchResult',
 					component: require('views/content/search/searchResult.vue'),
-				},
-				{
-					path: '/edit',
-					component: require('views/content/mine/edit.vue'),
 				},
 				{
 					path: '/changePhone',
@@ -118,15 +116,24 @@ export default function (VueRouter,store) {
 		{
 			path: '/friend',
 			component: require('views/content/mine/friend.vue'),
-		},,
+		},
 		{
 			path: '/moreIntro',
 			component: require('views/content/mine/moreIntro.vue'),
 		},
+		{
+			path: '/edit',
+			component: require('views/content/mine/edit.vue'),
+		},
 	]
   const router = new VueRouter({
-		// mode: 'history',
+		mode: 'history',
+		base: '/dist',
 		routes
+	})
+	router.beforeEach((to, from, next)=>{
+		console.log(`router change to`,to)
+		next()
 	})
 	store.dispatch('SYNC_ALL')
 	return router

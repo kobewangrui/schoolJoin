@@ -35,8 +35,7 @@
         color: #FFAE4E;
     }
     .PhoneText{
-        margin-left: .4rem;
-        color: #93887F;
+        margin-left: .9rem;
     }
     .list .more img,
     .list .more .right{
@@ -68,6 +67,9 @@
         background: #f7f7f7;
         font-size: .34rem;
     }
+    .nameIpt{
+        margin-right: 1.25rem;
+    }
 </style>
 <style lang="css">
     .change .yd-btn-block{
@@ -96,6 +98,7 @@
     .change .yd-cell-right input[type="text"]{
         height: .4rem;
         max-height: .4rem;
+        padding-left: .5rem;
     }
     .change .yd-cell-icon{
         display: none;
@@ -105,12 +108,14 @@
     }
     .change .yd-cell-item .yd-datetime-input{
         font-size: .34rem;
-        color: #93887F;
-        margin-left: .5rem;
+        margin-left: 1rem;
     }
     .change .yd-cell-arrow:after {
         margin: 0;
         content: "";
+    }
+    .change .yd-btn-warning span:nth-child(2){
+        margin-right: 3.9rem
     }
 </style>
 <template>
@@ -124,7 +129,11 @@
         </div>
         <div class="list">
             <label for="name">姓名</label>
-            <input id="name" type="text" v-model="real_name" class="ipt">
+            <input id="name" type="text" v-model="real_name" class="ipt nameIpt">
+        </div>        
+        <div class="list">
+            <label for="iccard">身份证</label>
+            <input id="iccard" type="text" v-model="idcard" class="ipt nameIpt" placeholder="请填写身份证号">
         </div>
         <yd-button @click.native="show1 = true" size="large" type="warning" class="list">性别
             <div>
@@ -156,7 +165,7 @@
                     <input slot="right" type="text" @click.stop="show2 = true" v-model="model2" readonly placeholder="请选择地址">
                 </yd-cell-item>
                 </yd-cell-group>
-            <yd-cityselect v-model="show2" ref="cityselectDemo" :callback="result2" :provance="this.$store.state.user.city" city="杭州市" area="滨江区" :items="district"></yd-cityselect>
+            <yd-cityselect v-model="show2" ref="cityselectDemo" :callback="result2" :items="district"></yd-cityselect>
             <span class="right"> > </span>
         </div>
         <div class="list">
@@ -195,14 +204,16 @@
                 gender: '',
                 school: '',
                 address: '',
+                idcard:''
             }
         },
         created(){
-                this.model2 = this.$store.state.user.name;
+                this.model2 = this.$store.state.user.city;
                 this.real_name = this.$store.state.user.name
                 this.school = this.$store.state.user.school;
                 this.address = this.$store.state.user.address;
                 this.gender = this.$store.state.user.gender;
+                this.idcard = this.$store.state.user.idcard;
                 this.dateTime= this.fomartDate(this.$store.state.user.birthday);
         },
         vuerify:{
@@ -211,6 +222,7 @@
             school:['required'],
             model2:['required'],
             dateTime:['required'],
+            idcard:['required','cardNumber'],
         },
         filters:{
             sexFilter:function(value){
@@ -229,8 +241,7 @@
         },
         methods:{
             fomartDate(timestamp){
-
-                let date = new Date(parseInt(timestamp));
+                let date = new Date(parseInt(timestamp)*1000);
                 let Y = date.getFullYear() + '-';
                 let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
                 let D = date.getDate()+1 < 10 ? '0'+ date.getDate() : date.getDate();
@@ -238,12 +249,11 @@
             },
             editMsg(){
                 if(this.$vuerify.check()){
-                    let d = new Date(this.dateTime);
-                    let dt = d.getTime();
-                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
+                    let ds = new Date(this.dateTime);
+                    let dt = ds.getTime()/1000;
+                    this.$http.post('/PcApi',{name:'pc.Login.editInfo',idcard:this.idcard,real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
-                            this.$router.push("/");
-                            this.$router.push("/mine");
+                            location.replace("http://www.dashengxiji.xyz/dist/");
                         }
                     }).catch((error)=>{
                         console.log(error);

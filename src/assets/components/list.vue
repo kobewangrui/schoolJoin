@@ -88,6 +88,8 @@
 			return{
 			}
 		},
+		created(){
+		},
 		props:[
 			'listData'
 		]

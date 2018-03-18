@@ -51,12 +51,12 @@
 <template>
     <div class="photo">
         <ul class="list">
-            <router-link v-for="i in lists" :key="i.id" tag="li" :to="{path:'/productionDetail',query:{id:i.id,time:i.updated_at}}">
+            <router-link v-for="i in lists" :key="i.id" tag="li" :to="{path:'/productionDetail',query:{id:i.id,time:i.created_at}}">
                 <p>
                     <img :src="i.cover">
                 </p>
                 <p class="title">{{i.name}}</p>
-                <p class="date">{{i.updated_at | dateTime}}</p>
+                <p class="date">{{i.created_at | dateTime}}</p>
             </router-link>
         </ul>
         <p class="size">相册容量：剩余{{left_volume}}M，共{{total_volume}}M</p>

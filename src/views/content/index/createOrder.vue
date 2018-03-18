@@ -310,7 +310,7 @@
                 grade:'',
                 card:'',
                 age:'',
-                lists:[],
+                lists:[{id:1,real_name:'wangruilong',type:1},{id:2,real_name:'zzz',type:1},{id:3,real_name:'sss',type:3}],
                 dscoin:'',
                 money:'',
                 childNumber:[],
@@ -354,17 +354,15 @@
                     gender = '未知';
                 }
                 if(this.$vuerify.check()){
-                    this.lists.push({
-                        real_name : this.name,
-                        type : this.type
+                    this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                            this.lists.push({id:res.body.data.id,real_name:this.name,type:this.type});
+                            this.arr = push(res.body.data.id);
+                            console.log('添加成功');
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
                     })
-                    this.toggle = true;
-                    this.name = '';
-                    this. sex = '';
-                    this.school = '';
-                    this.grade = '';
-                    this.card = '';
-                    this.age = '';
                 }
             },
             clearName(){
@@ -379,9 +377,9 @@
                 this.card = '';
                 this.age = '';
             },
-            deleteFri(index){
-                this.lists.splice(index,1);;
-            },
+            // deleteFri(index){
+            //     this.lists.splice(index,1);
+            // },
             order(){
                 let balances;
                 if(this.is_pre_price==='1'){
@@ -468,16 +466,16 @@
             }
         },
         watch:{
-            'lists':function(){
-                for(let i=0; i<this.lists.length; i++){
-                    if(this.lists[i].type === '1'){
-                       this.childNumber.push(this.lists[i]);
-                    }else{
-                        this.adultNumber.push(this.lists[i]);
-                    }
-                    this.arr.push(this.lists[i].real_name);
-                }
-            },
+            // 'lists':function(){
+            //     for(let i=0; i<this.lists.length; i++){
+            //         if(this.lists[i].type === '1'){
+            //            this.childNumber.push(this.lists[i]);
+            //         }else{
+            //             this.adultNumber.push(this.lists[i]);
+            //         }
+            //         this.arr.push(this.lists[i].real_name);
+            //     }
+            // },
             'childNumber':function(){
                 if(this.is_pre_price==='1'){
                     this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
@@ -490,7 +488,7 @@
                     this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin-this.pre_price;
                 }else{
                     this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin-this.pre_price;
-                }            
+                }
             }
         }
     }
