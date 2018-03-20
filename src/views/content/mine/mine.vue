@@ -87,6 +87,8 @@
                         <img v-if="$store.state.user.level==='1'" :src="require('assets/image/stair.png')">
                         <img v-if="$store.state.user.level==='2'" :src="require('assets/image/second-level.png')">
                         <img v-if="$store.state.user.level==='3'" :src="require('assets/image/three-level.png')">
+                        <img v-if="$store.state.user.level==='3'" :src="require('assets/image/level-Four.png')">
+                        <img v-if="$store.state.user.level==='3'" :src="require('assets/image/five-levels.png')">
                     </p>
                     <p class="integralTitle">荣誉等级</p>
                 </li>

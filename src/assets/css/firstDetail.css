@@ -84,11 +84,13 @@
 }
 .first table td:first-child{
     width: 1.6rem;
+    color: #565656;
 }
 .first .dayTravel{
     border: .02rem dotted #F7705E;
     border-radius: .08rem;
     padding-bottom: .3rem;
+    margin-top: .3rem;
 }
 .first .dayTravel table tr.titleColor{
     height: 1.5rem;

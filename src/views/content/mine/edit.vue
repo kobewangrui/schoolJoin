@@ -78,8 +78,11 @@
         margin-top: 0;
         height: auto;
     }
-    .change .yd-datetime-input{
+    .change .yd-cell-right .yd-datetime-input{
         padding: .3rem 0;
+        color: #333;
+        font-size: .34rem;
+        margin-left: 1rem;
     }
     .change .yd-cell{
         position: inherit;
@@ -98,17 +101,14 @@
     .change .yd-cell-right input[type="text"]{
         height: .4rem;
         max-height: .4rem;
-        padding-left: .5rem;
+        padding-left: .36rem;
+        color: #333!important；
     }
     .change .yd-cell-icon{
         display: none;
     }
     .change .yd-cell-left{
         font-size: .34rem;
-    }
-    .change .yd-cell-item .yd-datetime-input{
-        font-size: .34rem;
-        margin-left: 1rem;
     }
     .change .yd-cell-arrow:after {
         margin: 0;
