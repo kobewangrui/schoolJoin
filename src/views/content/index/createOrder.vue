@@ -147,13 +147,10 @@
         font-size: .26rem;
     }
     .join .pay{
-        background: #d8d8d8;
+        background: #F9C84E;
         color: #fff;
         width: 2.3rem;
         text-align: center;
-    }
-    join .activePay .pay{
-        background: #F9C84E;
     }
     input[type='radio']{
         display: none;
@@ -324,8 +321,8 @@
                 </div>
             </div>
             <div class="join">
-                <p class="price" :class="{'activePay':true}" v-if="is_pre_price==='1'">本次支付：<span>￥{{pre_price}}</span></p>                
-                <p class="price" :class="{'activePay':true}" v-if="is_pre_price==='1'">本次支付：<span>￥{{pre_price}}</span></p>
+                <p class="price" v-if="is_pre_price!=='1'">本次支付：<span>￥{{money}}</span></p>
+                <p class="price" v-if="is_pre_price==='1'">本次支付：<span>￥{{pre_price}}</span></p>
                 <p class="talk">余款沟通后缴纳</p>
                 <p class="pay" @click="order">立即报名</p>
             </div>
