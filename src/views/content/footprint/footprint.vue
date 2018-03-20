@@ -77,6 +77,12 @@
 		line-height: .28rem;
 		color:rgb(217,210,168);
 	}
+    .contentNull{
+        margin-top: 2rem;
+        font-size: .34rem;
+        text-align:center;
+        color: #d8d8d8;
+    }
 </style>
 <template>
     <div class="list">
@@ -88,7 +94,7 @@
            </p>
            <p class="more">></p>
         </router-link>
-        <ul>
+        <ul v-if="lists.length>0">
             <router-link tag="li" to="/" v-for="i in lists" :key="i.id">
                 <div class="imgShow">
                     <img :src="i.cover">
@@ -109,6 +115,7 @@
                 </div>
             </router-link>
         </ul>
+        <p v-else class="contentNull">暂无足迹</p>
     </div>
 </template>
 <script>

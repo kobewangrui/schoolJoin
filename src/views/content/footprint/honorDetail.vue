@@ -1,17 +1,17 @@
-<style lang="css" scoped>
-    .content{
+<style lang="css">
+    .contentHonorDetail{
         padding: .3rem;
     }
-    .content img{
-        width: 100%;
+    .contentHonorDetail p.htmlImg img{
+        max-width: 7rem;
         margin-bottom: .3rem;
     }
 </style>
 <template>
-    <div class="content">
+    <div class="contentHonorDetail">
         <p>
             <img :src="$route.query.path">
         </p>
-        <p v-html="$route.query.content"></p>
+        <p class="htmlImg" v-html="$route.query.content"></p>
     </div>
 </template>

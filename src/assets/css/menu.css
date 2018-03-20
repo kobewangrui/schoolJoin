@@ -3,10 +3,14 @@
     justify-content: space-between;
     text-align: center;
     box-sizing: border-box;
-    padding: .4rem .2rem;
     background: #fff;
     border: .01rem solid #ebebeb;
     margin-bottom: .2rem;
+    padding: 0 .2rem;
+}
+.menu li{
+    padding: .4rem 0;
+    border-bottom: .01rem solid #fff;
 }
 .menu li .icon img{
     width: .6rem;
@@ -22,4 +26,7 @@
 }
 .outer{
     margin-bottom: 1.5rem;
+}
+.menu li.active{
+    border-bottom: .01rem solid #F9C84E;
 }

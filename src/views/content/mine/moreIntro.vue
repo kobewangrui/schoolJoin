@@ -123,7 +123,7 @@
                 </li>
             </ul>
             <p class="intro">当前容量</p>
-            <p class="vals">剩余{{$store.state.user.left_volume}}M，共{{$store.state.user.volume}}M</p>
+            <p class="vals">剩余{{$store.state.user.volume}}M，共{{$store.state.user.total_volume}}M</p>
             <p class="up">提高容量（有效期为一年）</p>
             <ul class="dates">
                 <li v-for="(i,index) in list" >
@@ -135,13 +135,12 @@
         <div class="pay">
             <span class="txt">本次支付</span>
             <span class=“money”>￥{{money}}元</span>
-            <button :class="{'active':$vuerify.check()}" @click="orderPay">支付</button>
+            <button :class="{'active':$vuerify.check() && money>0}" @click="orderPay">支付</button>
         </div>
     </div>
 
 </template>
 <script>
-    // import wx from 'weixin-js-sdk'
     export default{
         data(){
             return{
@@ -151,7 +150,7 @@
             }
         },
         created(){
-            this.pay();
+            this.wxconfigStart();
             this.getList();
         },
         vuerify:{
@@ -167,7 +166,7 @@
                     console.log(error);
                 })
             },
-            pay(){
+            wxconfigStart(){
                 this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:location.href},{emulateJSON:true}).then((res)=>{
                     wx.config({
                         debug:false,
@@ -182,7 +181,7 @@
                 })
             },
             orderPay(){
-                if(this.$vuerify.check()){
+                if(this.$vuerify.check() && money>0){
                     this.$http.post('/PcApi',{name:'pc.Login.volOrder',vid:this.goods},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             this.payPrice(res.body.data.id);

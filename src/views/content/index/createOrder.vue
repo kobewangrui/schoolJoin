@@ -4,13 +4,29 @@
         height: 4rem;
     }
     .order{
-        padding: .3rem;
+        padding: .3rem 0;
         box-sizing: border-box;
     }
-        input[type='checkbox']{
+    input[type='checkbox']{
         display: none;
     }
-    .list{
+    .order .orderTitle{
+        background: #fff;
+        padding: .3rem;
+    }
+    .order .orderTitle .tableText{
+        font-size: .28rem;
+        margin-bottom: .1rem;
+    }
+    .order .orderTitle .tableText span{
+        color: #93887F;
+        margin-right: .2rem;   
+    }
+    .order .titleText{
+        font-size:.34rem;
+        margin-bottom: .2rem;
+    }
+    .connect{
         background: #fff;
         padding: .3rem;
         margin-bottom: 1.5rem;
@@ -56,16 +72,34 @@
         background: #fff;
     }
     .person{
-        margin: .3rem 0;
+        margin: .2rem 0;
+        background: #fff;
+        padding: .3rem;
+        font-size: .32rem;
+        color: #2F2B27;
+    }
+    .person p:first-child{
+        margin-bottom: .2rem;
     }
     .person label{
         color: #93887F;
-        font-size: .32rem;
         margin-right: .2rem;
     }
     .person input{
         font-size: .32rem;
-        background: #f7f7f7;
+        background: #fff;
+    }
+    .person .delIpt{
+       display: inline-block;
+       width: .3rem;
+       height: .3rem;
+       color: #fff;
+       background: #93887F;
+       border-radius: 50%;
+       line-height: .3rem;
+       text-align: center;
+       margin-left: 1.5rem;
+       font-size: .2rem;
     }
     .priceShow{
         display: flex;
@@ -76,6 +110,9 @@
         color: #93887F;
         font-size: .32rem;
     }
+    .priceShow .people>div:first-child{
+        margin-bottom: .2rem;
+    }    
     .priceShow .add{
         width: 2.1rem;
         height: .52rem;
@@ -84,6 +121,7 @@
         color: #fff;
         border-radius: .26rem;
         text-align: center;
+        font-size: .28rem;
     }
     .join{
         width: 100%;
@@ -98,6 +136,7 @@
     .join .price{
         font-size: .3rem;
         color: #2F2B27;
+        padding-left: .2rem;
     }
     .join .price span{
         color: #2F2B27;
@@ -175,6 +214,7 @@
         line-height: 1rem;
         font-size: .34rem;
         border-top: .01rem solid #E4DAD1;
+        background: #fff;
     }
     ul.bottomTable li{
         text-align: center;
@@ -206,29 +246,28 @@
                     </div>
                     <div class="name">
                         <label for="name">姓名</label>
-                        <input v-model="name" id="name" type="text">
-                        <span class="delete" @click="clearName">×</span>
+                        <input v-model="name" id="name" type="text" placeholder="请输入姓名">
+                        <span class="delete" @click="name=''">×</span>
                     </div>
                     <div>
                         <label for="sex">性别</label>
-                        <input id="sex" v-model="sex" type="text">
+                        <input id="sex" v-model="sex" type="text" placeholder="请输入姓别">
                     </div>
                     <div>
                         <label for="age">年龄</label>
-                        <input id="age" v-model="age" type="text">
+                        <input id="age" v-model="age" type="text" placeholder="请输入年龄">
                     </div>
                     <div>
                         <label for="school">学校</label>
-                        <input id="school" v-model="school" type="text">
+                        <input id="school" v-model="school" type="text" placeholder="请输入学校">
                     </div>
                     <div>
                         <label for="grade">年级</label>
-                        <input id="grade" v-model="grade" type="text">
+                        <input id="grade" v-model="grade" type="text" placeholder="请输入年级">
                     </div>
                     <div class="card">
                         <label for="card">身份证</label>
-                        <input id="card" v-model="card" type="text">
-                        <span>(选填)</span>
+                        <input id="card" v-model="card" type="text" placeholder="请输入18位身份证号">
                     </div>
                 </div>
                 <ul class="bottomTable">
@@ -242,43 +281,48 @@
                 <img :src="path">
             </p>
             <div class="order">
-                <div>
-                    <p>场次：{{date | dateTime}}</p>
-                    <p>地点：{{address}}</p>
+                <div class="orderTitle">
+                    <p class="titleText">{{title}}</p>
+                    <p class="tableText"><span>场次：</span>{{date | dateTime}}</p>
+                    <p class="tableText"><span>地点：</span>{{address}}</p>
                 </div>
                 <div class="person">
                     <p>
                         <label for="connect">联系人</label>
-                        <input id="connect" type="text" v-model="contacts">
+                        <input id="connect" type="text" v-model="contacts" placeholder="请输入联系人姓名">
+                        <span class="delIpt" @click="contacts=''">×</span>
                     </p>
                     <p>
                         <label for="phone">手机号</label>
-                        <input id="phone" type="text" v-model="tel">
+                        <input id="phone" type="text" v-model="tel"  placeholder="请输入手机号">
+                        <span class="delIpt" @click="tel=''">×</span>
                     </p>
                 </div>
-                <div class="priceShow">
-                    <div class="people">
-                        <div>儿童：{{childNumber.length}}/￥{{parent_price}}</div>
-                        <div>成人：{{adultNumber.length}}/￥{{children_price}}</div>
+                <div class="connect">
+                    <div class="priceShow">
+                        <div class="people">{{childrenPrice}}
+                            <div>儿童：{{childNumber.length}}/￥{{parent_price}}</div>
+                            <div>成人：{{adultNumber.length}}/￥{{children_price}}</div>
+                        </div>
+                        <p class="add" @click="toggle=false">添加参与人</p>
                     </div>
-                    <p class="add" @click="toggle=false">添加参与人</p>
-                </div>
-                <div class="list">
-                    <div v-for="(i,index) in lists" :key="i.id" v-if="lists.length>0">
-                        <input type="checkbox" name="person" :id="'person'+index">
-                        <label class="check" :for="'person'+index">✓</label>
-                        <span class="name">{{i.real_name}}</span>
-                        <span v-if="i.type ==='1'">【学生】</span>
-                        <span v-if="i.type ==='2'">【家长】</span>
-                        <span v-if="i.type ==='3'">【教师】</span>
-                        <span v-if="i.type ==='4'">【其他】</span>
-                        <span class="delete" @click="deleteFri(index)">-</span>
+                    <div class="list">
+                        <div v-for="(i,index) in lists" :key="i.id">
+                            <input type="checkbox" name="person" :id="'person'+index">
+                            <label class="check" :for="'person'+index">✓</label>
+                            <span class="name">{{i.real_name}}</span>
+                            <span v-if="i.type ==='1'">【学生】</span>
+                            <span v-if="i.type ==='2'">【家长】</span>
+                            <span v-if="i.type ==='3'">【教师】</span>
+                            <span v-if="i.type ==='4'">【其他】</span>
+                            <span class="delete" @click="deleteFri(i.id)">-</span>
+                        </div>
                     </div>
-                    <p v-if="lists.length<=0">请添加至少一位联系人</p>
                 </div>
             </div>
             <div class="join">
-                <p class="price">本次支付：<span>￥{{money}}</span></p>
+                <p class="price" v-if="is_pre_price!=='1'">本次支付：<span>￥{{money}}</span></p>
+                <p class="price" v-if="is_pre_price==='1'">本次支付：<span>￥{{pre_price}}</span></p>
                 <p class="talk">余款沟通后缴纳</p>
                 <p class="pay" @click="order">立即报名</p>
             </div>
@@ -287,7 +331,6 @@
     </div>
 </template>
 <script>
-    import wx from 'weixin-js-sdk'
     export default{
         data(){
             return{
@@ -310,19 +353,28 @@
                 grade:'',
                 card:'',
                 age:'',
-                lists:[{id:1,real_name:'wangruilong',type:1},{id:2,real_name:'zzz',type:1},{id:3,real_name:'sss',type:3}],
+                lists:[],
                 dscoin:'',
                 money:'',
                 childNumber:[],
                 adultNumber:[],
-                arr:[]
+                arr:[],
+                banlance:''
             }
         },
         created(){
             this.title = localStorage.getItem('title');
             this.address = localStorage.getItem('address');
-            this.contacts = localStorage.getItem('contacts');
-            this.tel = localStorage.getItem('tel');
+            if(localStorage.getItem('contacts')===undefined || localStorage.getItem('contacts')===''){
+                this.contacts = '';
+            }else{
+                this.contacts = localStorage.getItem('contacts');
+            }
+            if(localStorage.getItem('tel')===undefined || localStorage.getItem('tel')===''){
+                this.tel = '';
+            }else{
+                this.tel = localStorage.getItem('tel');
+            }
             this.children_price = localStorage.getItem('children_price');
             this.parent_price = localStorage.getItem('parent_price');
             this.date = localStorage.getItem('date');
@@ -330,17 +382,18 @@
             this.is_pre_price = localStorage.getItem('is_pre_price');
             this.pre_price = localStorage.getItem('pre_price');
             this.is_volunteer = localStorage.getItem('is_volunteer');
-            this.getCoins();
             this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
-            this.pay();
-        },        
+            this.banlance = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length)) -this.pre_price;
+            this.getCoins();
+            this.wxConfigSign();
+        },
         vuerify:{
             type:['required'],
             name:['required'],
             sex:['required'],
             school:['required'],
             grade:['required'],
-            card:['onlyNumber'],
+            card:['required','cardNumber'],
             age:['required','onlyNumber'],
         },
         methods:{
@@ -356,17 +409,20 @@
                 if(this.$vuerify.check()){
                     this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
-                            this.lists.push({id:res.body.data.id,real_name:this.name,type:this.type});
-                            this.arr = push(res.body.data.id);
-                            console.log('添加成功');
+                            this.toggle = true;
+                            this.lists.push({id:res.body.data.id,real_name:this.name,type:this.type,idcard:this.card});
+                            this.arr.push(res.body.data.id);
+                            this.name = '';
+                            this. sex = '';
+                            this.school = '';
+                            this.grade = '';
+                            this.card = '';
+                            this.age = '';
                         }
                     }).catch((error)=>{
                         console.log(error);
                     })
                 }
-            },
-            clearName(){
-                this.name = '';
             },
             cancelAdd(){
                 this.toggle = true;
@@ -377,13 +433,24 @@
                 this.card = '';
                 this.age = '';
             },
-            // deleteFri(index){
-            //     this.lists.splice(index,1);
-            // },
+            deleteFri(id){
+                this.$http.post('/PcApi',{name:'pc.Family.delete',id:id},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        console.log('删除成功');
+                        for(let i=0; i<this.lists.length; i++){
+                            if(this.lists[i].id === id){
+                                this.lists.splice(i,1);
+                            }
+                        }
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
             order(){
                 let balances;
-                if(this.is_pre_price==='1'){
-                    balances = this.money - this.pre_price
+                if(this.is_pre_price==='1'){//如果是预支付订单
+                    balances = this.money - this.pre_price;
                 }
                 let data = {
                     name: 'pc.ActOrder',
@@ -417,10 +484,10 @@
                     })
                 }
             },
-            pay(){
+            wxConfigSign(){
                 this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:location.href},{emulateJSON:true}).then((res)=>{
                     wx.config({
-                        debug:true,
+                        debug:false,
                         appId:'wx8387437705240b54',
                         timestamp:res.body.data.timestamp,
                         nonceStr: res.body.data.nonceStr,
@@ -432,24 +499,23 @@
                     console.log(error);
                 })
             },
-            wxpay({timestamp,nonceStr,package_wx,signType,paySign}){
-                return new Promise((resolve,reject)=>{
-                    try{
-                    wx.chooseWXPay({
-                       timestamp,nonceStr,package:package_wx,signType,paySign,
-                       success:()=>resolve(),
-                       fail:()=>reject()
-                    })
-                    }catch(err){
-                        console.log(err.stack);
-                    }
-                })
-            },
             payPrice(order){
                 this.$http.post('/PcApi',{name:'pc.WXpay.unifiedOrder',order_number:order},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
-                        let datas = res.body.data;
-                        this.wxpay({timestamp:datas.timestamp_pay,nonceStr:datas.nonceStr_pay,package:datas.package,paySign:datas.sing_pay});
+                        let datas = res.body.data.pay_need;
+                        wx.chooseWXPay({
+                            timestamp:datas.timestamp_pay,
+                            nonceStr:datas.nonceStr_pay,
+                            package:"prepay_id="+datas.package,
+                            signType:'MD5',
+                            paySign:datas.sign_pay,
+                            success:(res)=>{
+                                console.log(JSON.stringify(res));
+                            },
+                            fail:(err)=>{
+                                console.log(JSON.stringify(err));
+                            }
+                        })
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -463,32 +529,38 @@
 				}).catch((error)=>{
 					console.log(error);
 				})
+            },
+            getAge(cardNumber){//根据身份证获取年龄
+                var UUserCard = cardNumber.toString()
+                var myDate = new Date();
+                var month = myDate.getMonth() + 1;
+                var day = myDate.getDate();
+                var age = myDate.getFullYear() - UUserCard.substring(6, 10) - 1;
+                if (UUserCard.substring(10, 12) < month || UUserCard.substring(10, 12) == month && UUserCard.substring(12, 14) <= day) {
+                    age++;
+                }
+                return age;
             }
         },
         watch:{
-            // 'lists':function(){
-            //     for(let i=0; i<this.lists.length; i++){
-            //         if(this.lists[i].type === '1'){
-            //            this.childNumber.push(this.lists[i]);
-            //         }else{
-            //             this.adultNumber.push(this.lists[i]);
-            //         }
-            //         this.arr.push(this.lists[i].real_name);
-            //     }
-            // },
-            'childNumber':function(){
-                if(this.is_pre_price==='1'){
-                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
-                }else{
-                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+            'lists':function(){
+                this.childNumber = [];
+                this.adultNumber = [];
+                for(let i=0; i<this.lists.length; i++){
+                    if(this.getAge(this.lists[i].idcard) < 18){
+                       this.childNumber.push(this.lists[i]);
+                    }else{
+                        this.adultNumber.push(this.lists[i]);
+                    }
                 }
             },
+            'childNumber':function(){
+                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+                    this.banlance = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin - this.pre_price;
+            },
             'adultNumber':function(){
-                if(this.is_pre_price==='1'){
-                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin-this.pre_price;
-                }else{
-                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin-this.pre_price;
-                }
+                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
+                    this.banlance = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin - this.pre_price;
             }
         }
     }

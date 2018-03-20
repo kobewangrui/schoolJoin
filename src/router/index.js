@@ -77,6 +77,14 @@ export default function (VueRouter,store) {
 				{
 					path: '/honorDetail',
 					component: require('views/content/footprint/honorDetail.vue'),
+				},
+				{
+					path: '/numberRule',
+					component: require('views/content/mine/numberRule.vue'),
+				},
+				{
+					path: '/coinRule',
+					component: require('views/content/mine/coinRule.vue'),
 				}
 
 			]
@@ -132,7 +140,6 @@ export default function (VueRouter,store) {
 		routes
 	})
 	router.beforeEach((to, from, next)=>{
-		console.log(`router change to`,to)
 		next()
 	})
 	store.dispatch('SYNC_ALL')

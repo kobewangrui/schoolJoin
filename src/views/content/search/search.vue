@@ -74,11 +74,11 @@
                 <input type="text" placeholder="大绳活动的主题名字" v-model="theme">
             </p>
             <p class="underLine">
-                <yd-datetime v-model="start_time" type="date" slot="right"></yd-datetime>
+                <yd-datetime v-model="start_time" type="date" slot="right" :init-emit="false" placeholder="开始时间"></yd-datetime>
                 <img :src="require('assets/image/datepicker.png')">
             </p>
             <p class="underLine">
-                <yd-datetime v-model="end_time"  type="date" slot="right"></yd-datetime>
+                <yd-datetime v-model="end_time"  type="date" slot="right" :init-emit="false" placeholder="结束时间"></yd-datetime>
                 <img :src="require('assets/image/datepicker.png')">
             </p>
             <p class="underLine">

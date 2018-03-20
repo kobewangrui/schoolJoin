@@ -151,7 +151,7 @@
             <ul>
                 <li v-for="(i,index) in cltList" :key="i.id">
                     <input :id="'p'+index" type="radio" v-model="cltId" :checked="index==='0'" :value="i.id">
-                    <label :for="'p'+index">{{i.name}}</label>   
+                    <label :for="'p'+index">{{i.name}}</label>
                 </li>
             </ul>
             <p class="confirm">

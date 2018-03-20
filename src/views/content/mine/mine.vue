@@ -90,14 +90,14 @@
                     </p>
                     <p class="integralTitle">荣誉等级</p>
                 </li>
-                <li>
+                <router-link to="/numberRule" tag="li">
                     <p>{{$store.state.user.exp}}</p>
                     <p class="integralTitle">积分</p>
-                </li>
-                <li>
+                </router-link>
+                <router-link to="/coinRule" tag="li">
                     <p>{{$store.state.user.coin}}</p>
                     <p class="integralTitle">大绳币</p>
-                </li>
+                </router-link>
             </ul>
         </div>
         <div class="featuresList">

@@ -90,29 +90,28 @@
             </div>
             <div class="name">
                 <label for="name">姓名</label>
-                <input v-model="name" id="name" type="text">
+                <input v-model="name" id="name" type="text" placeholder="请输入姓名">
                 <span class="delete" @click="clearName">×</span>
             </div>
             <div>
                 <label for="sex">性别</label>
-                <input id="sex" v-model="sex" type="text">
+                <input id="sex" v-model="sex" type="text" placeholder="请输入姓别">
             </div>
             <div>
                 <label for="age">年龄</label>
-                <input id="age" v-model="age" type="text">
+                <input id="age" v-model="age" type="text" placeholder="请输入年龄">
             </div>
             <div>
                 <label for="school">学校</label>
-                <input id="school" v-model="school" type="text">
+                <input id="school" v-model="school" type="text" placeholder="请输入学校">
             </div>
             <div>
                 <label for="grade">年级</label>
-                <input id="grade" v-model="grade" type="text">
+                <input id="grade" v-model="grade" type="text" placeholder="请输入年级">
             </div>
             <div class="card">
                 <label for="card">身份证</label>
-                <input id="card" v-model="card" type="text">
-                <span>选填</span>
+                <input id="card" v-model="card" type="text" placeholder="请输入18位身份证号">
             </div>
         </div>
         <ul class="bottomTable">
@@ -144,7 +143,7 @@
             grade:['required'],
             card:['onlyNumber'],
             age:['required','onlyNumber'],
-            // card:['cardNumber']
+            card:['required','cardNumber']
         },
         methods:{
             addFamily(){

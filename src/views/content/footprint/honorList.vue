@@ -11,10 +11,16 @@
     ul li img{
         vertical-align: middle;
     }
+    .contentNull{
+        margin-top: 2rem;
+        font-size: .34rem;
+        text-align:center;
+        color: #d8d8d8;
+    }
 </style>
 <template>
     <div class="honor">
-        <ul>
+        <ul v-if="cert.length>0">
             <router-link :to="{path:'/honorDetail',query:{path:i.path,content:i.content}}" tag="li" v-for="i in cert" :key="i.id">
                 <img v-if="i.icon_type==='1'" :src="require('assets/image/badge-1.png')">
                 <img v-if="i.icon_type==='2'" :src="require('assets/image/badge-2.png')">
@@ -22,6 +28,7 @@
                 <span>{{i.remark}}</span>
             </router-link>
         </ul>
+        <p v-else class="contentNull">暂无荣誉证书</p>
     </div>
 </template>
 <script>

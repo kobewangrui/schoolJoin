@@ -1,6 +1,12 @@
 <style lang="css" scoped>
     .outer{
         padding: .3rem;
+        height: 100vh;
+        max-height: 100vh;
+        background-image: url('../../../assets/image/joinFriend.png');
+        background-size: 100% 100%;
+        background-repeat:no-repeat;
+        overflow: hidden;
     }
     .header{
         display:flex;

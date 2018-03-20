@@ -1,33 +1,32 @@
 <style lang="css" src="assets/css/menu.css" scoped></style>
-
 <template>
     <div class="outer">
         <ul class="menu">
-            <li @click="filterListData(8)">
+            <li @click="filterListData(8)" :class="{'active':smallType===8}">
                 <p class="icons">
                     <img :src="require('assets/image/green_protecting.png')">
                 </p>
                 <p>大绳护绿</p>
             </li>
-            <li @click="filterListData(9)">
+            <li @click="filterListData(9)" :class="{'active':smallType===9}">
                 <p class="icons">
                     <img :src="require('assets/image/wildlife_protection.png')">
                 </p>
                 <p>野生动物保护</p>
             </li>
-            <li @click="filterListData(10)">
+            <li @click="filterListData(10)" :class="{'active':smallType===10}">
                 <p class="icons">
                     <img :src="require('assets/image/library.png')">
                 </p>
                 <p>大绳图书馆</p>
             </li>
-            <li @click="filterListData(12)">
+            <li @click="filterListData(12)" :class="{'active':smallType===12}">
                 <p class="icons">
                     <img :src="require('assets/image/qualification.png')">
                 </p>
                 <p>义工资质认证</p>
             </li>
-            <li @click="filterListData(13)">
+            <li @click="filterListData(13)" :class="{'active':smallType===13}">
                 <p class="icons">
                     <img :src="require('assets/image/love.png')">
                 </p>
