@@ -1,11 +1,9 @@
 <style lang="css" scoped>
 	.index{
 		margin-bottom: 1.5rem;
-	}
-	.menu{
-		padding: .3rem;        
-		background: #fff;
+		padding: .2rem;
 		box-sizing: border-box;
+		background: #fff;
 	}
 	.menu ul{
 		width:100%;
@@ -27,12 +25,10 @@
 	.menu ul li:nth-child(3),
 	.menu ul li:first-child{
 		margin-bottom:.4rem;
-
 	}
 	.list ul li{
 		background: #fff;
 		box-sizing: border-box;
-		padding: .3rem 0;
 		border-bottom:.01rem solid #e5e5e5; 
 		box-sizing: border-box;
 	}
@@ -106,18 +102,31 @@
 	export default{
 		data(){
 			return{
-				lists:'',
-				videoType:''
+				lists:[],
+				videoType:'',
+				page:1
 			}
 		},
 		created(){
 			this.getVideoList();
+			var self = this;
+            $(window).scroll(function(){
+                let scrollTop = $(this).scrollTop()
+                let scrollHeight = $(document).height()
+                let windowHeight = $(this).height()
+                if(scrollTop + windowHeight === scrollHeight){
+                    self.page++;
+                    self.getVideoList();
+                }
+            })
 		},
 		methods:{
 			getVideoList(){
-				this.$http.post('/PcApi',{name:'pc.DsVideo',up_type:this.videoType,page:'1'},{emulateJSON:true}).then((res)=>{
+				this.$http.post('/PcApi',{name:'pc.DsVideo',up_type:this.videoType,page:this.page},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
-						this.lists = res.body.data.Videolist;
+						if(res.body.data.Videolist.length > 0){
+							this.lists = this.lists.concat(res.body.data.Videolist);
+						}
 					}
 				}).catch((error)=>{
 					console.log(error);

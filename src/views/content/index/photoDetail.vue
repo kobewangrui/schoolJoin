@@ -132,7 +132,9 @@
             <ul class="list">
                 <li v-for="(i,index) in lists">
                     <label :for="'img'+index">
-                            <img :src="i.path">
+                        <yd-lightbox>
+                            <yd-lightbox-img :src="i.path"></yd-lightbox-img>
+                        </yd-lightbox>
                     </label>
                     <input :id="'img'+index" type="checkbox" v-model="photoList" :value="i.id">
                     <label v-if="!edit" :for="'img'+index" class="choose">✓</label>

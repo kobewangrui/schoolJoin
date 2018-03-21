@@ -39,6 +39,12 @@ import {CellGroup, CellItem} from 'vue-ydui/dist/lib.rem/cell';
 Vue.component(CellGroup.name, CellGroup);
 Vue.component(CellItem.name, CellItem);
 
+// 图片预览
+import {LightBox, LightBoxImg, LightBoxTxt} from 'vue-ydui/dist/lib.rem/lightbox';
+Vue.component(LightBox.name, LightBox);
+Vue.component(LightBoxImg.name, LightBoxImg);
+Vue.component(LightBoxTxt.name, LightBoxTxt);
+
 window.jquery = window.$ = $
 Vue.use(VueRouter)
 Vue.use(Resource)

@@ -14,10 +14,10 @@
         line-height: 1.08rem;
         padding: 0 .3rem;
     }
-    .title span:first-child{
+    .title .names{
         font-size: .32rem;
     }
-    .title span:last-child{
+    .title .dateTime{
         font-size: .28rem;
         color: #9e9b9b;
     }
@@ -108,27 +108,81 @@
     .number{
         vertical-align: middle;
     }
-    .names input{
-        padding: .2rem;
-        font-size: .34rem;
-        width: 3rem;
+
+    .cover{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
     }
-    .names input.edits{
-        border-bottom: .01rem solid #d8d8d8;
+    .names .editName{
+        font-size: .2rem;
+        color: #d8d8d8;
+        margin-left: .2rem;
+    }
+    .pop{
+        font-size: .32rem;
+        width: 5.9rem;
+        background: #fff;
+        border-radius: .08rem;
+        position: absolute;
+        z-index: 2;
+        margin: 0 auto;
+        top: 50%;
+        left: 50%;
+        margin-left: -2.95rem;
+        margin-top: -2.85rem;
+        text-align: center;
+        padding: .4rem 0 .35rem;
+        box-sizing: border-box;
+        transition: all .2s;
+        transform: scale(0,0);
+    }
+    .pop p:first-child{
+        margin-bottom:.3rem;
+        font-size: .32rem;
+    }
+    .pop input[type='text']{
+        width: 3rem;
+        border: .02rem solid #d8d8d8;
+        font-size: .28rem;
+        padding: .05rem .1rem;
+        box-sizing: border-box;
+        border-radius: .08rem;
+    }
+    .pop button{
+        width: 3rem;
+        height: .6rem;
+        background: #D8D8D8;
+        border-radius: .08rem;
+        font-size: .28rem;
+        color: #fff;
+        margin-top: .5rem;
+    }
+    .pop button.active{
+        background: #F9C84E;
+    }
+    .popShow{
+        transform: scale(1,1);
     }
 </style>
 <template>
     <div class="outer">
         <p class="title">
-            <span class="names"><span @click="editName">修改：</span><input type="text" v-model="names" :readonly="!changeName" :class="{'edits':changeName}"></span>
-            <span>{{$route.query.time | dateTime}}</span>
+            <span class="names" @click="popHandle=true">{{names}}<span class="editName">修改</span></span>
+            <span class="dateTime">{{$route.query.time | dateTime}}</span>
         </p>
         <div class="detail">
             <p class="deleteAllPhoto" v-if="!edit"  @click="deletePhoto">删除该相册</p>
             <ul class="list">
                 <li v-for="(i,index) in lists">
                     <label :for="'img'+index">
-                        <img :src="i.thumbnail"> 
+                        <yd-lightbox>
+                            <yd-lightbox-img :src="i.path"></yd-lightbox-img>
+                        </yd-lightbox>
                     </label>
                     <input :id="'img'+index" type="checkbox" v-model="photoList" :value="i.id">
                     <label v-if="!edit" :for="'img'+index" class="choose">✓</label>
@@ -147,9 +201,19 @@
             </li>
         </ul>
         <ul class="bottomDelete" v-else>
-                <li @click="cancel">取消</li>
-                <li class="delete" @click="deletePic">删除</li>
-            </ul>
+            <li @click="cancel">取消</li>
+            <li class="delete" @click="deletePic">删除</li>
+        </ul>
+        <div class="pop" :class="{'popShow':popHandle}">
+            <p>修改相册名字</p>
+            <p>
+                <input type="text" v-model="newName" placeholder="请输入新的相册名">
+            </p>
+            <p>
+                <button @click="editName" :class="{'active':$vuerify.check()}">确认修改</button>
+            </p>
+        </div>
+        <div class="cover" @click="cancelChangeName" v-if="popHandle"></div>
     </div>
 </template>
 <script>
@@ -164,27 +228,32 @@
                 uploading: false,
                 imgs:[],
                 names:'',
-                changeName:false,
-                lookImg:false
+                lookImg:false,
+                popHandle:false,
+                newName:''
             }
         },
         created(){
             this.getList();
         },
+        vuerify:{
+            newName:['required']
+        },
         methods:{
-
+            cancelChangeName(){
+                this.popHandle=false;
+                this.newName =''
+            },
             editName(){
-                if(this.changeName){
-                        this.$http.post('/PcApi',{name:'pc.Album.editAlbum',album_id:this.$route.query.id,title:this.names},{emulateJSON:true}).then((res)=>{
+                if(this.$vuerify.check()){
+                    this.$http.post('/PcApi',{name:'pc.Album.editAlbum',album_id:this.$route.query.id,title:this.newName},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
+                            this.popHandle=false;
                             this.getList();
-                            this.changeName = false;
                         }
                     }).catch((error)=>{
                         console.log(error);
                     })
-                }else{
-                    this.changeName = true;
                 }
             },
             getList(){

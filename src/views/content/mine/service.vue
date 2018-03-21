@@ -75,6 +75,9 @@
             </p>
         </div>
         <p class="connectPerson">客服人员将主动与您联系</p>
+        <p class="connectPerson">联系QQ：{{msg.qq}}</p>
+        <p class="connectPerson">联系电话：{{msg.tel}}</p>
+        
     </div>
 </template>
 <script>
@@ -83,8 +86,12 @@
             return{
                 dzname:'',
                 tel:'',
-                content:''
+                content:'',
+                msg:{}
             }
+        },
+        created(){
+            this.getServiceMsg()
         },
         vuerify:{
             tel: ['required','phoneCheck'],
@@ -102,6 +109,16 @@
                         console.log(error);
                     })
                 }
+            },
+            getServiceMsg(){
+                this.$http.post('/PcApi',{name:'pc.Config.help'},{emulateJSON:true}).then((res)=>{
+                if(res.body.code === 1000){
+                    this.msg = res.body.data;
+                }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+
             }
         }
     }
