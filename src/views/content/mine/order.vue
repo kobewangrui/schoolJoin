@@ -1,4 +1,7 @@
 <style lang="css" scoped>
+    .outer{
+        margin-bottom: 1.6rem;
+    }
     .nav ul{
         display: flex;
         justify-content: space-between;
@@ -77,7 +80,7 @@
     }
 </style>
 <template>
-    <div>
+    <div class="outer">
        <nav class="nav">
            <ul>
                <router-link tag="li" exact :to="{path:'/order',query:{type:''}}">全部</router-link>
@@ -97,18 +100,19 @@
                        <div class="listText">
                             <p>{{i.activity_name}}</p>
                             <div class="price">
-                                <!-- <p>￥2222*2</p> -->
-                                <p>余款:￥{{i.balance}}</p>
-                                <p v-if="i.status === 2">已报名</p>
-                                <p class="pay" v-if="i.status === 4">感受建议</p>
+                                <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
+                                <!-- <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance}}</p> -->
+                                <p v-if="i.is_pre_price==='0'">￥{{i.money}}</p>
+                                <p v-if="i.status === '2'">已报名</p>
+                                <p class="pay" v-if="i.status === '4'">感受建议</p>
                                 <!-- <p class="cancel">已取消</p> -->
-                                <p class="pay" v-if="i.status === 1">前往支付</p>
+                                <p class="pay" v-if="i.status === '1'">前往支付</p>
                             </div>
                        </div>
                    </div>
-                   <p class="payMsg" v-if="i.status === 4">（提交活动感受及建议奖励666积分）</p>
-                   <p class="payMsg" v-if="i.status !== 2 && i.status !== 4">（大绳币减免￥{{i.ds_coin/100}}）</p>
-                   <p class="payMsg" v-if="i.status === 2">（短信通知）</p>
+                   <p class="payMsg" v-if="i.status === '4'">（提交活动感受及建议奖励666积分）</p>
+                   <p class="payMsg" v-if="i.status !== '2' && i.status !== '4'">（大绳币减免￥{{i.ds_coin/100}}）</p>
+                   <p class="payMsg" v-if="i.status === '2'">（短信通知）</p>
                 </router-link>
            </ul>
        </div>
@@ -118,17 +122,29 @@
     export default {
         data() {
             return {
-                lists:''
+                lists:[],
+                page:1
             }
         },
         created(){
             this.getList();
+            var self = this;
+            $(window).scroll(function(){
+                let scrollTop = $(this).scrollTop()
+                let scrollHeight = $(document).height()
+                let windowHeight = $(this).height()
+                if(scrollTop + windowHeight === scrollHeight){
+                    self.page++;
+                    self.getList();
+                }
+            })
         },
         methods:{
             getList(){
-                this.$http.post('/PcApi',{name:'pc.ActOrderList',status:this.$route.query.type,page:1},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.ActOrderList',status:this.$route.query.type,page:this.page},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
-                        this.lists = res.body.data.list;
+                        if(res.body.data.list.length > 0);
+                        this.lists = this.lists.concat(res.body.data.list);
                     }
                 }).catch((error)=>{
                     console.log(error);
