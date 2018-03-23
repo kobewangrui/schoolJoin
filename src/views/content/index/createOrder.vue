@@ -110,6 +110,10 @@
         color: #93887F;
         font-size: .32rem;
     }
+    .priceShow div .ageLimit{
+        font-size: .2rem;
+        margin-left: .1rem;
+    }
     .priceShow .people>div:first-child{
         margin-bottom: .2rem;
     }    
@@ -300,8 +304,8 @@
                 </div>
                 <div class="connect">
                     <div class="priceShow">
-                        <div class="people">{{childrenPrice}}
-                            <div>儿童：{{childNumber.length}}/￥{{parent_price}}小于等于12岁</div>
+                        <div class="people">
+                            <div>儿童：{{childNumber.length}}/￥{{parent_price}}<span class="ageLimit">小于等于12岁</span></div>
                             <div>成人：{{adultNumber.length}}/￥{{children_price}}</div>
                         </div>
                         <p class="add" @click="toggle=false">添加参与人</p>
@@ -460,7 +464,7 @@
                     family_id: this.arr.join(','),
                     is_volunteer: this.is_volunteer,
                     ds_coin: this.dscoin,
-                    balance: this.balances,
+                    balance: this.balance,
                     money:this.money
                 }
                 if(
@@ -566,6 +570,7 @@
                         this.balance = this.money = 0;
                     }else{
                         this.money = this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100)
+                        this.balance = 0;
                     }
                 }
             },
@@ -585,7 +590,8 @@
                     if((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100) <=0){
                         this.balance = this.money = 0;
                     }else{
-                        this.money = this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - (this.dscoin/100)
+                        this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - (this.dscoin/100)
+                        this.balance = 0;
                     }
                 }
             }

@@ -77,7 +77,7 @@
         width: 2.12rem;
         height: 1.32rem;
         text-align: center;
-        line-height: 1.32rem;
+        line-height: .65rem;
         border: .02rem solid #EEEEEE;
         font-size: .26rem;
         border-radius: .08rem;
@@ -244,8 +244,11 @@
                     <p class="titleT">活动档期</p>
                     <ul>
                         <li v-for="(i,index) in views.mtschedule">{{isVolunteer}}
-                            <input :id="'d'+index" v-model="timeGame" :value="i.starttime" type="radio" name="date">
-                            <label :for="'d'+index">{{i.starttime | dateTime}}</label>
+                            <input :id="'d'+index" v-model="timeGame" :value="i.files_id" type="radio" name="date">
+                            <label :for="'d'+index">
+                                <p>起：{{i.starttime | dateTime}}</p>
+                                <p>止：{{i.endtime | dateTime}}</p>
+                            </label>
                         </li>
                     </ul>
                     <div class="personCount">
@@ -377,7 +380,7 @@
                 views:'',
                 timeGame:"",
                 popToggle:false,
-                is_volunteer:[]
+                is_volunteer:['0']
             }
         },
         created(){
