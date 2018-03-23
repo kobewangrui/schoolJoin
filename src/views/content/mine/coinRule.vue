@@ -22,7 +22,7 @@
         <div class="rule">
             <p class="title">大绳币说明</p>
             <ul>
-                <li class="smallTitle">1.换算比例：10大绳币 = 1RMB</li>
+                <li class="smallTitle">1.换算比例：100大绳币 = 1RMB</li>
                 <li>
                     <p class="smallTitle">2.大绳币的消耗：</p>
                     <p>①只要有大绳币，就会自动在下一次支付订单时使用；包括容量充值；</p>

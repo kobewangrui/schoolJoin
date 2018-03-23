@@ -46,11 +46,9 @@
 	.list ul li div.time > p:last-child span{
 		display: inline-block;
 		box-sizing: border-box;
-		width: 1.2rem;
-		height: .38rem;
 		border: .02rem solid #cfcfcf;
 		border-radius: .2rem;
-		padding: .05rem;
+		padding: .05rem .1rem;
 		margin-right: .2rem;
 		font-size: .24rem;
 		text-align: center;

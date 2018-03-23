@@ -301,7 +301,7 @@
                 <div class="connect">
                     <div class="priceShow">
                         <div class="people">{{childrenPrice}}
-                            <div>儿童：{{childNumber.length}}/￥{{parent_price}}</div>
+                            <div>儿童：{{childNumber.length}}/￥{{parent_price}}小于等于12岁</div>
                             <div>成人：{{adultNumber.length}}/￥{{children_price}}</div>
                         </div>
                         <p class="add" @click="toggle=false">添加参与人</p>
@@ -321,8 +321,9 @@
                 </div>
             </div>
             <div class="join">
-                <p class="price" v-if="is_pre_price!=='1'">本次支付：<span>￥{{money}}</span></p>
-                <p class="price" v-if="is_pre_price==='1'">本次支付：<span>￥{{pre_price}}</span></p>
+                <p class="price" v-if="is_pre_price!=='1' && is_volunteer!=='1'">本次支付：<span>￥{{money}}</span></p>
+                <p class="price" v-if="is_pre_price==='1' && is_volunteer!=='1'">需预支付：<span>￥{{pre_price}}</span></p>
+                <p class="price" v-if="is_volunteer==='1' || (is_pre_price==='1' && is_volunteer==='1')">义工支付：<span>￥{{money}}</span></p>
                 <p class="talk">余款沟通后缴纳</p>
                 <p class="pay" @click="order">立即报名</p>
             </div>
@@ -342,7 +343,7 @@
                 parent_price:'',
                 date:'',
                 is_pre_price:'',
-                pre_price:'',
+                pre_price:0,
                 is_volunteer:'',
                 toggle:true,
                 path:'',
@@ -355,11 +356,12 @@
                 age:'',
                 lists:[],
                 dscoin:'',
-                money:'',
+                money:0,
                 childNumber:[],
                 adultNumber:[],
                 arr:[],
-                banlance:'',
+                balance:0,
+                basic_price:0,
             }
         },
         created(){
@@ -382,8 +384,7 @@
             this.is_pre_price = localStorage.getItem('is_pre_price');
             this.pre_price = localStorage.getItem('pre_price');
             this.is_volunteer = localStorage.getItem('is_volunteer');
-            this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
-            this.banlance = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length)) -this.pre_price;
+            this.basic_price = localStorage.getItem('basic_price');
             this.getCoins();
             this.wxConfigSign();
         },
@@ -448,10 +449,6 @@
                 })
             },
             order(){
-                let balances;
-                if(this.is_pre_price==='1'){//如果是预支付订单
-                    balances = this.money - this.pre_price;
-                }
                 let data = {
                     name: 'pc.ActOrder',
                     activity_id: localStorage.getItem('activity_id'),
@@ -463,15 +460,13 @@
                     family_id: this.arr.join(','),
                     is_volunteer: this.is_volunteer,
                     ds_coin: this.dscoin,
-                    balance: balances,
-                    ds_coin:this.dscoin,
+                    balance: this.balances,
                     money:this.money
                 }
                 if(
                     data.contacts === '' ||
                     data.tel === '' ||
-                    data.family_id === '' ||
-                    data.money <= 0
+                    data.family_id === ''
                 ){
                     alert('请完整填写信息');
                 }else{
@@ -494,7 +489,6 @@
                         signature: res.body.data.signature,
                         jsApiList:['chooseWXPay']
                     })
-                    this.isJsSDKSet = true;
                 }).catch((error)=>{
                     console.log(error);
                 })
@@ -511,6 +505,7 @@
                             paySign:datas.sign_pay,
                             success:(res)=>{
                                 console.log(JSON.stringify(res));
+                                this.$router.push("{path:'/order',query:{type:2}");
                             },
                             fail:(err)=>{
                                 console.log(JSON.stringify(err));
@@ -547,7 +542,7 @@
                 this.childNumber = [];
                 this.adultNumber = [];
                 for(let i=0; i<this.lists.length; i++){
-                    if(this.getAge(this.lists[i].idcard) < 18){
+                    if(this.getAge(this.lists[i].idcard) <= 12){
                        this.childNumber.push(this.lists[i]);
                     }else{
                         this.adultNumber.push(this.lists[i]);
@@ -555,13 +550,44 @@
                 }
             },
             'childNumber':function(){
-                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
-                    this.banlance = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin - this.pre_price;
+                if(this.is_pre_price === '1'){
+                    this.pre_price = localStorage.getItem('pre_price');
+                    this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
+                    this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
+                    if(((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100))<0 ){
+                        this.balane = 0;
+                    }else{
+                        this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100)
+                    }
+                }else if(this.is_volunteer === '1'){
+                    this.money = (this.basic_price*(this.childNumber.length +this.adultNumber.length));
+                }else{
+                    if((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100) <=0){
+                        this.balance = this.money = 0;
+                    }else{
+                        this.money = this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100)
+                    }
+                }
             },
             'adultNumber':function(){
-                    this.money = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin;
-                    this.banlance = (this.parent_price*(this.childNumber.length) + this.children_price*(this.adultNumber.length))-this.dscoin - this.pre_price;
-
+                if(this.is_pre_price === '1'){
+                    this.pre_price = localStorage.getItem('pre_price');
+                    this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
+                    this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
+                    if(((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100))<0 ){
+                        this.balane = 0;
+                    }else{
+                        this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100)
+                    }                
+                }else if(this.is_volunteer === '1'){
+                    this.money  = (this.basic_price*(this.childNumber.length +this.adultNumber.length));
+                }else{
+                    if((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100) <=0){
+                        this.balance = this.money = 0;
+                    }else{
+                        this.money = this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - (this.dscoin/100)
+                    }
+                }
             }
         }
     }

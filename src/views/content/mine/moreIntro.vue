@@ -181,7 +181,7 @@
                 })
             },
             orderPay(){
-                if(this.$vuerify.check() && money>0){
+                if(this.$vuerify.check() && this.money>0){
                     this.$http.post('/PcApi',{name:'pc.Login.volOrder',vid:this.goods},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             this.payPrice(res.body.data.id);

@@ -78,13 +78,15 @@
 .first table td{
     font-size: .28rem;
     color: #888897;
+    padding: .5rem 0;
 }
-.first table tr{
-    padding: .1rem 0;
+.first table td img{
+    margin-top: .2rem;
+    border-radius: .08rem;
 }
+
 .first table td:first-child{
     width: 1.6rem;
-    color: #565656;
 }
 .first .dayTravel{
     border: .02rem dotted #F7705E;

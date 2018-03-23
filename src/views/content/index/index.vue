@@ -100,30 +100,17 @@
 			return{
 				lists:[],
 				img:[],
-                page:1
 			}
 		},
 		created(){
 			this.getList();
 			this.getBanner();
-			var self = this;
-            $(window).scroll(function(){
-                let scrollTop = $(this).scrollTop()
-                let scrollHeight = $(document).height()
-                let windowHeight = $(this).height()
-                if(scrollTop + windowHeight === scrollHeight){
-                    self.page++;
-                    self.getList();
-                }
-            })
 		},
 		methods:{
 			getList(){
-				this.$http.post('/PcApi',{name:'pc.IndexAct',page:this.page},{emulateJSON:true}).then((res)=>{
+				this.$http.post('/PcApi',{name:'pc.IndexAct'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
-						if(res.body.data.activity_list.length > 0){
-							this.lists = this.lists.concat(res.body.data.activity_list);
-						}
+							this.lists = res.body.data.activity_list
 					}
 				}).catch((error)=>{
 					console.log(error);

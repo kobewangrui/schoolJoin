@@ -1,9 +1,16 @@
 <style lang="css">
     .detailWRL .firstContent img{
         max-width: 7rem;
+        max-height: 4.2rem;
     }
     .detailWRL .dayTravels img{
         max-width: 5rem;
+        max-height: 3rem;
+        border-radius: .08rem;
+    }
+    .detailWRL table{
+        max-width: 7.3rem;
+        font-size: .2rem;
     }
 </style>
 <style lang="css" scoped>
@@ -52,6 +59,9 @@
         background: #fff;
         padding: .3rem;
         box-sizing: border-box;
+    }
+    .header .titleT{
+        margin-bottom:.2rem;
     }
     .header .dates ul{
         display: flex;
@@ -193,10 +203,12 @@
         font-size: .36rem;
         margin-bottom: .3rem;
     }
-    .pops p:last-child{
+    .pops p.basicContent{
         font-size: .36rem;
         margin-bottom: .3rem;
         font-size: .3rem;
+        text-align: left;
+        text-indent: .6rem;
     }
     .popShow{
         transform: scale(1,1);
@@ -219,7 +231,7 @@
                     <img :src="views.path">
                 </p>
                 <div class="headerMsg">
-                    <p class="titleT">{{views.activity_name}}</p>
+                    <p class="titleT">活动主题：{{views.activity_name}}</p>
                     <div class="price">
                         <p class="sign">
                             <span v-for="i in views.label.split(',')" v-if="views.label!==''">{{i}}</span>
@@ -228,6 +240,7 @@
                     </div>
                 </div>
                 <div class="dates">
+                    <p class="titleT">活动档期</p>
                     <ul>
                         <li v-for="(i,index) in views.mtschedule">{{isVolunteer}}
                             <input :id="'d'+index" v-model="timeGame" :value="i.starttime" type="radio" name="date">
@@ -265,7 +278,7 @@
                 </p>
                 <div class="pops" :class="{'popShow':popToggle}">
                     <p>志愿者要求<span class="closePop" @click="popToggle=false">×</span></p>
-                    <p>{{views.basicBC_YQ}}</p>
+                    <p class="basicContent">{{views.basicBC_YQ}}</p>
                 </div>
                 <div class="cover" v-if="popToggle" @click="popToggle=false"></div>
             </div>
@@ -276,20 +289,32 @@
             <div class="dayTravel">
                 <p class="bgTitle">
                     <span class="haveBG">日程安排</span>
-                    <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(Object.keys(notice2).length/3)}}天{{Math.ceil(Object.keys(notice2).length/3-1)}}晚】</span>
+                    <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span>
                 </p>
                 <div class="dayTravels" v-if="notice2!==null">
                     <table>
                         <div v-for="(i,index) in notice2" :key="i.id">
-                            <tr class="titleColor" v-if="index%3===0">
-                                <td>Day{{(index/3)+1}}</td>
-                                <td></td>
+                            <tr class="titleColor">
+                                <td>Day{{index+1}}</td>
+                                <td>{{i.day}}</td>
                             </tr>
-                            <tr>
-                                <td></td>
+                            <tr v-if="i.morning!==undefined">
+                                <td>上午</td>
                                 <td>
-                                    <img :src="i[0]">
-                                    <p>{{i.content}}</p>
+                                    <p>{{i.morning}}</p>
+                                    <img :src="i.image">
+                                </td>
+                            </tr>
+                            <tr v-if="i.noon!==undefined">
+                                <td>中午</td>
+                                <td>
+                                    <p>{{i.noon}}</p>
+                                </td>
+                            </tr>
+                            <tr v-if="i.night!==undefined">
+                                <td>晚上</td>
+                                <td>
+                                    <p>{{i.night}}</p>
                                 </td>
                             </tr>
                         </div>
@@ -362,17 +387,10 @@
 				this.$http.post('/PcApi',{name:'pc.ActivityView',activity_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
                         this.notice1 = res.body.data.ActivityView.notice1;
-                        if(res.body.data.ActivityView.notice2 !==null){
-                            let noticesJson = JSON.parse(res.body.data.ActivityView.notice2);
-                            let arr = Object.keys(noticesJson);
-                            for(let i=0; i<arr.length; i++){
-                                let key = arr[i];
-                                this.notice2.push(noticesJson[key]);
-                            }
-                        }
+						this.notice2 = JSON.parse(res.body.data.ActivityView.notice2);
 						this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
 						this.notice4 = JSON.parse(res.body.data.ActivityView.notice4);
-						// this.model_type = res.body.data.ActivityView.model_type;
+						this.model_type = res.body.data.ActivityView.model_type;
                         this.sponsor = res.body.data.ActivityView.Sponsor;
                         this.views = res.body.data.ActivityView;
 					}
@@ -397,6 +415,7 @@
                     localStorage.activity_id = this.views.activity_id;
                     localStorage.is_pre_price = this.views.is_pre_price;
                     localStorage.pre_price = this.views.pre_price;
+                    localStorage.basic_price = this.views.basic_price;
                     localStorage.is_volunteer = this.is_volunteer[0];
                     this.$router.push('/createOrder')
                 }

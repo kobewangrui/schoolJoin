@@ -58,7 +58,7 @@
         font-size: .32rem;
         color: #2f2b27;
         position: relative;
-        bottom: -.6rem;
+        bottom: -.4rem;
     }
     .pay{
         color: #ffae4e;
@@ -91,7 +91,7 @@
        </nav>
        <div class="list">
            <ul>
-               <router-link tag="li" :to="{path:(i.status===4?'/suggest':'/pay'),query:{title:i.activity_name,id:i.activity_id}}" v-for="i in lists" :key="i.id">
+               <li v-for="i in lists" :key="i.id">
                    <p class="date">{{i.addtime | dateTime}}</p>
                    <div class="listContent">
                        <div>
@@ -106,14 +106,14 @@
                                 <p v-if="i.status === '2'">已报名</p>
                                 <p class="pay" v-if="i.status === '4'">感受建议</p>
                                 <!-- <p class="cancel">已取消</p> -->
-                                <p class="pay" v-if="i.status === '1'">前往支付</p>
+                                <p class="pay" v-if="i.status === '1'" @click="payPrice(i.order_number)">前往支付</p>
                             </div>
                        </div>
                    </div>
-                   <p class="payMsg" v-if="i.status === '4'">（提交活动感受及建议奖励666积分）</p>
+                   <router-link tag="p" :to="{path:'/suggest',query:{title:i.activity_name,id:i.activity_id}}"  class="payMsg" v-if="i.status === '4'">（提交活动感受及建议奖励666积分）</router-link>
                    <p class="payMsg" v-if="i.status !== '2' && i.status !== '4'">（大绳币减免￥{{i.ds_coin/100}}）</p>
                    <p class="payMsg" v-if="i.status === '2'">（短信通知）</p>
-                </router-link>
+                </li>
            </ul>
        </div>
     </div>
@@ -127,6 +127,7 @@
             }
         },
         created(){
+            this.wxSign();
             this.getList();
             var self = this;
             $(window).scroll(function(){
@@ -140,11 +141,50 @@
             })
         },
         methods:{
+            wxSign(){
+                this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:location.href},{emulateJSON:true}).then((res)=>{
+                    wx.config({
+                        debug:true,
+                        appId:'wx8387437705240b54',
+                        timestamp:res.body.data.timestamp,
+                        nonceStr: res.body.data.nonceStr,
+                        signature: res.body.data.signature,
+                        jsApiList:['chooseWXPay']
+                    })
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            payPrice(orders){
+                this.$http.post('/PcApi',{name:'pc.WXpay.unifiedOrder',order_number:orders},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        let datas = res.body.data.pay_need;
+                        wx.chooseWXPay({
+                            timestamp:datas.timestamp_pay,
+                            nonceStr:datas.nonceStr_pay,
+                            package:"prepay_id="+datas.package,
+                            signType:'MD5',
+                            paySign:datas.sign_pay,
+                            success:(res)=>{
+                                console.log(JSON.stringify(res));
+                                this.$router.push("{path:'/order',query:{type:2}");
+                            },
+                            fail:(err)=>{
+                                console.log(JSON.stringify(err));
+                            }
+                        })
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
             getList(){
                 this.$http.post('/PcApi',{name:'pc.ActOrderList',status:this.$route.query.type,page:this.page},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
-                        if(res.body.data.list.length > 0);
-                        this.lists = this.lists.concat(res.body.data.list);
+                        if(res.body.data.list.length > 0){
+                            console.log(this.$route.query.type);
+                            this.lists = this.lists.concat(res.body.data.list);
+                        }
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -153,6 +193,8 @@
         },
         watch:{
             '$route.query.type':function(){
+                this.lists = [];
+                this.page = 1;
                 this.getList();
             }
         }
