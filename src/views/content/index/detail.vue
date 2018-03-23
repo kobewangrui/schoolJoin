@@ -2,6 +2,7 @@
     .detailWRL .firstContent img{
         max-width: 7rem;
         max-height: 4.2rem;
+        border-radius: .08rem;
     }
     .detailWRL .dayTravels img{
         max-width: 5rem;
