@@ -30,6 +30,10 @@
 .five .dayTravel ul{
     margin: .2rem 0 .3rem;
     font-size: .28rem;
+    padding: 0 .3rem;
+}
+.five .dayTravel ul li{
+    margin: .1rem 0;
 }
 .five .dayTravel ul li span:first-child{
     display: inline-block;
@@ -41,7 +45,7 @@
 }
 .five .bgTitleFiveOuter{
     text-align: center;
-    margin: .15rem 0;
+    margin: .5rem 0;
 }
 .five .bgTitleFive{
     text-align: center;
@@ -82,8 +86,9 @@
     width: 1.6rem;
 }
 .five .titleColor{
-    color: #F96E57;
+    color: #5E5E5E;
     margin: .15rem 0;
+    font-size: .3rem;
 }
 .five .content{
     font-size: .28rem;
@@ -93,6 +98,7 @@
 .five .service .blockTitle{
     color: #5E5E5E;
     font-size: .32rem;
+    margin-bottom: .1rem;
 }
 .five .service .content{
     font-size: .28rem;

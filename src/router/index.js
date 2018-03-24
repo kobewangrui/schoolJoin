@@ -98,9 +98,25 @@ export default function (VueRouter,store) {
 			component: require('views/content/index/createOrder.vue'),
 		},
 		{
-			path: '/detail',
-			component: require('views/content/index/detail.vue'),
-		},				
+			path: '/detailOne',
+			component: require('views/content/index/detailOne.vue'),
+		},
+		{
+			path: '/detailTwo',
+			component: require('views/content/index/detailTwo.vue'),
+		},
+		{
+			path: '/detailThree',
+			component: require('views/content/index/detailThree.vue'),
+		},
+		{
+			path: '/detailFour',
+			component: require('views/content/index/detailFour.vue'),
+		},
+		{
+			path: '/detailFive',
+			component: require('views/content/index/detailFive.vue'),
+		},
 		{
 			path: '/production',
 			component: require('views/content/mine/production.vue'),

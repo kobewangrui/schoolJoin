@@ -59,7 +59,7 @@
 <template>
     <div class="list">
             <ul>
-                <router-link tag="li" :to="{path:'/detail',query:{id:i.activity_id}}" v-for="i in listData" :key="i.id">
+                <router-link tag="li" :to="{path:'/detailOne',query:{id:i.activity_id}}" v-for="i in listData" :key="i.id">
                     <div class="imgShow">
                         <img :src="i.path">
                     </div>

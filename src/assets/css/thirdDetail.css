@@ -52,7 +52,7 @@
     vertical-align: middle;
 }
 .third .titleColor{
-    color: #F7705E;
+    color: #6E94C3;
     font-size: .32rem;
     margin: .15rem 0;
 }
@@ -104,6 +104,7 @@
 .third .service .blockTitle{
     color: #748395;
     font-size: .32rem;
+    margin-bottom: .1rem;
 }
 .third .service .content{
     font-size: .28rem;

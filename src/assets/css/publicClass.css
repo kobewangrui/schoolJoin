@@ -26,3 +26,21 @@ textarea{
     outline:none;
     border:none;
 }
+
+/* 详情样式 */
+.detailWRL .firstContent img{
+    max-width: 7rem;
+    max-height: 4.2rem;
+    border-radius: .08rem;
+}
+.detailWRL .dayTravels img,
+.detailWRL .dayTravel img{
+    max-width: 5rem;
+    max-height: 3rem;
+    border-radius: .08rem;
+    margin: .15rem 0;
+}
+.detailWRL table{
+    max-width: 7.3rem;
+    font-size: .2rem;
+}

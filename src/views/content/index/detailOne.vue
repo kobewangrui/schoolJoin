@@ -1,230 +1,5 @@
-<style lang="css">
-    .detailWRL .firstContent img{
-        max-width: 7rem;
-        max-height: 4.2rem;
-        border-radius: .08rem;
-    }
-    .detailWRL .dayTravels img{
-        max-width: 5rem;
-        max-height: 3rem;
-        border-radius: .08rem;
-    }
-    .detailWRL table{
-        max-width: 7.3rem;
-        font-size: .2rem;
-    }
-</style>
-<style lang="css" scoped>
-    .detail{
-        padding: .3rem .2rem;
-        box-sizing: border-box;
-        background: #fff;
-    }
-    .header .img img{
-        width:7.5rem;;
-        height: 4rem;
-    }
-    .header .headerMsg{
-        padding: .3rem .3rem;
-        box-sizing: border-box;
-        background: #fff;
-    }
-    .header .headerMsg .titleT{
-        font-size: .34rem;
-        color: #000;
-        overflow: hidden; 
-        white-space: nowrap; 
-        text-overflow: ellipsis;
-        margin-bottom: .2rem;
-    }
-    .header .price{
-        display: flex;
-        justify-content: space-between;
-    }
-    .header .price .sign span{
-        display: inline-block;
-        border: .02rem solid #cfcfcf;
-        border-radius: .28rem;
-        font-size: .24rem;
-        padding: .03rem .15rem;
-        margin-left: .2rem;
-        color: rgb(186,171,111);
-        box-sizing: border-box;
-    }
-    .header .price p:last-child{
-        color: #D01D06;
-        font-size: .32rem;
-    }
-    .header .dates{
-        margin: .3rem 0;
-        background: #fff;
-        padding: .3rem;
-        box-sizing: border-box;
-    }
-    .header .titleT{
-        margin-bottom:.2rem;
-    }
-    .header .dates ul{
-        display: flex;
-        justify-content: flex-start;
-        margin-bottom: .2rem;
-    }
-    .header .dates ul li{
-        margin-left: .1rem;
-    }
-    .header .dates ul li label{
-        display: inline-block;
-        width: 2.12rem;
-        height: 1.32rem;
-        text-align: center;
-        line-height: .65rem;
-        border: .02rem solid #EEEEEE;
-        font-size: .26rem;
-        border-radius: .08rem;
-    }
-    .header .dates li  input[type="radio"]{
-        display: none;
-    }
-    .header .dates li  input[type="radio"]:checked+label{
-        color: #FFAE4E;
-        border: .02rem solid #FFAE4E;
-    }
-    .header .personCount{
-        display: flex;
-        justify-content: space-between;
-    }
-    .header .personCount p:first-child{
-        color: #B8AFA6;
-        font-size: .26rem;
-    }
-    .header .personCount p:last-child{
-        color: #2F2B27;
-        font-size: .26rem;
-    }
-    .header .volunteer{
-        margin: .3rem 0;
-        background: #fff;
-        padding: .3rem;
-    }
-    .header .volunteer .volunteerJoin{
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: .2rem;
-    }
-    .header .volunteer .volunteerJoin p:first-child{
-        color: #2F2B27;
-        font-size: .32rem;
-    }
-    .header .volunteer .volunteerJoin p:last-child label{
-        display: inline-block;
-        width: .38rem;
-        height: .38rem;
-        border-radius: 50%;
-        border: .02rem solid gray;
-    }
-    .header .volunteer .volunteerSign{
-        color: #D01D06;
-    }
-    .header .volunteer .indentSpace{
-        padding-left: .15rem;
-    }
-    .header .volunteer div p:last-child input[type="checkbox"]{
-        display: none;
-    }
-    .header .volunteer div p:last-child input[type="checkbox"]:checked+label{
-        border: .02rem solid #FFAE4E;
-    }
-    .header .volunteer .filters{
-        font-size: .32rem;
-        color:#93887F;
-        text-indent: .4rem;
-        margin-bottom: .1rem;
-    }
-    .header .volunteer .filters .levelImg{
-        width: .4rem;
-        height: .4rem;
-    }
-    .header .volunteer .filters .volunteerSign,
-    .header .volunteer .filters .levelImg{
-        vertical-align: middle;
-    }    
-    .volunteer .filters .showVolunteer{
-        color: #F9C84E;
-    }
-    .detailBegin{
-        height: .9rem;
-        line-height: .9rem;
-        color: #FFAE4E;
-        text-align: center;
-        border-bottom: .02rem solid rgba(0,0,0,0.10);
-    }
-    .joinGame{
-        width: 100%;
-        height: 1rem;
-        line-height: 1rem;
-        background: #d8d8d8;
-        color: #fff;
-        position: fixed;
-        bottom: 0;
-        text-align: center;
-    }
-    .JoinGameActive{
-        background: #F9C84E;
-    }
-    .cover{
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,.4);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-    }
-    .pops{
-        font-size: .32rem;
-        width: 5rem;
-        height: 8rem;
-        background: #fff;
-        border-radius: .08rem;
-        position: absolute;
-        z-index: 2;
-        margin: 0 auto;
-        top: 35%;
-        left: 55%;
-        margin-left: -2.95rem;
-        margin-top: -2.85rem;
-        text-align: center;
-        padding: .3rem;
-        box-sizing: border-box;
-        transition: all .2s;
-        transform: scale(0,0);
-        overflow-y: scroll;
-    }
-    .pops p:first-child{
-        font-size: .36rem;
-        margin-bottom: .3rem;
-    }
-    .pops p.basicContent{
-        font-size: .36rem;
-        margin-bottom: .3rem;
-        font-size: .3rem;
-        text-align: left;
-        text-indent: .6rem;
-    }
-    .popShow{
-        transform: scale(1,1);
-    }
-    .closePop{
-        position: absolute;
-        right: .1rem;
-        top: .1rem;
-    }
-</style>
+<style lang="css" scoped src="assets/css/detail.css"></style>
 <style lang="css" src="assets/css/firstDetail.css" scoped></style>
-<style lang="css" src="assets/css/secondDetai.css" scoped></style>
-<style lang="css" src="assets/css/thirdDetail.css" scoped></style>
-<style lang="css" src="assets/css/fourDetail.css" scoped></style>
-<style lang="css" src="assets/css/fiveDetail.css" scoped></style>
 <template>
     <div>
         <div class="header">
@@ -375,7 +150,7 @@
                 notice2:[],
                 notice3:'',
                 notice4:'',
-                model_type:'1',
+                model_type:'',
                 sponsor:'',
                 views:'',
                 timeGame:"",
@@ -395,6 +170,17 @@
 						this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
 						this.notice4 = JSON.parse(res.body.data.ActivityView.notice4);
 						this.model_type = res.body.data.ActivityView.model_type;
+                        if(this.model_type==='1'){
+                            this.$router.push('/detailOne');
+                        }else if(this.model_type==='2'){
+                            this.$router.push('/detailTwo');
+                        }else if(this.model_type==='3'){
+                            this.$router.push('/detailThree');
+                        }else if(this.model_type==='4'){
+                            this.$router.push('/detailFour');
+                        }if(this.model_type==='5'){
+                            this.$router.push('/detailFive');
+                        }
                         this.sponsor = res.body.data.ActivityView.Sponsor;
                         this.views = res.body.data.ActivityView;
 					}

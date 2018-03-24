@@ -190,7 +190,7 @@
                 <p class="content">爸爸妈妈总想将我们最好的呵护起来，开营仪式上，妈妈给的小锦囊，用在“江湖危难”之时。小小学童可知“锦囊妙计”的典故源自何处？</p>
             </div> -->
             <div>
-                <p class="bgTitle" v-if="model_type === '1' || model_type === '2'|| model_type === '4'">
+                <p class="bgTitle">
                     <span class="haveBG">日程安排</span>
                     <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(Object.keys(notice2).length/3)}}天{{Math.ceil(Object.keys(notice2).length/3-1)}}晚】</span>
                 </p>
@@ -255,18 +255,7 @@
                     </div>
                     <!-- 方案五行程安排 -->
                     <div class="dayTravel" v-if="model_type==='5'">
-                        <div v-for="(i,index) in notice2" :key="i.id">
-                            <p class="travelTitle" v-if="index%3===0">
-                                <span>Day{{index+1}}</span>
-                                <span>带上锦囊ƒ去淘金</span>
-                            </p>
-                            <ul>
-                                <li v-if="i.length>0">
-                                    <span></span>
-                                    <span><img :src="i[0]">{{i.content}}</span>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </template>
             </div>
@@ -311,7 +300,6 @@
                                     <td>{{i.smallTitle[0]}}：</td>
                                     <td>{{i.smallTitle[1]}}</td>
                                 </tr>
-                            </template>
                         </table>
                     </div>
                 </template>
