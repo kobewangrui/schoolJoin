@@ -147,16 +147,16 @@
 						this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
 						this.notice4 = JSON.parse(res.body.data.ActivityView.notice4);
 						this.model_type = res.body.data.ActivityView.model_type;
-                        if(this.model_type==='1'){
-                            this.$router.push('/detailOne');
+                            if(this.model_type==='1'){
+                            this.$router.push("{path:'/detailOne',query:{id:this.$router.query.id}}");
                         }else if(this.model_type==='2'){
-                            this.$router.push('/detailTwo');
+                            this.$router.push("{path:'/detailTwo',query:{id:this.$router.query.id}}");
                         }else if(this.model_type==='3'){
-                            this.$router.push('/detailThree');
+                            this.$router.push("{path:'/detailThree',query:{id:this.$router.query.id}}");
                         }else if(this.model_type==='4'){
-                            this.$router.push('/detailFour');
+                            this.$router.push("{path:'/detailFour',query:{id:this.$router.query.id}}");
                         }if(this.model_type==='5'){
-                            this.$router.push('/detailFive');
+                            this.$router.push("{path:'/detailFive',query:{id:this.$router.query.id}}");
                         }
                         this.sponsor = res.body.data.ActivityView.Sponsor;
                         this.views = res.body.data.ActivityView;
