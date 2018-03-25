@@ -59,7 +59,7 @@
 <template>
     <div class="list">
             <ul>
-                <router-link tag="li" :to="{path:'/detailOne',query:{id:i.activity_id}}" v-for="i in listData" :key="i.id">
+                <li  v-for="i in listData" :key="i.id" @click="getDetail(i.activity_id)">
                     <div class="imgShow">
                         <img :src="i.path">
                     </div>
@@ -76,7 +76,7 @@
                             <span v-for="j in i.label.split(',')" :key="j.id">{{j}}</span>
                         </p>
                     </div>
-                </router-link>
+                </li>
             </ul>
         </div>
 </template>
@@ -84,9 +84,30 @@
 	export default{
 		data(){
 			return{
+				model_type:'',
 			}
 		},
-		created(){
+		methods:{
+			getDetail(id){
+				this.$http.post('/PcApi',{name:'pc.ActivityView',activity_id:id},{emulateJSON:true}).then((res)=>{
+					if(res.body.code === 1000){
+						this.model_type = res.body.data.ActivityView.model_type;
+                        if(this.model_type==='1'){
+							this.$router.push({path:'/detailOne',query:{id:id}});
+                        }else if(this.model_type==='2'){
+							this.$router.push({path:'/detailTwo',query:{id:id}});
+                        }else if(this.model_type==='3'){
+							this.$router.push({path:'/detailThree',query:{id:id}});
+                        }else if(this.model_type==='4'){
+							this.$router.push({path:'/detailFour',query:{id:id}});
+                        }if(this.model_type==='5'){
+							this.$router.push({path:'/detailFive',query:{id:id}});
+                        }
+					}
+				}).catch((error)=>{
+					console.log(error);
+				})
+            },
 		},
 		props:[
 			'listData'
