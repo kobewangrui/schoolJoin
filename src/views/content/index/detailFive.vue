@@ -142,7 +142,7 @@
                 views:'',
                 timeGame:"",
                 popToggle:false,
-                is_volunteer:['0']
+                is_volunteer:[]
             }
         },
         created(){
