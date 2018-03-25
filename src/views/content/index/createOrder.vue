@@ -98,7 +98,7 @@
        border-radius: 50%;
        line-height: .3rem;
        text-align: center;
-       margin-left: 1.5rem;
+       margin-left: 1.2rem;
        font-size: .2rem;
     }
     .priceShow{

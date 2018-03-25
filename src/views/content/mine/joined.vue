@@ -1,4 +1,7 @@
 <style lang="css" scoped>
+    .outer{
+        margin-bottom: 1.6rem;
+    }
     .list{
         box-sizing: border-box;
         padding: .1rem .3rem;
@@ -29,7 +32,11 @@
     }
     .list .listText>p:first-child{
         font-size: .34rem;
+        max-width: 4.2rem;
+        overflow: hidden;
         color: #574c46;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .list .listText .price{
         display: flex;
@@ -39,7 +46,7 @@
         font-size: .32rem;
         color: #2f2b27;
         position: relative;
-        bottom: -.6rem;
+        bottom: -.4rem;
     }
     .pay{
         color: #ffae4e;
@@ -61,43 +68,59 @@
     }
 </style>
 <template>
-    <div class="list">
-        <ul>
-            <li v-for="i in lists" :key="i.id">
-                <p class="date">{{i.addtime | dateTime}}</p>
-                <div class="listContent">
-                    <div>
-                        <img :src="i.path">
-                    </div>
-                    <div class="listText">
-                        <p>{{i.activity_name}}</p>
-                        <div class="price">
-                            <!-- <p>￥2222*2</p> -->
-                            <p>余款:￥{{i.balance}}</p>
-                            <p v-if="i.status === 2">已报名</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="payMsg" v-if="i.status === 2">（短信通知）</p>
-            </li>
-        </ul>
+    <div class="outer">
+       <div class="list">
+           <ul>
+               <li v-for="i in lists" :key="i.id">
+                   <p class="date">{{i.addtime | dateTime}}</p>
+                   <div class="listContent">
+                       <div>
+                           <img :src="i.path">
+                       </div>
+                       <div class="listText">
+                            <p>{{i.activity_name}}</p>
+                            <div class="price">
+                                <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
+                                <p v-if="i.is_pre_price!=='1'">￥{{i.money}}</p>
+                                <p v-if="i.status === '2'">已报名</p>
+                            </div>
+                       </div>
+                   </div>
+                   <p class="payMsg" v-if="i.status === '2'">（短信通知）</p>
+                </li>
+           </ul>
+       </div>
     </div>
 </template>
 <script>
     export default {
         data() {
             return {
-                lists:''
+                lists:[],
+                page:1
             }
         },
         created(){
             this.getList();
+            var self = this;
+            $(window).scroll(function(){
+                let scrollTop = $(this).scrollTop()
+                let scrollHeight = $(document).height()
+                let windowHeight = $(this).height()
+                if(scrollTop + windowHeight === scrollHeight){
+                    self.page++;
+                    self.getList();
+                }
+            })
         },
         methods:{
             getList(){
-                this.$http.post('/PcApi',{name:'pc.ActOrderList',status:2,page:1},{emulateJSON:true}).then((res)=>{
+                this.$http.post('/PcApi',{name:'pc.ActOrderList',status:'2',page:this.page},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
-                        this.lists = res.body.data.list;
+                        if(res.body.data.list.length > 0){
+                            console.log(this.$route.query.type);
+                            this.lists = this.lists.concat(res.body.data.list);
+                        }
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -106,6 +129,8 @@
         },
         watch:{
             '$route.query.type':function(){
+                this.lists = [];
+                this.page = 1;
                 this.getList();
             }
         }

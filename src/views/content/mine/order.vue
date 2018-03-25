@@ -48,7 +48,11 @@
     }
     .list .listText>p:first-child{
         font-size: .34rem;
+        max-width: 4.2rem;
+        overflow: hidden;
         color: #574c46;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     .list .listText .price{
         display: flex;
@@ -127,7 +131,6 @@
             }
         },
         created(){
-            this.wxSign();
             this.getList();
             var self = this;
             $(window).scroll(function(){
