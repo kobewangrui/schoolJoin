@@ -85,7 +85,7 @@
                 <label for="parent">家长</label>
                 <input type="radio" v-model="type" value="3" name="personType" id="teacher">
                 <label for="teacher">教师</label>
-                <input type="radio" v-model="type" value ="4" name="personType" id="other">
+                <input type="radio" v-model="type" value="4" name="personType" id="other">
                 <label for="other">其他</label>
             </div>
             <div class="name">
@@ -97,17 +97,21 @@
                 <label for="sex">性别</label>
                 <input id="sex" v-model="sex" type="text" placeholder="请输入姓别">
             </div>
-            <div>
+            <div v-if="type==='1'">
                 <label for="age">年龄</label>
                 <input id="age" v-model="age" type="text" placeholder="请输入年龄">
             </div>
-            <div>
+            <div v-if="type==='2' || type==='4'">
+                <label for="address">地址</label>
+                <input id="adress" v-model="address" type="text" placeholder="请输入住址">
+            </div>
+            <div v-if="type==='1' || type==='3'">
                 <label for="school">学校</label>
                 <input id="school" v-model="school" type="text" placeholder="请输入学校">
             </div>
-            <div>
-                <label for="grade">年级</label>
-                <input id="grade" v-model="grade" type="text" placeholder="请输入年级">
+            <div v-if="type==='1' || type==='3'">
+                <label for="subject">学科</label>
+                <input id="subject" v-model="subject" type="text" placeholder="请输入学科">
             </div>
             <div class="card">
                 <label for="card">身份证</label>
@@ -128,21 +132,16 @@
                 name:'',
                 sex:'',
                 school:'',
-                grade:'',
                 card:'',
-                age:''
+                age:'',
+                subject:'',
+                address:''
             }
-        },
-        created(){
         },
         vuerify:{
             type:['required'],
             name:['required'],
             sex:['required'],
-            school:['required'],
-            grade:['required'],
-            card:['onlyNumber'],
-            age:['required','onlyNumber'],
             card:['required','cardNumber']
         },
         methods:{
@@ -156,7 +155,7 @@
                     gender = '未知';
                 }
                 if(this.$vuerify.check()){
-                    this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card,address:this.address,subject:this.subject},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             console.log('添加成功');
                             this.$router.push('/family');

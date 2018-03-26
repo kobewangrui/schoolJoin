@@ -19,7 +19,7 @@
                     <p class="titleT">活动档期</p>
                     <ul>
                         <li v-for="(i,index) in views.mtschedule">{{isVolunteer}}
-                            <input :id="'d'+index" v-model="timeGame" :value="i.files_id" type="radio" name="date">
+                            <input :id="'d'+index" v-model="timeGame" :value="{'date':i.starttime,'files_id':i.files_id}" type="radio" name="date">
                             <label :for="'d'+index">
                                 <p>起：{{i.starttime | dateTime}}</p>
                                 <p>止：{{i.endtime | dateTime}}</p>
@@ -122,8 +122,8 @@
             </div>
             <p class="footer"><span></span>主办方：{{sponsor}}</p>
         </div>
-        <p :class="{'JoinGameActive':timeGame!==0}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]!=='1'">立即报名</p>
-        <p :class="{'JoinGameActive':timeGame!==0}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]==='1'">义工报名</p>
+        <p :class="{'JoinGameActive':timeGame!==''}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]!=='1'">立即报名</p>
+        <p :class="{'JoinGameActive':timeGame!==''}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]==='1'">义工报名</p>
     </div>
 </template>
 <script>
@@ -166,14 +166,14 @@
                 this.popToggle=true;
             },
             goOrder(){
-                if(this.timeGame!==0){
+                if(this.timeGame!==''){
                     localStorage.setItem('title',this.views.activity_name);
                     localStorage.address = this.views.activity_address;
                     localStorage.contacts = this.views.contacts===undefined?'':this.views.contacts;
                     localStorage.tel = this.views.tel===undefined?'':this.views.contacts;
                     localStorage.children_price = this.views.children_price;
                     localStorage.parent_price = this.views.parent_price;
-                    localStorage.date = this.timeGame;
+                    localStorage.timeGame = JSON.stringify(this.timeGame);
                     localStorage.path = this.views.path;
                     localStorage.activity_id = this.views.activity_id;
                     localStorage.is_pre_price = this.views.is_pre_price;

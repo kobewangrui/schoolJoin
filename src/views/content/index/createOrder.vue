@@ -1,3 +1,4 @@
+<style lang="css" src="assets/css/family.css" scoped></style>
 <style lang="css" scoped>
     .img img{
         width: 100%;
@@ -30,6 +31,9 @@
         background: #fff;
         padding: .3rem;
         margin-bottom: 1.5rem;
+    }
+    .list{
+        margin-bottom: 0;
     }
     .list div{
         display: flex;
@@ -144,7 +148,7 @@
     }
     .join .price span{
         color: #2F2B27;
-        font-size: .46rem;
+        font-size: .34rem;
     }
     .join .talk{
         color: #93887F;
@@ -231,10 +235,50 @@
     ul.bottomTable li.active{
         background: #F9C84E;
     }
+    .addPersonOuter{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .addPerson,
+    .addPersonOne{
+        height: 1rem;
+        line-height: 1rem;
+        color: #fff;
+        font-size: .34rem;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 50%;
+        background: #F9C84E;
+    }
+    .addPersonOne{
+        margin-left: 50%;
+    }
 </style>
 <template>
     <div>
-        <div v-if="!toggle">
+        <!-- 成员列表 -->
+        <div v-if="listToggle">
+            <div class="list">
+                <div v-for="(i,index) in list" :key="i.id">
+                    <input type="checkbox" name="person" :id="'person'+index" v-model="lists" :value="{'id':i.id,'real_name':i.name,'type':i.type,'idcard':i.idcard}">
+                    <label class="check" :for="'person'+index">✓</label>
+                    <span class="name">{{i.name}}</span>
+                    <span v-if="i.type ==='1'">【学生】</span>
+                    <span v-if="i.type ==='2'">【家长】</span>
+                    <span v-if="i.type ==='3'">【教师】</span>
+                    <span v-if="i.type ==='4'">【其他】</span>
+                    <span class="delete" @click="deleteFri(i.id)">-</span>
+                </div>
+            </div>
+            <div class="addPersonOuter">
+                <p class="addPerson" @click="confrimPerson">选定成员</p>
+                <p class="addPersonOne" @click="addShow">添加成员</p>
+            </div>
+        </div>
+        <!-- 添加成员 -->
+        <div v-if="addToggle">
             <div class="outer">
                 <div class="personDetail">
                     <div class="type">
@@ -245,50 +289,55 @@
                         <label for="parent">家长</label>
                         <input type="radio" v-model="type" value="3" name="personType" id="teacher">
                         <label for="teacher">教师</label>
-                        <input type="radio" v-model="type" value ="4" name="personType" id="other">
+                        <input type="radio" v-model="type" value="4" name="personType" id="other">
                         <label for="other">其他</label>
                     </div>
                     <div class="name">
                         <label for="name">姓名</label>
                         <input v-model="name" id="name" type="text" placeholder="请输入姓名">
-                        <span class="delete" @click="name=''">×</span>
+                        <span class="delete" @click="clearName">×</span>
                     </div>
                     <div>
                         <label for="sex">性别</label>
                         <input id="sex" v-model="sex" type="text" placeholder="请输入姓别">
                     </div>
-                    <div>
+                    <div v-if="type==='1'">
                         <label for="age">年龄</label>
                         <input id="age" v-model="age" type="text" placeholder="请输入年龄">
                     </div>
-                    <div>
+                    <div v-if="type==='2' || type==='4'">
+                        <label for="address">地址</label>
+                        <input id="adress" v-model="address" type="text" placeholder="请输入住址">
+                    </div>
+                    <div v-if="type==='1' || type==='3'">
                         <label for="school">学校</label>
                         <input id="school" v-model="school" type="text" placeholder="请输入学校">
                     </div>
-                    <div>
-                        <label for="grade">年级</label>
-                        <input id="grade" v-model="grade" type="text" placeholder="请输入年级">
+                    <div v-if="type==='1' || type==='3'">
+                        <label for="subject">学科</label>
+                        <input id="subject" v-model="subject" type="text" placeholder="请输入学科">
                     </div>
                     <div class="card">
                         <label for="card">身份证</label>
                         <input id="card" v-model="card" type="text" placeholder="请输入18位身份证号">
                     </div>
                 </div>
-                <ul class="bottomTable">
-                    <li @click="cancelAdd">取消</li>
-                    <li :class="{'active':$vuerify.check()}" @click="addFamily">保存</li>
-                </ul>
             </div>
+            <ul class="bottomTable">
+                <li @click="cancelAdd">取消</li>
+                <li :class="{'active':$vuerify.check()}" @click="addFamily">保存</li>
+            </ul>
         </div>
-        <div v-if="toggle">
+        <!-- 报名 -->
+        <div v-if="joinToggle">
             <p class="img">
                 <img :src="path">
             </p>
             <div class="order">
                 <div class="orderTitle">
                     <p class="titleText">{{title}}</p>
-                    <p class="tableText"><span>场次：</span>{{date | dateTime}}</p>
-                    <p class="tableText"><span>地点：</span>{{address}}</p>
+                    <p class="tableText"><span>场次：</span>{{date.date | dateTime}}</p>
+                    <p class="tableText"><span>地点：</span>{{gameAddress}}</p>
                 </div>
                 <div class="person">
                     <p>
@@ -305,15 +354,13 @@
                 <div class="connect">
                     <div class="priceShow">
                         <div class="people">
-                            <div>儿童：{{childNumber.length}}/￥{{parent_price}}<span class="ageLimit">小于等于12岁</span></div>
-                            <div>成人：{{adultNumber.length}}/￥{{children_price}}</div>
+                            <div>儿童：{{childNumber.length}}/￥{{children_price}}<span class="ageLimit">小于等于12岁</span></div>
+                            <div>成人：{{adultNumber.length}}/￥{{parent_price}}</div>
                         </div>
-                        <p class="add" @click="toggle=false">添加参与人</p>
+                        <p class="add" @click="newPerson">添加参与人</p>
                     </div>
                     <div class="list">
                         <div v-for="(i,index) in lists" :key="i.id">
-                            <input type="checkbox" name="person" :id="'person'+index">
-                            <label class="check" :for="'person'+index">✓</label>
                             <span class="name">{{i.real_name}}</span>
                             <span v-if="i.type ==='1'">【学生】</span>
                             <span v-if="i.type ==='2'">【家长】</span>
@@ -340,25 +387,23 @@
         data(){
             return{
                 title:'',
-                address:'',
+                gameAddress:'',
                 contacts:'',
                 tel:'',
                 children_price:'',
                 parent_price:'',
-                date:'',
                 is_pre_price:'',
                 pre_price:0,
                 is_volunteer:'',
-                toggle:true,
                 path:'',
                 type:'1',
                 name:'',
                 sex:'',
                 school:'',
-                grade:'',
+                subject:'',
+                address:'',
                 card:'',
                 age:'',
-                lists:[],
                 dscoin:'',
                 money:0,
                 childNumber:[],
@@ -366,11 +411,17 @@
                 arr:[],
                 balance:0,
                 basic_price:0,
+                list:[],
+                lists:[],
+                addToggle:false,
+                listToggle:false,
+                joinToggle:true,
+                date:'',
             }
         },
         created(){
             this.title = localStorage.getItem('title');
-            this.address = localStorage.getItem('address');
+            this.gameAddress = localStorage.getItem('address');
             if(localStorage.getItem('contacts')===undefined || localStorage.getItem('contacts')===''){
                 this.contacts = '';
             }else{
@@ -383,7 +434,7 @@
             }
             this.children_price = localStorage.getItem('children_price');
             this.parent_price = localStorage.getItem('parent_price');
-            this.date = localStorage.getItem('date');
+            this.date = JSON.parse(localStorage.getItem('timeGame'));
             this.path = localStorage.getItem('path');
             this.is_pre_price = localStorage.getItem('is_pre_price');
             this.pre_price = localStorage.getItem('pre_price');
@@ -391,15 +442,13 @@
             this.basic_price = localStorage.getItem('basic_price');
             this.getCoins();
             this.wxConfigSign();
+            this.getFamilyList();
         },
         vuerify:{
             type:['required'],
             name:['required'],
             sex:['required'],
-            school:['required'],
-            grade:['required'],
             card:['required','cardNumber'],
-            age:['required','onlyNumber'],
         },
         methods:{
             addFamily(){
@@ -412,15 +461,14 @@
                     gender = '未知';
                 }
                 if(this.$vuerify.check()){
-                    this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.Family.add',real_name:this.name,type:this.type,gender:gender,age:this.age,school:this.school,idcard:this.card,address:this.address,subject:this.subject},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
-                            this.toggle = true;
-                            this.lists.push({id:res.body.data.id,real_name:this.name,type:this.type,idcard:this.card});
-                            this.arr.push(res.body.data.id);
+                            this.getFamilyList();
+                            this.listToggle = true;
+                            this.addToggle = false;
                             this.name = '';
                             this. sex = '';
                             this.school = '';
-                            this.grade = '';
                             this.card = '';
                             this.age = '';
                         }
@@ -430,23 +478,19 @@
                 }
             },
             cancelAdd(){
-                this.toggle = true;
+                this.addToggle = false;
+                this.listToggle = true;
                 this.name = '';
                 this. sex = '';
                 this.school = '';
-                this.grade = '';
                 this.card = '';
                 this.age = '';
             },
             deleteFri(id){
                 this.$http.post('/PcApi',{name:'pc.Family.delete',id:id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
+                        this.getFamilyList();
                         console.log('删除成功');
-                        for(let i=0; i<this.lists.length; i++){
-                            if(this.lists[i].id === id){
-                                this.lists.splice(i,1);
-                            }
-                        }
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -456,7 +500,7 @@
                 let data = {
                     name: 'pc.ActOrder',
                     activity_id: localStorage.getItem('activity_id'),
-                    files_id: this.date,
+                    files_id: this.date.files_id,
                     contacts: this.contacts,
                     tel: this.tel,
                     is_pre_price: this.is_pre_price,
@@ -530,7 +574,7 @@
 				})
             },
             getAge(cardNumber){//根据身份证获取年龄
-                var UUserCard = cardNumber.toString()
+                var UUserCard = cardNumber.toString();
                 var myDate = new Date();
                 var month = myDate.getMonth() + 1;
                 var day = myDate.getDate();
@@ -539,13 +583,40 @@
                     age++;
                 }
                 return age;
+            },
+            getFamilyList(){
+                this.$http.post('/PcApi',{name:'pc.Family.familyList'},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.list = res.body.data;
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            },
+            newPerson(){
+                this.joinToggle = false;
+                this.listToggle = true;
+            },
+
+            addShow(){
+                this.addToggle = true;
+                this.listToggle = false;
+            },
+            confrimPerson(){
+                this.listToggle = false;
+                this.joinToggle = true;
+            },
+            clearName(){
+                this.name = '';
             }
         },
         watch:{
             'lists':function(){
+                this.arr = [];
                 this.childNumber = [];
                 this.adultNumber = [];
                 for(let i=0; i<this.lists.length; i++){
+                    this.arr.push(this.lists[i].id);
                     if(this.getAge(this.lists[i].idcard) <= 12){
                        this.childNumber.push(this.lists[i]);
                     }else{
