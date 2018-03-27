@@ -404,7 +404,7 @@
                 address:'',
                 card:'',
                 age:'',
-                dscoin:'',
+                dsCoin:0,
                 money:0,
                 childNumber:[],
                 adultNumber:[],
@@ -417,6 +417,8 @@
                 listToggle:false,
                 joinToggle:true,
                 date:'',
+                all_price:0,
+                mmp:0
             }
         },
         created(){
@@ -440,7 +442,6 @@
             this.pre_price = localStorage.getItem('pre_price');
             this.is_volunteer = localStorage.getItem('is_volunteer');
             this.basic_price = localStorage.getItem('basic_price');
-            this.getCoins();
             this.wxConfigSign();
             this.getFamilyList();
         },
@@ -518,7 +519,7 @@
                     pre_price: this.pre_price,
                     family_id: this.arr.join(','),
                     is_volunteer: this.is_volunteer,
-                    ds_coin: this.dscoin,
+                    ds_coin: this.mmp*10,
                     balance: this.balance,
                     money:this.money
                 }
@@ -531,6 +532,9 @@
                 }else{
                     this.$http.post('/PcApi',data,{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
+                            if(this.is_pre_price !== '1' && this.money ===0){
+                                this.$router.push({path:'/order',query:{type:2}});
+                            }
                             this.payPrice(res.body.data.order_number);
                         }
                     }).catch((error)=>{
@@ -578,7 +582,7 @@
             getCoins(){
                 this.$http.post('/PcApi',{name:'pc.UserCoin'},{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
-                        this.dscoin = res.body.data.Coin.coin_pr;
+                        this.dsCoin = res.body.data.Coin.coin_pr;
 					}
 				}).catch((error)=>{
 					console.log(error);
@@ -608,7 +612,6 @@
                 this.joinToggle = false;
                 this.listToggle = true;
             },
-
             addShow(){
                 this.addToggle = true;
                 this.listToggle = false;
@@ -619,62 +622,67 @@
             },
             clearName(){
                 this.name = '';
+            },
+            priceCount(){
+                this.getCoins();
+                if(this.is_pre_price === '1'){
+                    this.pre_price = localStorage.getItem('pre_price');
+                    this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
+                    if((this.all_price - this.pre_price - this.dsCoin)<0 ){
+                        this.money = 0;
+                        this.balane = 0;
+                        this.dsCoin = this.dsCoin - (this.all_price + this.pre_price);// 剩余大绳币
+                    }else if((this.all_price - this.pre_price - this.dsCoin)===0 ){
+                        this.money = this.balance = 0;
+                        this.dsCoin = this.all_price + this.pre_price;
+                    }else{
+                        this.money = this.all_price - this.pre_price - this.dsCoin;
+                        this.balance = 0;
+                        this.dsCoin = this.dsCoin-
+                    }
+                }else if(this.is_volunteer === '1'){
+                    this.money = this.basic_price*(this.childNumber.length +this.adultNumber.length);
+                    this.balance = 0;
+                    this.dsCoin = 0;
+                }else{
+                    if(this.all_price-this.dsCoin < 0){
+                          this.money = 0;
+                        this.balane = 0;
+                        this.dsCoin = this.dsCoin - this.all_price;// 剩余大绳币
+                    }else if(this.all_price-this.dsCoin === 0){
+                        this.money = this.balance = 0;
+                        this.dsCoin = this.all_price + this.dsCoin;
+                    }else{
+                        this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))- this.dsCoin;
+                        this.balance = 0;
+                    }
+                }
             }
         },
         watch:{
             'lists':function(){
                 this.arr = [];
-                this.childNumber = [];
                 this.adultNumber = [];
+                this.childNumber = [];
                 for(let i=0; i<this.lists.length; i++){
                     this.arr.push(this.lists[i].id);
                     if(this.getAge(this.lists[i].idcard) <= 12){
-                       this.childNumber.push(this.lists[i]);
-                    }else{
+                        this.childNumber.push(this.lists[i]);
+                    }else if(this.getAge(this.lists[i].idcard) > 12){
                         this.adultNumber.push(this.lists[i]);
                     }
                 }
             },
-            'childNumber':function(){
-                if(this.is_pre_price === '1'){
-                    this.pre_price = localStorage.getItem('pre_price');
-                    this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
-                    this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
-                    if(((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100))<0 ){
-                        this.balane = 0;
-                    }else{
-                        this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100)
-                    }
-                }else if(this.is_volunteer === '1'){
-                    this.money = (this.basic_price*(this.childNumber.length +this.adultNumber.length));
-                }else{
-                    if((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100) <=0){
-                        this.balance = this.money = 0;
-                    }else{
-                        this.money = this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100)
-                        this.balance = 0;
-                    }
+            'childNumber':function(curVal,oldVal){
+                if( JSON.stringify(curVal) !== JSON.stringify(oldVal)){
+                    this.priceCount();
+                    this.mmp = this.dsCoin;
                 }
             },
-            'adultNumber':function(){
-                if(this.is_pre_price === '1'){
-                    this.pre_price = localStorage.getItem('pre_price');
-                    this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
-                    this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
-                    if(((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100))<0 ){
-                        this.balane = 0;
-                    }else{
-                        this.balance = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - this.pre_price - (this.dscoin/100)
-                    }                
-                }else if(this.is_volunteer === '1'){
-                    this.money  = (this.basic_price*(this.childNumber.length +this.adultNumber.length));
-                }else{
-                    if((this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))-(this.dscoin/100) <=0){
-                        this.balance = this.money = 0;
-                    }else{
-                        this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length)) - (this.dscoin/100)
-                        this.balance = 0;
-                    }
+            'adultNumber':function(curVal,oldVal){
+                if( JSON.stringify(curVal) !== JSON.stringify(oldVal)){
+                    this.priceCount();
+                    this.mmp = this.dsCoin;
                 }
             }
         }
