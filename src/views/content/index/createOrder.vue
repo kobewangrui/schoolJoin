@@ -533,7 +533,7 @@
                     this.$http.post('/PcApi',data,{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             if(this.is_pre_price !== '1' && this.money ===0){
-                                this.$router.push({path:'/order',query:{type:2}});
+                                this.$router.push({path:'/joined',query:{type:2}});
                             }
                             this.payPrice(res.body.data.order_number);
                         }
@@ -627,31 +627,25 @@
                 this.getCoins();
                 if(this.is_pre_price === '1'){
                     this.pre_price = localStorage.getItem('pre_price');
+                    this.all_price = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
                     this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
-                    if((this.all_price - this.pre_price - this.dsCoin)<0 ){
+                    if((this.all_price - this.pre_price - this.dsCoin) <= 0 ){
                         this.money = 0;
-                        this.balane = 0;
-                        this.dsCoin = this.dsCoin - (this.all_price + this.pre_price);// 剩余大绳币
-                    }else if((this.all_price - this.pre_price - this.dsCoin)===0 ){
-                        this.money = this.balance = 0;
-                        this.dsCoin = this.all_price + this.pre_price;
+                        this.balance = 0;
+                        this.dsCoin = (this.all_price-this.pre_price);// 支付大绳币
                     }else{
                         this.money = this.all_price - this.pre_price - this.dsCoin;
-                        this.balance = 0;
-                        this.dsCoin = this.dsCoin-
+                        this.balance = this.all_price;
                     }
                 }else if(this.is_volunteer === '1'){
                     this.money = this.basic_price*(this.childNumber.length +this.adultNumber.length);
                     this.balance = 0;
                     this.dsCoin = 0;
                 }else{
-                    if(this.all_price-this.dsCoin < 0){
-                          this.money = 0;
-                        this.balane = 0;
-                        this.dsCoin = this.dsCoin - this.all_price;// 剩余大绳币
-                    }else if(this.all_price-this.dsCoin === 0){
+                    this.all_price = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
+                    if(this.all_price-this.dsCoin <= 0){
+                        this.dsCoin =  this.all_price;// 支付大绳币
                         this.money = this.balance = 0;
-                        this.dsCoin = this.all_price + this.dsCoin;
                     }else{
                         this.money = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length))- this.dsCoin;
                         this.balance = 0;

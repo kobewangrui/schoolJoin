@@ -108,8 +108,8 @@
                             <p>{{i.activity_name}}</p>
                             <div class="price">
                                 <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
-                                <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance}}</p>
-                                <p v-if="i.is_pre_price==='0' || i.is_volunteer==='1'">￥{{i.money}}</p>
+                                <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance + i.ds_coin/10}}</p>
+                                <p v-if="i.is_pre_price==='0' || i.is_volunteer==='1'">￥{{i.money + i.ds_coin/10}}</p>
                                 <p v-if="i.status === '2'">已报名</p>
                                 <p class="pay" v-if="i.status === '4'">感受建议</p>
                             </div>
@@ -149,7 +149,6 @@
                     this.$http.post('/PcApi',{name:'pc.ActOrderList',status:2,page:this.page},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             if(res.body.data.list.length > 0){
-                                console.log(this.$route.query.type);
                                 this.lists = this.lists.concat(res.body.data.list);
                             }
                         }
@@ -161,7 +160,13 @@
                     this.$http.post('/PcApi',{name:'pc.OrderDel',order_id:id},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             console.log('删除成功');
-                            this.getList();
+                            this.$http.post('/PcApi',{name:'pc.ActOrderList',status:2,page:this.page},{emulateJSON:true}).then((res)=>{
+                                if(res.body.code === 1000){
+                                    this.lists = res.body.data.list;
+                                }
+                            }).catch((error)=>{
+                                console.log(error);
+                            })
                         }
                     }).catch((error)=>{
                         console.log(error);

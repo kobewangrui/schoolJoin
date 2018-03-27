@@ -81,17 +81,17 @@
                                 <img :src="i.path">
                             </div>
                             <div class="listText">
-                                    <p>{{i.activity_name}}</p>
-                                    <div class="price">
-                                        <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
-                                        <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance}}</p>
-                                        <p v-if="i.is_pre_price==='0' || i.is_volunteer==='1'">￥{{i.money}}</p>
-                                        <p class="pay" v-if="i.status === '1'" @click="payPrice(i.order_number)">前往支付</p>
-                                    </div>
-                            </div>
+                                <p>{{i.activity_name}}</p>
+                                <div class="price">
+                                    <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
+                                    <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance}}</p>
+                                    <p v-if="i.is_pre_price==='0' || i.is_volunteer==='1'">￥{{i.money}}</p>
+                                    <p class="pay" v-if="i.status === '1'" @click="payPrice(i.order_number)">前往支付</p>
+                                </div>
                         </div>
-                        <p class="payMsg"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span>（大绳币减免￥{{i.ds_coin/10}}）</p>
-                        </li>
+                    </div>
+                    <p class="payMsg"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span>（大绳币减免￥{{i.ds_coin/10}}）</p>
+                    </li>
                 </ul>
             </div>
     </div>
@@ -171,7 +171,13 @@
                 this.$http.post('/PcApi',{name:'pc.OrderDel',order_id:id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         console.log('删除成功');
-                        this.getList();
+                        this.$http.post('/PcApi',{name:'pc.ActOrderList',status:1,page:this.page},{emulateJSON:true}).then((res)=>{
+                            if(res.body.code === 1000){
+                                    this.lists = res.body.data.list;
+                            }
+                        }).catch((error)=>{
+                            console.log(error);
+                        })
                     }
                 }).catch((error)=>{
                     console.log(error);
