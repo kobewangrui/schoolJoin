@@ -94,7 +94,8 @@
     color: #888897;
 }
 .second table tr{
-    padding: .1rem 0;
+    display: block;
+    padding: .2rem 0;
 }
 .second table td:first-child{
     width: 1.6rem;
@@ -123,7 +124,7 @@
     margin-right: .2rem;
 }
 .second .dayTravel .days p{
-    width: .81rem;
+    min-width: .81rem;
     height: 1.11rem;
     background: url('../image/template2-rocket.png');
     background-size: 100% 100%;

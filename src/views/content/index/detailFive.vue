@@ -100,7 +100,12 @@
                     </p> 
                 </div>
                 <div v-for="i in notice3" :key="i.id" v-if="notice3!==null">
-                    <p class="titleColor">{{i[0]}}：{{i[1]}}</p>
+                    <table>
+                        <tr v-for="i in notice3" v-if="notice3!==null">
+                            <td>{{i[0]}}</td>
+                            <td v-html="i[1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
+                        </tr>
+                    </table>
                     <table>
                         <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
                             <tr>

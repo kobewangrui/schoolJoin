@@ -96,7 +96,7 @@
                 <div class="join" v-if="model_type==='4'">
                     <div class="joinIntro" v-for="i in notice3" v-if="notice3!==null">
                         <p class="tit"><span>{{i[0]}}</span><span></span></p>
-                        <p>{{i[1]}}</p>
+                        <p v-html="i[1].replace(/\s/g,'').replace(/\|/g,'</br>')"></p>
                         <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
                             <p>{{i.smallTitle[0]}}: {{i.smallTitle[1]}}</p>
                         </template>

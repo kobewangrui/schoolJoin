@@ -56,6 +56,9 @@
     padding: .01rem .1rem;
     position: relative;
 }
+.five .firstContent{
+    margin: .5rem 0;
+}
 .five .bgTitleFive span{
     display: inline-block;
     width: 0; 
@@ -70,20 +73,16 @@
     padding: 0 .4rem;
 }
 .five table td{
-    font-size: .28rem;
+    font-size: .3rem;
     color: #5E5E5E;
-}
-.five table tr:nth-child(odd){
-    background: #F7F7F7;
-}
-.fuve table tr:nth-child(even){
-    background: #EFFAFF;
 }
 .five table tr{
     padding: .2rem 0;
+    display: block;
 }
 .five table td:first-child{
-    width: 1.6rem;
+    font-weight: bold;
+    padding-left: .3rem;
 }
 .five .titleColor{
     color: #5E5E5E;
