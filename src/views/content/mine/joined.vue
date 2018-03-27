@@ -146,7 +146,7 @@
             },
             methods:{
                 getList(){
-                    this.$http.post('/PcApi',{name:'pc.ActOrderList',status:2,page:this.page},{emulateJSON:true}).then((res)=>{
+                    this.$http.post('/PcApi',{name:'pc.ActOrderList',status:this.$route.query.type,page:this.page},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             if(res.body.data.list.length > 0){
                                 this.lists = this.lists.concat(res.body.data.list);
