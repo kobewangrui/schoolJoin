@@ -366,7 +366,7 @@
                             <span v-if="i.type ==='2'">【家长】</span>
                             <span v-if="i.type ==='3'">【教师】</span>
                             <span v-if="i.type ==='4'">【其他】</span>
-                            <span class="delete" @click="deleteFri(i.id)">-</span>
+                            <span class="delete" @click="deleteFris(i.id)">-</span>
                         </div>
                     </div>
                 </div>
@@ -471,6 +471,8 @@
                             this.school = '';
                             this.card = '';
                             this.age = '';
+                            this.subject = '';
+                            this.address = '';
                         }
                     }).catch((error)=>{
                         console.log(error);
@@ -485,6 +487,8 @@
                 this.school = '';
                 this.card = '';
                 this.age = '';
+                this.subject = '';
+                this.address = '';
             },
             deleteFri(id){
                 this.$http.post('/PcApi',{name:'pc.Family.delete',id:id},{emulateJSON:true}).then((res)=>{
@@ -495,6 +499,13 @@
                 }).catch((error)=>{
                     console.log(error);
                 })
+            },
+            deleteFris(id){
+                for(let i=0; i<this.lists.length; i++){
+                    if(this.lists[i].id === id){
+                        this.lists.splice(i,1);
+                    }
+                }
             },
             order(){
                 let data = {

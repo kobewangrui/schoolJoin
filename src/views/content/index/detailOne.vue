@@ -57,7 +57,7 @@
                 </p>
                 <div class="pops" :class="{'popShow':popToggle}">
                     <p>志愿者要求<span class="closePop" @click="popToggle=false">×</span></p>
-                    <p class="basicContent">{{views.basicBC_YQ}}</p>
+                    <p class="basicContent" v-html="views.basicBC_YQ.replace(/\s/g,'').replace(/\|/g,'</br>')"></p>
                 </div>
                 <div class="cover" v-if="popToggle" @click="popToggle=false"></div>
             </div>
@@ -155,7 +155,7 @@
                 views:'',
                 timeGame:"",
                 popToggle:false,
-                is_volunteer:[]
+                is_volunteer:[],
             }
         },
         created(){
