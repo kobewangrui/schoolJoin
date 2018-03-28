@@ -162,7 +162,7 @@
     .join .pay{
         background: #F9C84E;
         color: #fff;
-        width: 2.3rem;
+        width: 2rem;
         text-align: center;
     }
     input[type='radio']{
