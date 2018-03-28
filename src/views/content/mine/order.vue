@@ -126,6 +126,7 @@
         methods:{
             wxSign(){
                 this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:location.href},{emulateJSON:true}).then((res)=>{
+                    console.log(location.href);
                     wx.config({
                         debug:false,
                         appId:'wx8387437705240b54',
