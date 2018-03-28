@@ -444,6 +444,8 @@
             this.basic_price = localStorage.getItem('basic_price');
             this.wxConfigSign();
             this.getFamilyList();
+            this.getCoins();
+            
         },
         vuerify:{
             type:['required'],
@@ -571,7 +573,7 @@
                                 this.$router.push({path:'/order',query:{type:2}});
                             },
                             fail:(err)=>{
-                                console.log(JSON.stringify(err));
+                                alert(JSON.stringify(err));
                             }
                         })
                     }
@@ -625,7 +627,7 @@
             },
             priceCount(){
                 this.getCoins();
-                if(this.is_pre_price === '1'){
+                if(this.is_pre_price === '1' && this.is_volunteer !== '1'){
                     this.pre_price = localStorage.getItem('pre_price');
                     this.all_price = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
                     this.pre_price *=  (this.childNumber.length + this.adultNumber.length);
@@ -637,7 +639,7 @@
                         this.money = this.all_price - this.pre_price - this.dsCoin;
                         this.balance = this.all_price;
                     }
-                }else if(this.is_volunteer === '1'){
+                }else if(this.is_volunteer === '1' || (this.is_volunteer === '1' && this.is_pre_price === '1')){
                     this.money = this.basic_price*(this.childNumber.length +this.adultNumber.length);
                     this.balance = 0;
                     this.dsCoin = 0;

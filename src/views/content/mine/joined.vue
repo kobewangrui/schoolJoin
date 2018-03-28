@@ -61,7 +61,7 @@
         justify-content: space-between;
     }
     .list .listText .price{
-        font-size: .32rem;
+        font-size: .3rem;
         color: #2f2b27;
         position: relative;
         bottom: -.4rem;
@@ -84,8 +84,13 @@
         color: #caa711;
         text-align: right;
     }
-    .deleteOrder{
-        float: left;
+    .balance{
+        margin-top: .3rem;
+        font-size: .3rem;
+    }
+    .balances{
+        margin-top: .4rem;
+        font-size: .3rem;
     }
 </style>
 <template>
@@ -107,17 +112,17 @@
                        <div class="listText">
                             <p>{{i.activity_name}}</p>
                             <div class="price">
-                                <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
-                                <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance + i.ds_coin/10}}</p>
-                                <p v-if="i.is_pre_price==='0' || i.is_volunteer==='1'">￥{{i.money + i.ds_coin/10}}</p>
-                                <p v-if="i.status === '2'">已报名</p>
+                                    <p v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">预支付:￥{{i.pre_price}}</p>
+                                    <p v-if="i.is_pre_price==='0' && i.is_volunteer==='0'">￥{{i.money}}</p>
+                                    <p v-if="(i.is_pre_price==='0' && i.is_volunteer==='1') || (i.is_pre_price==='1' && i.is_volunteer==='1')">义工:￥{{i.money}}</p>
+                                    <p v-if="i.status === '2'">已报名</p>
                                 <p class="pay" v-if="i.status === '4'">感受建议</p>
                             </div>
+                            <p :class="{'balance':i.status==='4','balances':i.status==='2'}" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{i.balance}}</p>
                        </div>
                    </div>
                    <router-link tag="p" :to="{path:'/suggest',query:{title:i.activity_name,id:i.activity_id}}"  class="payMsg" v-if="i.status === '4'">（提交活动感受及建议奖励666积分）</router-link>
-                   <p class="payMsg" v-if="i.status === '2'"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span>（短信通知）</p>
-                   <p class="payMsg" v-if="i.status !== '2'"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span></p>
+                   <p class="payMsg" v-if="i.status === '2'">（短信通知）</p>
                 </li>
            </ul>
        </div>
@@ -151,22 +156,6 @@
                             if(res.body.data.list.length > 0){
                                 this.lists = this.lists.concat(res.body.data.list);
                             }
-                        }
-                    }).catch((error)=>{
-                        console.log(error);
-                    })
-                },
-                deleteOrder(id){
-                    this.$http.post('/PcApi',{name:'pc.OrderDel',order_id:id},{emulateJSON:true}).then((res)=>{
-                        if(res.body.code === 1000){
-                            console.log('删除成功');
-                            this.$http.post('/PcApi',{name:'pc.ActOrderList',status:2,page:this.page},{emulateJSON:true}).then((res)=>{
-                                if(res.body.code === 1000){
-                                    this.lists = res.body.data.list;
-                                }
-                            }).catch((error)=>{
-                                console.log(error);
-                            })
                         }
                     }).catch((error)=>{
                         console.log(error);

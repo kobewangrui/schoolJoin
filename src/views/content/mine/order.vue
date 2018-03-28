@@ -43,7 +43,7 @@
         justify-content: space-between;
     }
     .list .listText .price{
-        font-size: .32rem;
+        font-size: .3rem;
         color: #2f2b27;
         position: relative;
         bottom: -.4rem;
@@ -69,6 +69,10 @@
     .deleteOrder{
         float: left;
     }
+    .balance{
+        margin-top: .26rem;
+        font-size: .3rem;
+    }
 </style>
 <template>
     <div class="outer">
@@ -83,11 +87,12 @@
                             <div class="listText">
                                 <p>{{i.activity_name}}</p>
                                 <div class="price">
-                                    <p v-if="i.is_pre_price==='1'">￥{{i.is_pre_price}}</p>
-                                    <p v-if="i.is_pre_price==='1'">余款:￥{{i.balance}}</p>
-                                    <p v-if="i.is_pre_price==='0' || i.is_volunteer==='1'">￥{{i.money}}</p>
+                                    <p v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">预支付:￥{{i.pre_price}}</p>
+                                    <p v-if="i.is_pre_price==='0' && i.is_volunteer==='0'">￥{{i.money}}</p>
+                                    <p v-if="(i.is_pre_price==='0' && i.is_volunteer==='1') || (i.is_pre_price==='1' && i.is_volunteer==='1')">义工:￥{{i.money}}</p>
                                     <p class="pay" v-if="i.status === '1'" @click="payPrice(i.order_number)">前往支付</p>
                                 </div>
+                                <p class="balance" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{i.balance}}</p>
                         </div>
                     </div>
                     <p class="payMsg"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span>（大绳币减免￥{{i.ds_coin/10}}）</p>
@@ -160,7 +165,7 @@
                 this.$http.post('/PcApi',{name:'pc.ActOrderList',status:1,page:this.page},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         if(res.body.data.list.length > 0){
-                            this.lists = this.lists.concat(res.body.data.list);
+                            // this.lists = this.lists.concat(res.body.data.list);
                         }
                     }
                 }).catch((error)=>{

@@ -97,7 +97,7 @@
                     <p class="integralTitle">积分</p>
                 </router-link>
                 <router-link to="/coinRule" tag="li">
-                    <p>{{$store.state.user.coin}}</p>
+                    <p>{{dsCoin}}</p>
                     <p class="integralTitle">大绳币</p>
                 </router-link>
             </ul>
@@ -110,7 +110,7 @@
                     </p>
                     <p>待付款</p>
                 </router-link>
-                <router-link to="/joined" tag="li">
+                <router-link :to="{path:'/joined',query:{type:2}}" tag="li">
                     <p>
                         <img :src="require('assets/image/apply.png')">
                     </p>
@@ -149,12 +149,22 @@
         name:'mine',
         data(){
             return{
+                dsCoin:0,
             }
         },
         created(){
+            this.getCoins();
         },
         methods:{
-
+            getCoins(){
+                this.$http.post('/PcApi',{name:'pc.UserCoin'},{emulateJSON:true}).then((res)=>{
+					if(res.body.code === 1000){
+                        this.dsCoin = res.body.data.Coin.coin;
+					}
+				}).catch((error)=>{
+					console.log(error);
+				})
+            },
         }
     }
 </script>

@@ -81,6 +81,7 @@
     display: block;
 }
 .five table td:first-child{
+    min-width: .16rem;
     font-weight: bold;
     padding-left: .3rem;
 }
