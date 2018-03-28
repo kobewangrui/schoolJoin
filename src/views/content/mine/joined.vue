@@ -118,7 +118,7 @@
                                     <p v-if="i.status === '2'">已报名</p>
                                 <p class="pay" v-if="i.status === '4'">感受建议</p>
                             </div>
-                            <p :class="{'balance':i.status==='4','balances':i.status==='2'}" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{parseInt(i.balance) + parseInt(i.ds_coin/10)}}</p>
+                            <p :class="{'balance':i.status==='4','balances':i.status==='2'}" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{i.balance}}</p>
                        </div>
                    </div>
                    <router-link tag="p" :to="{path:'/suggest',query:{title:i.activity_name,id:i.activity_id}}"  class="payMsg" v-if="i.status === '4'">（提交活动感受及建议奖励666积分）</router-link>

@@ -199,7 +199,7 @@
                             timestamp:datas.timestamp_pay,
                             nonceStr:datas.nonceStr_pay,
                             package:"prepay_id="+datas.package,
-                            signType:'MD5',
+                            signType:datas.signType,
                             paySign:datas.sign_pay,
                             success:(res)=>{
                                 console.log(JSON.stringify(res));

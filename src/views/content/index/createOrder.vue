@@ -566,13 +566,20 @@
                             timestamp:datas.timestamp_pay,
                             nonceStr:datas.nonceStr_pay,
                             package:"prepay_id="+datas.package,
-                            signType:'MD5',
+                            signType:datas.signType,
                             paySign:datas.sign_pay,
                             success:(res)=>{
-                                console.log(JSON.stringify(res));
-                                this.$router.push({path:'/order',query:{type:2}});
+                                alert(JSON.stringify(datas));
+                                alert(JSON.stringify(res));
+                                this.$router.push({path:'/joined',query:{type:2}});
+                            },
+                            cancel:(res)=>{
+                                alert(JSON.stringify(datas));
+                                alert(JSON.stringify(res));
+                                this.$router.push('/order');
                             },
                             fail:(err)=>{
+                                alert(JSON.stringify(datas));
                                 alert(JSON.stringify(err));
                             }
                         })
@@ -643,6 +650,7 @@
                     this.money = this.basic_price*(this.childNumber.length +this.adultNumber.length);
                     this.balance = 0;
                     this.dsCoin = 0;
+                    this.is_pre_price = 0;
                 }else{
                     this.all_price = (this.parent_price*(this.adultNumber.length) + this.children_price*(this.childNumber.length));
                     if(this.all_price-this.dsCoin <= 0){

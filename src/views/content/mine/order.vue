@@ -92,7 +92,7 @@
                                     <p v-if="(i.is_pre_price==='0' && i.is_volunteer==='1') || (i.is_pre_price==='1' && i.is_volunteer==='1')">义工:￥{{i.money}}</p>
                                     <p class="pay" v-if="i.status === '1'" @click="payPrice(i.order_number)">前往支付</p>
                                 </div>
-                                <p class="balance" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{parseInt(i.balance) + parseInt(i.ds_coin/10)}}</p>
+                                <p class="balance" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{i.balance}}</p>
                         </div>
                     </div>
                     <p class="payMsg"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span>（大绳币减免￥{{i.ds_coin/10}}）</p>
@@ -146,7 +146,7 @@
                             timestamp:datas.timestamp_pay,
                             nonceStr:datas.nonceStr_pay,
                             package:"prepay_id="+datas.package,
-                            signType:'MD5',
+                            signType:datas.signType,
                             paySign:datas.sign_pay,
                             success:(res)=>{
                                 console.log(JSON.stringify(res));
