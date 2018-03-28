@@ -569,18 +569,15 @@
                             signType:datas.signType,
                             paySign:datas.sign_pay,
                             success:(res)=>{
-                                alert(JSON.stringify(datas));
-                                alert(JSON.stringify(res));
+                                console.log(JSON.stringify(res));
                                 this.$router.push({path:'/joined',query:{type:2}});
                             },
                             cancel:(res)=>{
-                                alert(JSON.stringify(datas));
-                                alert(JSON.stringify(res));
+                                console.log(JSON.stringify(res));
                                 this.$router.push('/order');
                             },
                             fail:(err)=>{
-                                alert(JSON.stringify(datas));
-                                alert(JSON.stringify(err));
+                                console.log(JSON.stringify(err));
                             }
                         })
                     }
