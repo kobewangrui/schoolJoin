@@ -152,7 +152,12 @@
     }
     .join .talk{
         color: #93887F;
-        font-size: .26rem;
+        font-size: .2rem;
+        line-height: .4rem;
+        margin-top: .16rem;
+    }
+    .join .talk p{
+        display: block;
     }
     .join .pay{
         background: #F9C84E;
@@ -375,7 +380,10 @@
                 <p class="price" v-if="is_pre_price!=='1' && is_volunteer!=='1'">本次支付：<span>￥{{money}}</span></p>
                 <p class="price" v-if="is_pre_price==='1' && is_volunteer!=='1'">需预支付：<span>￥{{pre_price}}</span></p>
                 <p class="price" v-if="is_volunteer==='1' || (is_pre_price==='1' && is_volunteer==='1')">义工支付：<span>￥{{money}}</span></p>
-                <p class="talk">余款沟通后缴纳</p>
+                <div class="talk">
+                    <p>余款沟通后缴纳</p>
+                    <p>大绳币抵扣￥{{mmp}}</p>
+                </div>
                 <p class="pay" @click="order">立即报名</p>
             </div>
         </div>
