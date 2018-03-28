@@ -165,7 +165,7 @@
                 this.$http.post('/PcApi',{name:'pc.ActOrderList',status:1,page:this.page},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         if(res.body.data.list.length > 0){
-                            // this.lists = this.lists.concat(res.body.data.list);
+                            this.lists = this.lists.concat(res.body.data.list);
                         }
                     }
                 }).catch((error)=>{
