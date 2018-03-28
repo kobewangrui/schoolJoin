@@ -113,12 +113,12 @@
                             <p>{{i.activity_name}}</p>
                             <div class="price">
                                     <p v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">预支付:￥{{i.pre_price}}</p>
-                                    <p v-if="i.is_pre_price==='0' && i.is_volunteer==='0'">￥{{i.money}}</p>
+                                    <p v-if="i.is_pre_price==='0' && i.is_volunteer==='0'">￥{{parseInt(i.money) + parseInt(i.ds_coin/10)}}</p>
                                     <p v-if="(i.is_pre_price==='0' && i.is_volunteer==='1') || (i.is_pre_price==='1' && i.is_volunteer==='1')">义工:￥{{i.money}}</p>
                                     <p v-if="i.status === '2'">已报名</p>
                                 <p class="pay" v-if="i.status === '4'">感受建议</p>
                             </div>
-                            <p :class="{'balance':i.status==='4','balances':i.status==='2'}" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{i.balance}}</p>
+                            <p :class="{'balance':i.status==='4','balances':i.status==='2'}" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{parseInt(i.balance) + parseInt(i.ds_coin/10)}}</p>
                        </div>
                    </div>
                    <router-link tag="p" :to="{path:'/suggest',query:{title:i.activity_name,id:i.activity_id}}"  class="payMsg" v-if="i.status === '4'">（提交活动感受及建议奖励666积分）</router-link>

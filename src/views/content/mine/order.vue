@@ -88,11 +88,11 @@
                                 <p>{{i.activity_name}}</p>
                                 <div class="price">
                                     <p v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">预支付:￥{{i.pre_price}}</p>
-                                    <p v-if="i.is_pre_price==='0' && i.is_volunteer==='0'">￥{{i.money}}</p>
+                                    <p v-if="i.is_pre_price==='0' && i.is_volunteer==='0'">￥{{parseInt(i.money) + parseInt(i.ds_coin/10)}}</p>
                                     <p v-if="(i.is_pre_price==='0' && i.is_volunteer==='1') || (i.is_pre_price==='1' && i.is_volunteer==='1')">义工:￥{{i.money}}</p>
                                     <p class="pay" v-if="i.status === '1'" @click="payPrice(i.order_number)">前往支付</p>
                                 </div>
-                                <p class="balance" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{i.balance}}</p>
+                                <p class="balance" v-if="i.is_pre_price==='1' && i.is_volunteer!=='1'">余款:￥{{parseInt(i.balance) + parseInt(i.ds_coin/10)}}</p>
                         </div>
                     </div>
                     <p class="payMsg"><span class="deleteOrder" @click="deleteOrder(i.order_id)">删除</span>（大绳币减免￥{{i.ds_coin/10}}）</p>
