@@ -150,7 +150,10 @@
                             paySign:datas.sign_pay,
                             success:(res)=>{
                                 console.log(JSON.stringify(res));
-                                this.$router.push({path:'/order',query:{type:2}});
+                                this.$router.push({path:'/joined',query:{type:2}});
+                            },
+                            cancel:(res)=>{
+                                console.log(JSON.stringify(res));
                             },
                             fail:(err)=>{
                                 console.log(JSON.stringify(err));

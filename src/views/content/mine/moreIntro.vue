@@ -203,6 +203,10 @@
                             paySign:datas.sign_pay,
                             success:(res)=>{
                                 console.log(JSON.stringify(res));
+                                this.$router.push('/moreIntro');
+                            },
+                            cancel:(res)=>{
+                                console.log(JSON.stringify(res));
                             },
                             fail:(err)=>{
                                 console.log(JSON.stringify(err));
