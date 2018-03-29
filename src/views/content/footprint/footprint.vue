@@ -95,7 +95,7 @@
            <p class="more">></p>
         </router-link>
         <ul v-if="lists.length>0">
-            <router-link tag="li" to="/" v-for="i in lists" :key="i.id">
+            <li v-for="i in lists" :key="i.id">
                 <div class="imgShow">
                     <img :src="i.cover">
                 </div>
@@ -113,7 +113,7 @@
                         <span>活动相册</span>
                     </p>
                 </div>
-            </router-link>
+            <li>
         </ul>
         <p v-else class="contentNull">暂无足迹</p>
     </div>
