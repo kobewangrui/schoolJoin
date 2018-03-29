@@ -6,6 +6,10 @@
         max-width: 7rem;
         margin-bottom: .3rem;
     }
+    .contentHonorDetail p img{
+        max-width: 7rem;
+        margin-bottom: .3rem;
+    }
 </style>
 <template>
     <div class="contentHonorDetail">
