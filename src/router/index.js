@@ -150,9 +150,18 @@ export default function (VueRouter,store) {
 			component: require('views/content/mine/edit.vue'),
 		},
 	]
+	// let u = navigator.userAgent; 
+	// let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端 
+	// let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端 
+	// let = routeMode;
+	// if(isAndroid){
+	// 	routeMode = 'hash';
+	// }else if(isiOS){
+	// 	routeMode = 'history';
+	// }
   const router = new VueRouter({
-		mode: 'history',
-		base: '/dist',
+		mode:'hash',
+		// base: '/dist',
 		routes
 	})
 	router.beforeEach((to, from, next)=>{

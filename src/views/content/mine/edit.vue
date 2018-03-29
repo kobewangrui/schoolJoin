@@ -41,7 +41,7 @@
     .list .more .right{
         vertical-align: middle;
     }
-    .list textarea{
+    .change .list textarea{
         width: 100%;
         height: 2rem;
         font-size: .34rem;
@@ -69,6 +69,7 @@
     }
     .nameIpt{
         margin-right: 1.25rem;
+        min-width: 3.9rem;
     }
 </style>
 <style lang="css">
@@ -107,6 +108,9 @@
     .change .yd-cell-icon{
         display: none;
     }
+    .change .yd-cell:after{
+        width:0;
+    }
     .change .yd-cell-left{
         font-size: .34rem;
     }
@@ -123,7 +127,7 @@
         <div class="list">
             <span>头像</span>
             <div class="more">
-                <img :src="$store.state.user.image">
+                <img :src="userMsg.image">
                 <span class="right"> > </span>
             </div>
         </div>
@@ -155,7 +159,7 @@
             <span class="right"> > </span>
         </div>
         <div class="list">
-            <span>手机 <span class="PhoneText">{{$store.state.user.mobile}}</span></span>
+            <span>手机 <span class="PhoneText">{{userMsg.mobile}}</span></span>
             <router-link to="/changePhone" tag="span" class="rightChange"> 修改 </router-link>
         </div>
         <div class="list">
@@ -204,17 +208,12 @@
                 gender: '',
                 school: '',
                 address: '',
-                idcard:''
+                idcard:'',
+                userMsg:'',
             }
         },
         created(){
-                this.model2 = this.$store.state.user.city;
-                this.real_name = this.$store.state.user.name
-                this.school = this.$store.state.user.school;
-                this.address = this.$store.state.user.address;
-                this.gender = this.$store.state.user.gender;
-                this.idcard = this.$store.state.user.idcard;
-                this.dateTime= this.fomartDate(this.$store.state.user.birthday);
+            this.getUserMsg();
         },
         vuerify:{
             real_name:['required'],
@@ -253,7 +252,8 @@
                     let dt = ds.getTime()/1000;
                     this.$http.post('/PcApi',{name:'pc.Login.editInfo',idcard:this.idcard,real_name:this.real_name,gender:this.gender,birthday:dt,school:this.school,city:this.model2,address:this.address},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
-                            location.replace("http://www.dashengxiji.xyz/dist/");
+                            this.getUserMsg();
+                            this.$router.push("/mine");
                         }
                     }).catch((error)=>{
                         console.log(error);
@@ -262,6 +262,22 @@
             },
             result2(ret){
                 this.model2 = ret.itemName1 + ' ' + ret.itemName2 + ' ' + ret.itemName3; 
+            },
+            getUserMsg(){
+                    this.$http.post('/PcApi',{name:'pc.Login.getInfoById',id:this.$store.state.user.id},{emulateJSON:true}).then((res)=>{
+                        if(res.body.code === 1000){
+                            this.userMsg = res.body.data;
+                            this.model2 = res.body.data.city;
+                            this.real_name = res.body.data.name
+                            this.school = res.body.data.school;
+                            this.address = res.body.data.address;
+                            this.gender = res.body.data.gender;
+                            this.idcard = res.body.data.idcard;
+                            this.dateTime= this.fomartDate(res.body.data.birthday);
+                        }
+                    }).catch((error)=>{
+                        console.log(error);
+                    })
             }
         }
     }

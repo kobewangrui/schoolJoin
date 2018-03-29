@@ -47,6 +47,62 @@
         position: fixed;
         bottom: 0;
     }
+    .cltList{
+        width: 5rem;
+        max-height: 4rem;
+        padding: .4rem .5rem;
+        background: #fff;
+        position: fixed;
+        left: 0.75rem;
+        top: 25%;
+        z-index: 6;
+        text-align:center;
+    }
+    .cltList .titleList{
+        text-align: center;
+        margin-bottom: .4rem;
+    }
+    .cltList ul li{
+        margin-bottom: .2rem;
+    }
+    .cltList label.choose{
+        display: inline-block;
+        width: .3rem;
+        height: .3rem;
+        color: #fff;
+        background: #fff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: .3rem;
+        font-size: .3rem;
+        border: .02rem solid #d8d8d8;
+    }
+    .cltList input[type='radio']{
+        display: none;
+    }
+    .cltList input[type='radio']:checked+label.choose{
+        background: #f9c84e;
+    }
+    .cover{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,.2);
+        position: fixed;
+        top: 0;
+        z-index: 5;
+    }
+    .confirm{
+        text-align:center;
+        margin-top:.5rem;
+    }
+    .confirm button{
+        width: 3.9rem;
+        height: .86rem;
+        color: #fff;
+        border-radius: .42rem;
+        background: #f9c84e;
+        font-size: .34rem;
+    }
 </style>
 <template>
     <div class="photo">
@@ -62,6 +118,25 @@
         <p class="size">相册容量：剩余{{left_volume}}M，共{{total_volume}}M</p>
         <router-link to="/moreIntro" tag="p" class="more">了解更多</router-link>
         <p class="tableBottom" @click="createPhoto">新建相册</p>
+        <div class="cltList" v-if="cltListShow">
+            <p class="titleList">选择新建相册类型</p>
+            <ul>
+                <li>
+                    <label for="upload">用于上传</label>
+                    <input name="photo" id="upload" type="radio" v-model="types" value="1">
+                    <label class="choose" for="upload"></label>
+                </li>
+                <li>
+                    <label for="clt">用于收藏</label>
+                    <input name="photo" id="clt" type="radio" v-model="types" value="2">
+                    <label class="choose" for="clt"></label>
+                </li>
+            </ul>
+            <p class="confirm">
+                <button @click="likeSuccess">确认</button>
+            </p>
+        </div>
+        <div class="cover" v-if="cltListShow" @click="cltListShow=false"></div>
     </div>
 </template>
 <script>
@@ -70,13 +145,25 @@
             return {
                 lists:'',
                 total_volume:'',
-                left_volume:''
+                left_volume:'',
+                cltListShow:false,
+                types:1,
             }
         },
         created(){
             this.getList();
         },
-        methods:{
+        methods:{        
+            likeSuccess(){
+                this.cltListShow = false;
+                this.$http.post('/PcApi',{name:'pc.Album.createAlbum',album_name:'新建相册',type:this.types},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.getList();
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })     
+            },
             getList(){
                 this.$http.post('/PcApi',{name:'pc.Album.myPictures'},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
@@ -89,13 +176,7 @@
                 })
             },
             createPhoto(){
-                this.$http.post('/PcApi',{name:'pc.Album.createAlbum',album_name:'新建相册',type:1},{emulateJSON:true}).then((res)=>{
-                    if(res.body.code === 1000){
-                        this.getList();
-                    }
-                }).catch((error)=>{
-                    console.log(error);
-                })
+                this.cltListShow = true;
             }
         }
     }

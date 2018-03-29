@@ -553,8 +553,8 @@
                 }
             },
             wxConfigSign(){
-                this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:location.href},{emulateJSON:true}).then((res)=>{
-                    console.log(location.href);
+                let url = window.location.href.split('#')[0];
+                this.$http.post('/PcApi',{name:'pc.wxpay.getWxSign',url:url},{emulateJSON:true}).then((res)=>{
                     wx.config({
                         debug:false,
                         appId:'wx8387437705240b54',
