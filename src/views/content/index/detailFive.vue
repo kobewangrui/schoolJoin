@@ -106,14 +106,18 @@
                             <td v-html="i[1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
                         </tr>
                     </table>
-                    <table>
-                        <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
-                            <tr>
-                                <td>{{i.smallTitle[0]}}：</td>
-                                <td>{{i.smallTitle[1]}}</td>
-                            </tr>
-                        </template>
-                    </table>
+                    <template v-for="i in notice3" v-if="notice3!==null">
+                        <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
+                            <table>
+                                <template v-if="j!==undefined || j===[]">
+                                    <tr>
+                                        <td>{{i.smallTitle[2*idx]}}：</td>
+                                        <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
+                                    </tr>
+                                </template>
+                            </table>
+                        </div>
+                    </template>
                 </div>
             </div>
             <!-- 服务保障 -->

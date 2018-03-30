@@ -10,7 +10,7 @@
                     <p class="titleT">活动主题：{{views.activity_name}}</p>
                     <div class="price">
                         <p class="sign">
-                            <span v-for="i in views.label.split(',')" v-if="views.label!==''">{{i}}</span>
+                            <!-- <span v-for="i in views.label.split(',')" v-if="views.label!==''">{{i}}</span> -->
                         </p>
                         <p>￥{{views.price}}</p>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="dates">
                     <p class="titleT">活动档期</p>
                     <ul>
-                        <li v-for="(i,index) in views.mtschedule">{{isVolunteer}}
+                        <li v-for="(i,index) in views.mtschedule">
                             <input :id="'d'+index" v-model="timeGame" :value="{'date':i.starttime,'files_id':i.files_id}" type="radio" name="date">
                             <label :for="'d'+index">
                                 <p>起：{{i.starttime | dateTime}}</p>
@@ -113,13 +113,13 @@
                         </tr>
                     </table>
                 </div>
-                <template>
-                    <div v-for="i in notice3" :key="i.id" v-if="notice3!==null">
+                <template v-for="i in notice3" v-if="notice3!==null">
+                    <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
                         <table>
-                            <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
+                            <template v-if="j!==undefined || j===[]">
                                 <tr>
-                                    <td>{{i.smallTitle[0]}}：</td>
-                                    <td>{{i.smallTitle[1]}}</td>
+                                    <td>{{i.smallTitle[2*idx]}}：</td>
+                                    <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
                                 </tr>
                             </template>
                         </table>

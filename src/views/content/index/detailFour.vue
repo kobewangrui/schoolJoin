@@ -97,8 +97,13 @@
                     <div class="joinIntro" v-for="i in notice3" v-if="notice3!==null">
                         <p class="tit"><span>{{i[0]}}</span><span></span></p>
                         <p v-html="i[1].replace(/\s/g,'').replace(/\|/g,'</br>')"></p>
-                        <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
-                            <p>{{i.smallTitle[0]}}: {{i.smallTitle[1]}}</p>
+                        <template v-for="i in notice3" v-if="notice3!==null">
+                            <template v-for="(j,idx) in (i.smallTitle.length/2)">
+                                <p v-if="j!==undefined || j===[]">
+                                    <span>{{i.smallTitle[2*idx]}}：</span>
+                                    <span v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></span>
+                                </p>
+                            </template>
                         </template>
                     </div>
                 </div>

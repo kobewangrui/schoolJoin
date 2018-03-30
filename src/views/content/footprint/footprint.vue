@@ -24,6 +24,7 @@
         margin-bottom: 1.5rem;
     }
 	.list ul li{
+        text-align: center;
 		background: #fff;
 		box-sizing: border-box;
 		padding: .3rem 0;
@@ -106,7 +107,7 @@
                 <div class="time">
                     <p>
                         <img :src="require('assets/image/datepicker.png')">
-                        <span>{{i.start}}</span>
+                        <span>{{i.start | dateTime}}</span>
                     </p>
                     <p>
                         <span>荣誉证书</span>

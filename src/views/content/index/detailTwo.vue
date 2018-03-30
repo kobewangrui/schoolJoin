@@ -97,13 +97,13 @@
                         </tr>
                     </table>
                 </div>
-                <template>
-                    <div v-for="i in notice3" :key="i.id" v-if="notice3!==null">
+                <template v-for="i in notice3" v-if="notice3!==null">
+                    <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
                         <table>
-                            <template v-if="i.smallTitle!==undefined || i.smallTitle===[]">
+                            <template v-if="j!==undefined || j===[]">
                                 <tr>
-                                    <td>{{i.smallTitle[0]}}：</td>
-                                    <td>{{i.smallTitle[1]}}</td>
+                                    <td>{{i.smallTitle[2*idx]}}：</td>
+                                    <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
                                 </tr>
                             </template>
                         </table>

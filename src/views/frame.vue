@@ -59,7 +59,7 @@
 			},
 			wxLogin(){
 				location.replace(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8387437705240b54&redirect_uri=http://www.dashengxiji.xyz/WxMsg/getCode&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect`);
-			}
-		}
+			},
+		},
 	}
 </script>
