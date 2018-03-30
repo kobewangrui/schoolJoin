@@ -125,7 +125,7 @@
 <template>
     <div class="outer">
         <p class="title">
-            <span>{{msg.name}}</span>
+            <span>{{$route.query.name}}</span>
             <span>{{$route.query.time | dateTime}}</span>
         </p>
         <div class="detail">
@@ -168,7 +168,6 @@
         data(){
             return {
                 lists:'',
-                msg:'',
                 edit:true,
                 photoList:[],
                 cltList:[],
@@ -185,7 +184,6 @@
                 this.$http.post('/PcApi',{name:'pc.Album.actPicDetail',act_id:this.$route.query.id},{emulateJSON:true}).then((res)=>{
                     if(res.body.code === 1000){
                         this.lists = res.body.data;
-                        this.msg = res.body.msg;
                     }
                 }).catch((error)=>{
                     console.log(error);
@@ -223,7 +221,8 @@
                 this.cltId = '';
             },
             likeSuccess(){
-                this.$http.post('/PcApi',{name:'pc.Album.collect',pic_id:this.photoList,album:this.cltId},{emulateJSON:true}).then((res)=>{
+                let list = this.photoList.join(',');
+                this.$http.post('/PcApi',{name:'pc.Album.collect',pic_id:list,album_id:this.cltId},{emulateJSON:true}).then((res)=>{
                         if(res.body.code === 1000){
                             this.$router.push('/photo');
                             this.cltListShow = false;

@@ -113,7 +113,7 @@
                         <span>活动相册</span>
                     </p>
                 </div>
-            <li>
+            </li>
         </ul>
         <p v-else class="contentNull">暂无足迹</p>
     </div>

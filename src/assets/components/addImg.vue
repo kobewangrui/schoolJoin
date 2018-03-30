@@ -4,7 +4,7 @@
             <span class="delete" @click.stop="deleteImg(i)">×</span> -->
 		    <!-- <img :src="img"> -->
 		</span>
-		<span class="img-wrapper add" v-show="files.length < 5" @click="clickAddImg">上传图片</span>
+		<span class="img-wrapper add" @click="clickAddImg">上传图片</span>
 		<input type="file" multiple accept="image/*"  class="c-file-input" @change="addImg">
 	</div>
 </template>

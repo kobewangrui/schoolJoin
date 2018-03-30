@@ -30,7 +30,7 @@
 <template>
     <div class="photo">
         <ul class="list">
-            <router-link v-for="i in lists" :key="i.id" tag="li" :to="{path:'/photoDetail',query:{id:i.activity_id,time:i.starttime}}">
+            <router-link v-for="i in lists" :key="i.id" tag="li" :to="{path:'/photoDetail',query:{name:i.activity_name,id:i.activity_id,time:i.starttime}}">
                 <p>
                     <img :src="i.cover">
                 </p>

@@ -139,8 +139,8 @@
             <p class="footer"><span></span>主办方：{{sponsor}}</p>
 
         </div>
-        <p :class="{'JoinGameActive':timeGame!=='' && (timeGame.date-nowDate>=0)}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]!=='1'">立即报名</p>
-        <p :class="{'JoinGameActive':timeGame!=='' && (timeGame.date-nowDate>=0)}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]==='1'">义工报名</p>
+        <p :class="{'JoinGameActive':timeGame!=='' && (timeGame.date-(views.Tq_Enroll_Day*60*60*24) > nowDate)}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]!=='1'">立即报名</p>
+        <p :class="{'JoinGameActive':timeGame!=='' && (timeGame.date-(views.Tq_Enroll_Day*60*60*24) > nowDate) && ($store.state.user.level>=views.basicYQ)}" class="joinGame" @click="goOrder" v-if="is_volunteer[0]==='1'">义工报名</p>
     </div>
 </template>
 <script>
@@ -158,6 +158,7 @@
                 popToggle:false,
                 is_volunteer:[],
                 nowDate:(new Date().getTime())/1000,
+                rule:false                
             }
         },
         created(){
@@ -184,7 +185,12 @@
                 this.popToggle=true;
             },
             goOrder(){
-                if(this.timeGame!=='' && (this.timeGame.date-this.nowDate>=0)){
+                if(this.is_volunteer[0]==='1'){
+                   this.rule =  this.timeGame!=='' && (this.timeGame.date-(this.views.Tq_Enroll_Day*60*60*24) > this.nowDate) && (this.$store.state.user.level>=this.views.basicYQ);
+                }else{
+                    this.rule = this.timeGame!=='' && (this.timeGame.date-(this.views.Tq_Enroll_Day*60*60*24) > this.nowDate);
+                }
+                if(this.rule){
                     localStorage.setItem('title',this.views.activity_name);
                     localStorage.address = this.views.activity_address;
                     localStorage.contacts = this.views.contacts===undefined?'':this.views.contacts;

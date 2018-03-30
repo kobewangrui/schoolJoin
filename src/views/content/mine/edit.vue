@@ -264,20 +264,20 @@
                 this.model2 = ret.itemName1 + ' ' + ret.itemName2 + ' ' + ret.itemName3; 
             },
             getUserMsg(){
-                    this.$http.post('/PcApi',{name:'pc.Login.getInfoById',id:this.$store.state.user.id},{emulateJSON:true}).then((res)=>{
-                        if(res.body.code === 1000){
-                            this.userMsg = res.body.data;
-                            this.model2 = res.body.data.city;
-                            this.real_name = res.body.data.name
-                            this.school = res.body.data.school;
-                            this.address = res.body.data.address;
-                            this.gender = res.body.data.gender;
-                            this.idcard = res.body.data.idcard;
-                            this.dateTime= this.fomartDate(res.body.data.birthday);
-                        }
-                    }).catch((error)=>{
-                        console.log(error);
-                    })
+                this.$http.post('/PcApi',{name:'pc.Login.getInfoById',id:this.$store.state.user.id},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.userMsg = res.body.data;
+                        this.model2 = res.body.data.city;
+                        this.real_name = res.body.data.name
+                        this.school = res.body.data.school;
+                        this.address = res.body.data.address;
+                        this.gender = res.body.data.gender;
+                        this.idcard = res.body.data.idcard;
+                        this.dateTime= this.fomartDate(res.body.data.birthday);
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
             }
         }
     }

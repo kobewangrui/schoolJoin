@@ -197,7 +197,7 @@
             </li>
             <li @click="edits">编辑</li>
             <li class="upload">
-                <addImg @clickImg = "clickImg" :max="5" @imgChange = "imgChange"></addImg>
+                <addImg @clickImg = "clickImg" :max="10" @imgChange = "imgChange"></addImg>
             </li>
         </ul>
         <ul class="bottomDelete" v-else>
@@ -318,7 +318,7 @@
                 })
                 fm.append('name','pc.Album.upload_img');
                 fm.append('album_id',this.$route.query.id);
-                console.log(fm);
+                console.log(JSON.stringify(fm));
                 this.$http.post('/PcApi',fm,{emulateJSON:true}).then((res)=>{
 					if(res.body.code === 1000){
 						console.log('上传成功');

@@ -123,7 +123,7 @@
                 </li>
             </ul>
             <p class="intro">当前容量</p>
-            <p class="vals">剩余{{$store.state.user.volume}}M，共{{$store.state.user.total_volume}}M</p>
+            <p class="vals">剩余{{userMsg.volume}}M，共{{userMsg.total_volume}}M</p>
             <p class="up">提高容量（有效期为一年）</p>
             <ul class="dates">
                 <li v-for="(i,index) in list" >
@@ -146,12 +146,14 @@
             return{
                 goods:"",
                 list:[],
-                money:0
+                money:0,
+                userMsg:''
             }
         },
         created(){
             this.wxconfigStart();
             this.getList();
+            this.getUserMsg();
         },
         vuerify:{
             goods:['required'],
@@ -205,6 +207,7 @@
                             success:(res)=>{
                                 console.log(JSON.stringify(res));
                                 this.$router.push('/moreIntro');
+                                this.getUserMsg();
                             },
                             cancel:(res)=>{
                                 console.log(JSON.stringify(res));
@@ -218,6 +221,15 @@
                     console.log(error);
                 })
             },
+            getUserMsg(){
+                this.$http.post('/PcApi',{name:'pc.Login.getInfoById',id:this.$store.state.user.id},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                        this.userMsg = res.body.data;
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
+            }
         },
         watch:{
             'goods':function(val){
