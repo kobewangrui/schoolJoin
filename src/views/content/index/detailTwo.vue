@@ -27,7 +27,7 @@
                         </li>
                     </ul>
                     <div class="personCount">
-                        <p>请提前{{views.Tq_Enroll_Day}}天报名</p>
+                        <p v-if="views.Tq_Enroll_Day>0">请提前{{views.Tq_Enroll_Day}}天报名</p>
                         <!-- <p>已报名700人</p> -->
                     </div>
                 </div>
