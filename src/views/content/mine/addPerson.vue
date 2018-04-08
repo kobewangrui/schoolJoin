@@ -109,7 +109,7 @@
                 <label for="school">学校</label>
                 <input id="school" v-model="school" type="text" placeholder="请输入学校">
             </div>
-            <div v-if="type==='1' || type==='3'">
+            <div v-if="type==='3'">
                 <label for="subject">学科</label>
                 <input id="subject" v-model="subject" type="text" placeholder="请输入学科">
             </div>
