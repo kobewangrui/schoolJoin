@@ -95,7 +95,6 @@
 }
 .second table tr{
     display: block;
-    padding: .2rem 0;
 }
 .second table td:first-child{
     width: 1.6rem;

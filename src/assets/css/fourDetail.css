@@ -23,9 +23,9 @@
     vertical-align: middle;
 }
 .four .join .joinIntro p:last-child{
-    color: #785A48;
+    /* color: #785A48; */
     font-size: .3rem;
-    padding-left: .4rem;
+    /* padding-left: .4rem; */
 }
 .four .dayTravel .number{
     text-align: center;

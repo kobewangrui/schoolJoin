@@ -7,7 +7,7 @@
                     <img :src="views.path">
                 </p>
                 <div class="headerMsg">
-                    <p class="titleT">活动主题：{{views.activity_name}}</p>
+                    <p class="titleT"><span class="orangeColor">活动主题：</span>{{views.activity_name}}</p>
                     <div class="price">
                         <p class="sign">
                             <!-- <span v-for="i in views.label.split(',')" v-if="views.label!==''">{{i}}</span> -->
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="dates">
-                    <p class="titleT">活动档期</p>
+                    <p class="titleT orangeColor">活动档期</p>
                     <ul>
                         <li v-for="(i,index) in views.mtschedule">
                             <input :id="'d'+index" v-model="timeGame" :value="{'date':i.starttime,'files_id':i.files_id}" type="radio" name="date">
@@ -33,7 +33,7 @@
                 </div>
             <div class="volunteer" v-if="views.volunteer==='1'">
                 <div class="volunteerJoin">
-                    <p>我要当义工</p>
+                    <p class="orangeColor">我要当义工</p>
                     <p>
                         <input id="work" type="checkbox" name="work" v-model="is_volunteer" value="1">
                         <label for="work"></label>
@@ -81,7 +81,7 @@
                                 <td>上午</td>
                                 <td>
                                     <p>{{i.morning}}</p>
-                                    <img :src="i.image">
+                                    <img v-if="i.image!==undefined" :src="i.image">
                                 </td>
                             </tr>
                             <tr v-if="i.noon!==undefined">

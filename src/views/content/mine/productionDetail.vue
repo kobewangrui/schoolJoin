@@ -168,11 +168,14 @@
     .popShow{
         transform: scale(1,1);
     }
+    .eventsNone{
+        pointer-events: none;
+    }
 </style>
 <template>
     <div class="outer">
         <p class="title">
-            <span class="names" @click="popHandle=true">{{names}}<span class="editName">修改</span></span>
+            <span class="names" :class="{'eventsNone':edit}" @click="popHandle=true">{{names}}<span v-if="!edit" class="editName">修改</span></span>
             <span class="dateTime">{{$route.query.time | dateTime}}</span>
         </p>
         <div class="detail">
