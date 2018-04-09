@@ -73,6 +73,7 @@
                 <div class="dayTravels" v-if="notice2!==null">
                     <div class="days" v-for="(i,index) in notice2" :key="i.id">
                         <ul>
+                            <li class="titleColor">{{i.day}}</li>                        
                             <li class="content" v-if="i.morning!==undefined"><span></span>{{i.morning}}</li>
                             <li class="content" v-if="i.image !==undefined">
                                 <img :src="i.image">
