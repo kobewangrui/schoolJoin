@@ -68,7 +68,8 @@
             <p class="bgTitle" v-if="model_type === '3'">
                 <img :src="require('assets/image/template3-flag.png')" class="bgImg">
                 <span class="haveBG">日程安排</span>
-                <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span>
+                <!-- <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span> -->
+                <span class="titleColor" v-if="notice2!==null">【{{views.activity_time}}】</span>
             </p>
             <div class="dayTravel">
                 <div class="dayTravels" v-if="notice2!==null">
@@ -98,16 +99,18 @@
                     </table>
                 </div>
                 <template v-for="i in notice3" v-if="notice3!==null">
-                    <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
-                        <table>
-                            <template v-if="j!==undefined || j===[]">
-                                <tr>
-                                    <td>{{i.smallTitle[2*idx]}}：</td>
-                                    <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
-                                </tr>
-                            </template>
-                        </table>
-                    </div>
+                    <template v-if="i.smallTitle!==undefined">
+                        <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
+                            <table>
+                                <template v-if="j!==undefined || j===[]">
+                                    <tr>
+                                        <td>{{i.smallTitle[2*idx]}}：</td>
+                                        <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
+                                    </tr>
+                                </template>
+                            </table>
+                        </div>
+                    </template>
                 </template>
             </div>
             <!-- 服务保障 -->

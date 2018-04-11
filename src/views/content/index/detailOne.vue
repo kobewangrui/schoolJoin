@@ -10,7 +10,7 @@
                     <p class="titleT"><span class="orangeColor">活动主题：</span>{{views.activity_name}}</p>
                     <div class="price">
                         <p class="sign">
-                            <!-- <span v-for="i in views.label.split(',')" v-if="views.label!==''">{{i}}</span> -->
+                            <span v-for="i in views.label.split(',')" v-if="views.label!==''">{{i}}</span>
                         </p>
                         <p>￥{{views.price}}</p>
                     </div>
@@ -68,7 +68,8 @@
             <div class="dayTravel">
                 <p class="bgTitle">
                     <span class="haveBG">日程安排</span>
-                    <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span>
+                    <!-- <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span> -->
+                    <span class="titleColor" v-if="notice2!==null">【{{views.activity_time}}】</span>
                 </p>
                 <div class="dayTravels" v-if="notice2!==null">
                     <table>
@@ -114,16 +115,18 @@
                     </table>
                 </div>
                 <template v-for="i in notice3" v-if="notice3!==null">
-                    <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
-                        <table>
-                            <template v-if="j!==undefined || j===[]">
-                                <tr>
-                                    <td>{{i.smallTitle[2*idx]}}：</td>
-                                    <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
-                                </tr>
-                            </template>
-                        </table>
-                    </div>
+                    <template v-if="i.smallTitle!==undefined">
+                        <div v-for="(j,idx) in ((i.smallTitle.length)/2)" :key="i.id">
+                            <table>
+                                <template v-if="j!==undefined || j===[]">
+                                    <tr>
+                                        <td>{{i.smallTitle[2*idx]}}：</td>
+                                        <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
+                                    </tr>
+                                </template>
+                            </table>
+                        </div>
+                    </template>
                 </template>
             </div>
             <!-- 服务保障 -->
@@ -170,7 +173,7 @@
 					if(res.body.code === 1000){
                         this.notice1 = res.body.data.ActivityView.notice1;
 						this.notice2 = JSON.parse(res.body.data.ActivityView.notice2);
-						this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
+                        this.notice3 = JSON.parse(res.body.data.ActivityView.notice3);
 						this.notice4 = JSON.parse(res.body.data.ActivityView.notice4);
 						this.model_type = res.body.data.ActivityView.model_type;
                         this.sponsor = res.body.data.ActivityView.Sponsor;

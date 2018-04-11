@@ -101,6 +101,9 @@
     font-size: .28rem;
     margin: .2rem 0;
 }
+.third .service>div{
+    margin: .3rem 0;
+}
 .third .service .blockTitle{
     color: #748395;
     font-size: .32rem;

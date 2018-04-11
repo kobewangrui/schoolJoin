@@ -81,7 +81,7 @@
     display: block;
 }
 .five table td:first-child{
-    min-width: .16rem;
+    min-width: 1.6rem;
     font-weight: bold;
     padding-left: .3rem;
 }
@@ -99,6 +99,9 @@
     color: #5E5E5E;
     font-size: .32rem;
     margin-bottom: .1rem;
+}
+.five .service>div{
+    margin: .3rem 0;
 }
 .five .service .content{
     font-size: .28rem;

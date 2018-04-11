@@ -67,7 +67,8 @@
             <!-- 日程安排 -->
                 <div class="bgTitle" v-if="model_type === '5'">
                     <p class="haveBG">日程安排</p>
-                    <p class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</p>
+                    <!-- <p class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</p> -->
+                    <p class="titleColor" v-if="notice2!==null">【{{views.activity_time}}】</p>
                 </div>
             <div class="dayTravel">
                 <div v-for="(i,index) in notice2" :key="i.id">
@@ -107,16 +108,18 @@
                         </tr>
                     </table>
                     <template v-for="i in notice3" v-if="notice3!==null">
-                        <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
-                            <table>
-                                <template v-if="j!==undefined || j===[]">
-                                    <tr>
-                                        <td>{{i.smallTitle[2*idx]}}：</td>
-                                        <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
-                                    </tr>
-                                </template>
-                            </table>
-                        </div>
+                        <template v-if="i.smallTitle!==undefined">
+                            <div v-for="(j,idx) in (i.smallTitle.length/2)" :key="i.id">
+                                <table>
+                                    <template v-if="j!==undefined || j===[]">
+                                        <tr>
+                                            <td>{{i.smallTitle[2*idx]}}：</td>
+                                            <td v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></td>
+                                        </tr>
+                                    </template>
+                                </table>
+                            </div>
+                        </template>
                     </template>
                 </div>
             </div>

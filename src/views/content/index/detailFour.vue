@@ -66,8 +66,9 @@
             <div v-html="notice1" class="firstContent"></div>
             <!-- 日程安排 -->
             <p class="bgTitle">
-                    <span class="haveBG">日程安排</span>
-                    <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span>
+                <span class="haveBG">日程安排</span>
+                <!-- <span class="titleColor" v-if="notice2!==null">【{{Math.ceil(notice2.length)}}天{{Math.ceil(notice2.length-1)}}晚】</span> -->
+                <span class="titleColor" v-if="notice2!==null">【{{views.activity_time}}】</span>
             </p>
             <div class="dayTravel">
                 <div class="dayTravels" v-if="notice2!==null">
@@ -98,11 +99,13 @@
                         <p class="tit"><span>{{i[0]}}</span><span></span></p>
                         <p v-html="i[1].replace(/\s/g,'').replace(/\|/g,'</br>')"></p>
                         <template v-for="i in notice3" v-if="notice3!==null">
-                            <template v-for="(j,idx) in (i.smallTitle.length/2)">
-                                <p v-if="j!==undefined || j===[]">
-                                    <span>{{i.smallTitle[2*idx]}}：</span>
-                                    <span v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></span>
-                                </p>
+                            <template v-if="i.smallTitle!==undefined">
+                                <template v-for="(j,idx) in (i.smallTitle.length/2)">
+                                    <p v-if="j!==undefined || j===[]">
+                                        <p class="tit"><span>{{i.smallTitle[2*idx]}}：</span><span></span></p>
+                                        <span v-html="i.smallTitle[2*idx+1].replace(/\s/g,'').replace(/\|/g,'</br>')"></span>
+                                    </p>
+                                </template>
                             </template>
                         </template>
                     </div>

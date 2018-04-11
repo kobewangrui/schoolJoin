@@ -79,6 +79,9 @@
     color: #785A48;
     text-indent: .6rem;
 }
+.four .service>div{
+    margin: .3rem 0;
+}
 .four .service .blockTitle{
     color: #785A48;
     font-size: .32rem;
