@@ -16,6 +16,10 @@
     }
     .title span:first-child{
         font-size: .32rem;
+        max-width: 5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .title span:last-child{
         font-size: .28rem;

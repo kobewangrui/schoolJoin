@@ -21,6 +21,9 @@
     .list li .title{
         font-size: .32rem;
         color: #313d2a;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .list li .date{
         color: #9e9b9b;

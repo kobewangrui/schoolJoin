@@ -85,29 +85,29 @@
         },
         methods:{
             getCode(){
-                if(this.codeText === '获取验证码'){
-                    this.isActive = false;
-                    this.codeText = 60;
-                    this.sendCode();
-                    let cleartime = setInterval(()=>{
-                        this.codeText-=1;
-                        if(this.codeText<1){
-                            this.codeText = '获取验证码'
-                            window.clearInterval(cleartime);
-                            this.isActive = true;
-                        }
-                    },1000);
+                if(this.$vuerify.check(['phoneNumber'])){
+                    if(this.codeText === '获取验证码'){
+                        this.isActive = false;
+                        this.codeText = 60;
+                        this.sendCode();
+                        let cleartime = setInterval(()=>{
+                            this.codeText-=1;
+                            if(this.codeText<1){
+                                this.codeText = '获取验证码'
+                                window.clearInterval(cleartime);
+                                this.isActive = true;
+                            }
+                        },1000);
+                    }
                 }
             },
             sendCode(){
-                if(this.$vuerify.check(['phoneNumber'])){
-                    this.$http.post('/PcApi',{name:'pc.Sms.RegSendMsg',type:'1',mobile:this.phoneNumber},{emulateJSON:true}).then((res)=>{
-                        if(res.body.code === 1000){
-                        }
-                    }).catch((error)=>{
-                        console.log(error);
-                    })
-                }
+                this.$http.post('/PcApi',{name:'pc.Sms.RegSendMsg',type:'1',mobile:this.phoneNumber},{emulateJSON:true}).then((res)=>{
+                    if(res.body.code === 1000){
+                    }
+                }).catch((error)=>{
+                    console.log(error);
+                })
             },
             checkCodes(){
                 if(this.$vuerify.check()){
