@@ -11,7 +11,7 @@ body{
     height: 100%;
     font-size: .34rem;
     word-break:break-all;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 ul li{
     list-style: none;
@@ -32,6 +32,9 @@ textarea{
     max-width: 7rem;
     /* max-height: 4.2rem; */
     border-radius: .08rem;
+}
+.detailWRL .firstContent p{
+    margin: 0!important;
 }
 .detailWRL .dayTravels img,
 .detailWRL .dayTravel img{
